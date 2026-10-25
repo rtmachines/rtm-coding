@@ -1,0 +1,30 @@
+.........................
+----------------------------------------------------------------------
+Ran 25 tests in 31.937s
+
+OK
+Recorded native Claude evidence for case 01; semantic assessment is still required
+Recorded native Claude evidence for case 01; semantic assessment is still required
+Recorded native Claude evidence for case 01; semantic assessment is still required
+Recorded native Claude evidence for case 01; semantic assessment is still required
+Recorded native Claude evidence for case 01; semantic assessment is still required
+Recorded native Claude evidence for case 01; semantic assessment is still required
+Recorded native Claude evidence for case 01; semantic assessment is still required
+Recorded native Claude evidence for case 01; semantic assessment is still required
+PASS counterexample
+.FAIL interrupted
+.FAIL hang
+.FAIL compile-error
+.FAIL empty
+.
+----------------------------------------------------------------------
+Ran 5 tests in 0.122s
+
+OK
+..........Fresh review evidence MISSING. Automatic PASS is not workflow PASS.
+.........
+----------------------------------------------------------------------
+Ran 19 tests in 1.464s
+
+OK
+/tmp/tmp6vovb26m/bundle

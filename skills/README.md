@@ -1,5 +1,7 @@
 # Skille Rust dla Codex
 
+Wersja dla Claude Code ma osobny [pakiet instalacyjny i instrukcję](../claude-code/README-CLAUDE.md).
+
 - `rust-pr-review`: review zmian Rust, bramki Cargo i opcjonalny reviewdog,
   wymagane dowody Miri/aliasowania oraz testy async i modele Loom.
 - `rust-skills`: główna baza wiedzy z `rtmachines/rust-skills`, 265 reguł (MIT),

@@ -1,0 +1,992 @@
+[
+  {
+    "name": "runner-evidence-guards",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.182,
+    "command": [
+      "python",
+      "/home/rtm/.codex/worktrees/claude-review-parity/rust-review-kit/tests/workflow/test_runner.py"
+    ],
+    "cwd": "/home/rtm/.codex/worktrees/claude-review-parity/rust-review-kit",
+    "required_signals": [
+      "Ran 5 tests",
+      "OK"
+    ]
+  },
+  {
+    "name": "kit-install-gates-validator",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 1.875,
+    "command": [
+      "bash",
+      "/home/rtm/.codex/worktrees/claude-review-parity/rust-review-kit/tests/test-claude.sh"
+    ],
+    "cwd": "/home/rtm/.codex/worktrees/claude-review-parity/rust-review-kit",
+    "required_signals": [
+      "All Claude kit contract tests passed."
+    ]
+  },
+  {
+    "name": "logic-01-debug",
+    "pass": true,
+    "expected_exit": 101,
+    "exit": 101,
+    "seconds": 0.161,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "regressions"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/logic-01",
+    "required_signals": [
+      "0 passed; 6 failed"
+    ]
+  },
+  {
+    "name": "logic-01-release",
+    "pass": true,
+    "expected_exit": 101,
+    "exit": 101,
+    "seconds": 0.125,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "regressions",
+      "--release"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/logic-01",
+    "required_signals": [
+      "0 passed; 6 failed"
+    ]
+  },
+  {
+    "name": "logic-02-debug",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.17,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "regressions"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/logic-02",
+    "required_signals": [
+      "6 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "logic-02-release",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.144,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "regressions",
+      "--release"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/logic-02",
+    "required_signals": [
+      "6 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "03-async_regressions",
+    "pass": true,
+    "expected_exit": 101,
+    "exit": 101,
+    "seconds": 2.626,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "async_regressions"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/runtime-03",
+    "required_signals": [
+      "0 passed; 3 failed"
+    ]
+  },
+  {
+    "name": "03-async_faults",
+    "pass": true,
+    "expected_exit": 101,
+    "exit": 101,
+    "seconds": 0.318,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "async_faults"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/runtime-03",
+    "required_signals": [
+      "0 passed; 4 failed"
+    ]
+  },
+  {
+    "name": "03-publication",
+    "pass": true,
+    "expected_exit": 101,
+    "exit": 101,
+    "seconds": 2.69,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--features",
+      "model",
+      "--test",
+      "publication"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/runtime-03",
+    "required_signals": [
+      "left: 0"
+    ]
+  },
+  {
+    "name": "memory-edge-short_one",
+    "pass": true,
+    "expected_exit": 1,
+    "exit": 1,
+    "seconds": 2.905,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "memory_edges",
+      "short_one"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/runtime-03",
+    "required_signals": [
+      "Undefined Behavior"
+    ]
+  },
+  {
+    "name": "memory-edge-short_two",
+    "pass": true,
+    "expected_exit": 1,
+    "exit": 1,
+    "seconds": 0.426,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "memory_edges",
+      "short_two"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/runtime-03",
+    "required_signals": [
+      "Undefined Behavior"
+    ]
+  },
+  {
+    "name": "memory-edge-short_three",
+    "pass": true,
+    "expected_exit": 1,
+    "exit": 1,
+    "seconds": 0.436,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "memory_edges",
+      "short_three"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/runtime-03",
+    "required_signals": [
+      "Undefined Behavior"
+    ]
+  },
+  {
+    "name": "memory-edge-unaligned_word",
+    "pass": true,
+    "expected_exit": 1,
+    "exit": 1,
+    "seconds": 0.424,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "memory_edges",
+      "unaligned_word"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/runtime-03",
+    "required_signals": [
+      "Undefined Behavior"
+    ]
+  },
+  {
+    "name": "memory-edge-registration_read_after_move",
+    "pass": true,
+    "expected_exit": 1,
+    "exit": 1,
+    "seconds": 0.426,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "memory_edges",
+      "registration_read_after_move"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/runtime-03",
+    "required_signals": [
+      "Undefined Behavior"
+    ]
+  },
+  {
+    "name": "memory-edge-registration_read_during_unregister",
+    "pass": true,
+    "expected_exit": 1,
+    "exit": 1,
+    "seconds": 0.432,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "memory_edges",
+      "registration_read_during_unregister"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/runtime-03",
+    "required_signals": [
+      "Undefined Behavior"
+    ]
+  },
+  {
+    "name": "04-async_regressions",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 2.415,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "async_regressions"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/runtime-04",
+    "required_signals": [
+      "3 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "04-async_faults",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.23,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "async_faults"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/runtime-04",
+    "required_signals": [
+      "4 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "04-async-control",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.275,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "async_control"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/runtime-04",
+    "required_signals": [
+      "4 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "04-publication",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 2.643,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--features",
+      "model",
+      "--test",
+      "publication"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/runtime-04",
+    "required_signals": [
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "06-async_regressions",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 2.46,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "async_regressions"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/runtime-06",
+    "required_signals": [
+      "3 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "06-async_faults",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.224,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "async_faults"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/runtime-06",
+    "required_signals": [
+      "4 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "06-async-control",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.289,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "async_control"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/runtime-06",
+    "required_signals": [
+      "4 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "06-publication",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 2.927,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--features",
+      "model",
+      "--test",
+      "publication"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/runtime-06",
+    "required_signals": [
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "alias-04-stacked-retained_after_constructor_and_owner_move",
+    "pass": true,
+    "expected_exit": 1,
+    "exit": 1,
+    "seconds": 0.543,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "retained_after_constructor_and_owner_move"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/alias-04",
+    "required_signals": [
+      "Undefined Behavior"
+    ]
+  },
+  {
+    "name": "alias-04-stacked-unregister_reads_before_quiescence",
+    "pass": true,
+    "expected_exit": 1,
+    "exit": 1,
+    "seconds": 0.451,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "unregister_reads_before_quiescence"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/alias-04",
+    "required_signals": [
+      "Undefined Behavior"
+    ]
+  },
+  {
+    "name": "alias-04-stacked-empty_registration",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.528,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "empty_registration"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/alias-04",
+    "required_signals": [
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "alias-04-stacked-arbitrary_alignment_and_short_input",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.532,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "arbitrary_alignment_and_short_input"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/alias-04",
+    "required_signals": [
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "alias-04-tree-retained_after_constructor_and_owner_move",
+    "pass": true,
+    "expected_exit": 1,
+    "exit": 1,
+    "seconds": 0.561,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "retained_after_constructor_and_owner_move"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/alias-04",
+    "required_signals": [
+      "Undefined Behavior"
+    ]
+  },
+  {
+    "name": "alias-04-tree-unregister_reads_before_quiescence",
+    "pass": true,
+    "expected_exit": 1,
+    "exit": 1,
+    "seconds": 0.554,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "unregister_reads_before_quiescence"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/alias-04",
+    "required_signals": [
+      "Undefined Behavior"
+    ]
+  },
+  {
+    "name": "alias-04-tree-empty_registration",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.588,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "empty_registration"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/alias-04",
+    "required_signals": [
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "alias-04-tree-arbitrary_alignment_and_short_input",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.63,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "arbitrary_alignment_and_short_input"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/alias-04",
+    "required_signals": [
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "alias-06-stacked-retained_after_constructor_and_owner_move",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.556,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "retained_after_constructor_and_owner_move"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/alias-06",
+    "required_signals": [
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "alias-06-stacked-unregister_reads_before_quiescence",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.494,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "unregister_reads_before_quiescence"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/alias-06",
+    "required_signals": [
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "alias-06-stacked-empty_registration",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.471,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "empty_registration"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/alias-06",
+    "required_signals": [
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "alias-06-stacked-arbitrary_alignment_and_short_input",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.505,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "arbitrary_alignment_and_short_input"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/alias-06",
+    "required_signals": [
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "alias-06-tree-retained_after_constructor_and_owner_move",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.754,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "retained_after_constructor_and_owner_move"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/alias-06",
+    "required_signals": [
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "alias-06-tree-unregister_reads_before_quiescence",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.691,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "unregister_reads_before_quiescence"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/alias-06",
+    "required_signals": [
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "alias-06-tree-empty_registration",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.672,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "empty_registration"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/alias-06",
+    "required_signals": [
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "alias-06-tree-arbitrary_alignment_and_short_input",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.664,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "arbitrary_alignment_and_short_input"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/alias-06",
+    "required_signals": [
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "narrow-alias-stacked",
+    "pass": true,
+    "expected_exit": 1,
+    "exit": 1,
+    "seconds": 2.853,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "memory",
+      "ffi_storage_lives_until_unregister"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/narrow-alias",
+    "required_signals": [
+      "Undefined Behavior"
+    ]
+  },
+  {
+    "name": "narrow-alias-tree",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.591,
+    "command": [
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "memory",
+      "ffi_storage_lives_until_unregister"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/narrow-alias",
+    "required_signals": [
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "bounded-loom",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 2.812,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--features",
+      "model",
+      "--test",
+      "publication_model",
+      "--",
+      "--nocapture"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/bounded-loom",
+    "required_signals": [
+      "executions: 1",
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "ambiguous-cancellation",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 2.388,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "contract_gap",
+      "--",
+      "--nocapture"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/ambiguous-cancellation",
+    "required_signals": [
+      "effects=0",
+      "effects=1",
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "complete-loom",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 2.994,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--features",
+      "model",
+      "--test",
+      "publication_model",
+      "--",
+      "--nocapture"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/complete-loom",
+    "required_signals": [
+      "completed model executions: 6",
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "provider-vendor_tests",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 2.865,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "vendor_tests"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/provider",
+    "required_signals": [
+      "3 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "provider-review_acceptance",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 0.207,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "review_acceptance"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/provider",
+    "required_signals": [
+      "2 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "provider-model",
+    "pass": true,
+    "expected_exit": 0,
+    "exit": 0,
+    "seconds": 2.976,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--features",
+      "model",
+      "--test",
+      "vendor_model"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/provider",
+    "required_signals": [
+      "1 passed; 0 failed"
+    ]
+  },
+  {
+    "name": "mutation-vendor_tests",
+    "pass": true,
+    "expected_exit": 101,
+    "exit": 101,
+    "seconds": 0.197,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--test",
+      "vendor_tests"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/provider",
+    "required_signals": [
+      "test result: FAILED"
+    ]
+  },
+  {
+    "name": "mutation-vendor_model",
+    "pass": true,
+    "expected_exit": 101,
+    "exit": 101,
+    "seconds": 0.229,
+    "command": [
+      "cargo",
+      "test",
+      "--offline",
+      "--locked",
+      "--features",
+      "model",
+      "--test",
+      "vendor_model"
+    ],
+    "cwd": "/home/rtm/.cache/rust-review-kit/claude-parity-final-20261025/probes/provider",
+    "required_signals": [
+      "test result: FAILED"
+    ]
+  }
+]

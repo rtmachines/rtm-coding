@@ -1,0 +1,24 @@
+# Workflow regression run
+
+Diagnostics: 49/49 PASS.
+Fresh review acceptance: 11/11 PASS.
+
+| Case | Verdict | Acceptance |
+| --- | --- | --- |
+| 01: Sześć błędów logiki, także dirty i untracked | REQUEST_CHANGES | PASS |
+| 02: Poprawna kontrola logiki | APPROVE | PASS |
+| 03: Unsafe/FFI, deadlock, anulowanie, shutdown, atomiki | REQUEST_CHANGES | PASS |
+| 04: Przeoczony wcześniej problem aliasowania Box | ESCALATE | PASS |
+| 05: Brak kontraktu quiescence dostawcy FFI | ESCALATE | PASS |
+| 06: Poprawna kontrola pamięci i współbieżności | APPROVE | PASS |
+| 07: Nieukończona eksploracja Loom | ESCALATE | PASS |
+| 08: Nierozstrzygnięte anulowanie u dostawcy | ESCALATE | PASS |
+| 09: Zamknięcie po ukończeniu modelu | APPROVE | PASS |
+| 10: Zamknięcie po testach pełnego dostawcy | APPROVE | PASS |
+| 11: Sam kontrakt nie zamyka eskalacji | ESCALATE | PASS |
+
+Semantic evidence assessment: PENDING/FAIL
+
+Report acceptance checks verdict, schema and source integrity. Defect explanations and evidence quality still require human/agent assessment. Missing fresh reports never count as PASS.
+
+Overall: INCOMPLETE/FAIL

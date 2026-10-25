@@ -1,0 +1,11 @@
+{
+  "runtime": "Claude Code 2.1.308",
+  "invocation": "/rust-pr-review origin/main (Cargo intentionally forbidden for transport test)",
+  "agent_spawned": true,
+  "agent_completed": true,
+  "native_success": true,
+  "validator_exit": 0,
+  "verdict": "## Verdict: INCOMPLETE",
+  "fresh_rust_review": false,
+  "pass": true
+}

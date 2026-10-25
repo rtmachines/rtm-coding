@@ -1,0 +1,241 @@
+{
+  "02": {
+    "pass": true,
+    "reason": "Fresh-run native Claude success matches report.md and both provenance hashes for suite accbf87cfed35bfbb1c90b2d2855bf65c8bd9748506b490e67b3d164081c2a3c. APPROVE is supported by the actual u16::from_str contract, raw.parse().ok() implementation and crate-root export. Six tracked regression tests cover meaningful contracts, including malformed parse input; saved execution evidence confirms 5 unit tests, 6 regression tests and 1 doctest passed. The isolated exact-source probe additionally prints correct parse boundary results, including +5 accepted and overflow/negative/malformed input rejected, and asserts fee widening, debit, Unicode, expiry and tenant/user behavior. fmt, clippy and offline deny success and all exit statuses are substantiated. Recorded source, regression-test and requirements hashes remain unchanged; execution copy matches, and the only dirty file is the pre-existing REQUIREMENTS.md addendum. No false PASS claim found.",
+    "evidence": [
+      "reviews/02/report.md",
+      "reviews/02/claude.jsonl",
+      "reviews/02/provenance.json",
+      "reviews/02/native-run.json",
+      "reviews/02/source-hashes.txt",
+      "reviews/02/logs/test.log",
+      "reviews/02/logs/probe.log",
+      "reviews/02/logs/fmt.log",
+      "reviews/02/logs/clippy.log",
+      "reviews/02/logs/deny.log",
+      "reviews/02/status.txt",
+      "cases/02/tests/regressions.rs",
+      "cases/02/REQUIREMENTS.md",
+      "cases/02/src/limits.rs",
+      "cases/02/src/lib.rs"
+    ]
+  },
+  "07": {
+    "pass": true,
+    "reason": "Fresh-run native Claude success, report.md and provenance hashes bind correctly to the requested suite. ESCALATE accurately reflects the required but truncated Loom exploration: the real Published implementation switches to Loom atomics under model, and the model uses checkpoint_interval=1/max_permutations=Some(2), enforcing the stated single-execution bound. The saved model test passes once, while the report explicitly keeps Loom NOT RUN, synchronization UNRESOLVED and spec PARTIAL; passing ordinary gates with zero selected tests are not presented as model completion. The independent release/acquire argument is correct under the single-writer, single-publication contract. Saved gate logs and statuses support each ordinary PASS. All recorded Rust/model/manifest hashes still match and the reviewed tree remains clean. No false PASS claim found.",
+    "evidence": [
+      "reviews/07/report.md",
+      "reviews/07/claude.jsonl",
+      "reviews/07/provenance.json",
+      "reviews/07/native-run.json",
+      "reviews/07/hashes.txt",
+      "reviews/07/loom.log",
+      "reviews/07/test.log",
+      "reviews/07/fmt.log",
+      "reviews/07/clippy.log",
+      "reviews/07/deny.log",
+      "reviews/07/status",
+      "cases/07/src/lib.rs",
+      "cases/07/tests/publication_model.rs",
+      "cases/07/REQUIREMENTS.md",
+      "cases/07/REVIEW.md"
+    ]
+  },
+  "08": {
+    "pass": true,
+    "reason": "Fresh-run native Claude success matches report.md and provenance hashes for the requested suite. ESCALATE is justified because timeout drops the send future and returns Retry, while the required proprietary AcmeTransport cancellation/idempotency guarantee is absent. Two ordinary integration tests check only Ready/Pending return values. The targeted exact-source probe genuinely passes and demonstrates commit-before-timeout followed by Retry; the report correctly limits it to a mock, keeps real-adapter cancellation NOT RUN and spec PARTIAL, and does not invent a proven provider defect. The initially locked probe failed before execution, followed by a successful offline run with its own lockfile; the final report accurately identifies the unlocked probe build and the gate PASS claims apply to successful locked project gates. Saved fmt/clippy/test/deny logs and statuses support those claims. All recorded source/test/requirements hashes match, the probe library is byte-identical to reviewed source, and the reviewed tree remains clean. No false PASS claim found.",
+    "evidence": [
+      "reviews/08/report.md",
+      "reviews/08/claude.jsonl",
+      "reviews/08/provenance.json",
+      "reviews/08/native-run.json",
+      "reviews/08/source-hashes.txt",
+      "reviews/08/probe/tests/p.rs",
+      "reviews/08/probe/src/lib.rs",
+      "reviews/08/probe.log",
+      "reviews/08/test.log",
+      "reviews/08/fmt.log",
+      "reviews/08/clippy.log",
+      "reviews/08/deny.log",
+      "reviews/08/status",
+      "cases/08/src/lib.rs",
+      "cases/08/tests/delivery.rs",
+      "cases/08/REQUIREMENTS.md"
+    ]
+  },
+  "01": {
+    "pass": true,
+    "reason": "Fresh native REQUEST_CHANGES evidence substantiates all six required logic mechanisms: can_read accepts equal user IDs across tenants; debit returns Some(0) for overdraw; preview panics at a UTF-8 boundary; token_usable accepts the expiry instant; fee fails both the 1999/250 case and the maximum-u32 calculation; parse_limit panics for negative, out-of-range and malformed inputs while +5 and 65535 pass. The copied lib.rs preserves the complete reviewed source as an unchanged prefix and only appends a test module; limits.rs and Cargo files match exactly. The 16-test probe run really has 7 passes and 9 failures, including five original tests, and native JSONL records exit 101. Ordinary nextest is genuinely 5/5, with the fee doctest failing and gates exit 1. Report/transcript hashes, session ID, suite fingerprint and native final text match provenance; only the recorder-added terminal newline differs. Minor prose imprecision: the opening sentence double-counts the new parse_limit, and its empty-input assertion follows an already-failing malformed-input assertion, so empty-input panic is source-supported rather than separately reached in this run.",
+    "evidence": [
+      "cases/01/REQUIREMENTS.md",
+      "cases/01/src/lib.rs",
+      "cases/01/src/limits.rs",
+      "reviews/01/report.md",
+      "reviews/01/probe/src/lib.rs",
+      "reviews/01/probe/src/limits.rs",
+      "reviews/01/probe.log",
+      "reviews/01/gates.err",
+      "reviews/01/gates.out",
+      "reviews/01/gates.status",
+      "reviews/01/source.sha256",
+      "reviews/01/probe.sha256",
+      "reviews/01/claude.jsonl",
+      "reviews/01/provenance.json"
+    ]
+  },
+  "03": {
+    "pass": true,
+    "reason": "Fresh report and executed probes substantiate all six required mechanisms. Separate Miri targets find a three-byte out-of-bounds read, a genuine default-Miri alignment error, and a freed allocation read after Registration::new returns through a provenance-preserving AtomicPtr shim that obeys the documented contract. JSONL confirms compilation-only preflight followed by Miri execution, with native runs selecting only async_probe and loom_probe. Async counts match exactly: four tests, one passing abort/await control and three failures for the nested-lock timeout, queue loss before approval, and an observable go-triggered worker effect after stop_worker returns. The actual failing effect assertion establishes non-vacuity; it is not an invalid-harness counterexample. Exact-source one-shot Loom observes Some(0) after publishing 42. Ordinary logs genuinely run two passing unit tests and zero doctests, and report Clippy boxed_local failure with exit 101 accurately. All source/Cargo copies are byte-identical. Report/transcript hashes, suite fingerprint, session ID and native final text match the saved provenance, apart from the recorder-added terminal newline.",
+    "evidence": [
+      "cases/03/REQUIREMENTS.md",
+      "cases/03/src/bytes.rs",
+      "cases/03/src/registration.rs",
+      "cases/03/src/service.rs",
+      "cases/03/src/publication.rs",
+      "reviews/03/report.md",
+      "reviews/03/probe/tests/mem_read_word.rs",
+      "reviews/03/probe/tests/mem_registration.rs",
+      "reviews/03/miri-read-word.log",
+      "reviews/03/miri-unaligned.log",
+      "reviews/03/miri-registration.log",
+      "reviews/03/probe/tests/async_probe.rs",
+      "reviews/03/async-probe.log",
+      "reviews/03/probe/tests/loom_probe.rs",
+      "reviews/03/loom-probe.log",
+      "reviews/03/test.log",
+      "reviews/03/clippy.log",
+      "reviews/03/status.txt",
+      "reviews/03/source-hashes.txt",
+      "reviews/03/probe-source-hashes.txt",
+      "reviews/03/claude.jsonl",
+      "reviews/03/provenance.json"
+    ]
+  },
+  "04": {
+    "pass": true,
+    "reason": "The fresh REQUEST_CHANGES verdict is justified by a real retained-Box aliasing counterexample under both models. The single serialized AtomicPtr shim preserves pointer provenance, only reads the registered range while live and in unregister, and does not write, free, overlap registrations or read after quiescence. Stacked Borrows rejects the read after constructor return, tracing SharedReadOnly pointer creation at bytes.as_ptr() to invalidation by the Box move into Self. Tree Borrows reaches unregister, then rejects Box deallocation because the by-value drop tag became Reserved(conflicted) due to that permitted foreign read. This is stronger evidence than a model disagreement and is not a harness-injected violation. Miri commands alone execute the memory target; no native suspected-UB baseline occurs. The separate raw-ownership candidate genuinely passes the same probe in both models without changing reviewed code. Ordinary counts match 2/2 plus zero doctests; seven concurrency tests and the exact-source one-shot Loom model pass. Async lifecycle uses a running, reachable-effect loop and asserts a frozen counter after return; unlike the old permanently-pending probe it can expose detachment. Limitations: that lifecycle check depends on timing and has no separately executed detach control; the blocking-worker probe only prints effect=1 at return rather than asserting a contract, so its observation is narrower than a robust regression test. Those limits do not invalidate the concrete aliasing defect or verdict. Source/Cargo copies, hashes, session, suite fingerprint and native final/report provenance match, with only the recorded terminal newline added.",
+    "evidence": [
+      "cases/04/REQUIREMENTS.md",
+      "cases/04/src/registration.rs",
+      "cases/04/src/service.rs",
+      "cases/04/src/publication.rs",
+      "reviews/04/report.md",
+      "reviews/04/src-copy/tests/mem.rs",
+      "reviews/04/miri.log",
+      "reviews/04/miri-tb.log",
+      "reviews/04/miri-word.log",
+      "reviews/04/fixprobe/src/lib.rs",
+      "reviews/04/fixprobe/tests/mem.rs",
+      "reviews/04/miri-fix.log",
+      "reviews/04/src-copy/tests/conc.rs",
+      "reviews/04/conc.log",
+      "reviews/04/src-copy/tests/model.rs",
+      "reviews/04/loom.log",
+      "reviews/04/gates.log",
+      "reviews/04/gates.out",
+      "reviews/04/gates.status",
+      "reviews/04/source.sha256",
+      "reviews/04/probe.sha256",
+      "reviews/04/claude.jsonl",
+      "reviews/04/provenance.json"
+    ]
+  },
+  "05": {
+    "pass": true,
+    "reason": "Fresh successful native ESCALATE is bound to the identical saved report, transcript/session provenance and unchanged inputs. The exact vendor.rs probe is compiler-checked and executed only under Miri: Stacked Borrows rejects two active retained-pointer reads while Tree Borrows accepts all four tests. The report leaves aliasing unresolved and identifies missing vendor retention/quiescence guarantees; it does not use zero ordinary tests or a mock vendor as proof of safe teardown.",
+    "evidence": [
+      "reviews/05/report.md",
+      "reviews/05/claude.jsonl",
+      "reviews/05/provenance.json",
+      "reviews/05/native-run.json",
+      "reviews/05/source-hashes.txt",
+      "reviews/05/probe-hashes.txt",
+      "reviews/05/probe/src/lib.rs",
+      "reviews/05/probe/src/vendor.rs",
+      "reviews/05/miri.log",
+      "reviews/05/test.log",
+      "cases/05/REQUIREMENTS.md",
+      "cases/05/vendor.h"
+    ]
+  },
+  "06": {
+    "pass": true,
+    "reason": "Fresh native APPROVE is bound to the identical saved report/provenance and unchanged inputs; all eight production/test files in the execution copy match. The raw Box owner is preserved until synchronous unregister then reconstructed once. Both checked-in memory tests and the moved-owner/empty-buffer probe pass under Stacked and Tree Borrows. All three async regressions pass; replacing abort-and-await with dropping the handle makes the lifecycle test observe a continuing worker and fail. The actual instrumented publication model completes, while a Relaxed-store control fails. Native commands, saved logs and seven passing ordinary tests substantiate the required evidence.",
+    "evidence": [
+      "reviews/06/report.md",
+      "reviews/06/claude.jsonl",
+      "reviews/06/provenance.json",
+      "reviews/06/native-run.json",
+      "reviews/06/source-hashes.txt",
+      "reviews/06/probe-hashes.txt",
+      "reviews/06/test.log",
+      "reviews/06/miri-sb.log",
+      "reviews/06/miri-tb.log",
+      "reviews/06/miri-move-.log",
+      "reviews/06/miri-move--Zmiri-tree-borrows.log",
+      "reviews/06/mut/tests/move_probe.rs",
+      "reviews/06/loom.log",
+      "reviews/06/loom-mutant.log",
+      "reviews/06/stop-mutant.log",
+      "cases/06/REQUIREMENTS.md",
+      "cases/06/src/registration.rs",
+      "cases/06/tests/async_regressions.rs"
+    ]
+  },
+  "09": {
+    "pass": true,
+    "reason": "Fresh native APPROVE is bound to the identical saved report/provenance and unchanged inputs. The exact-source model selects Loom atomics, explicitly removes permutation/duration/preemption truncation, checks the concurrent value and post-join snapshot, and completes six executions. Fresh logs and native commands substantiate model exit 0; a separate Relaxed-ordering mutant fails with 0 versus 42, establishing sensitivity. The independent release/acquire argument and single-writer one-shot scope match requirements; zero ordinary tests are accurately qualified.",
+    "evidence": [
+      "reviews/09/report.md",
+      "reviews/09/claude.jsonl",
+      "reviews/09/provenance.json",
+      "reviews/09/native-run.json",
+      "reviews/09/hashes.txt",
+      "reviews/09/src/src/lib.rs",
+      "reviews/09/src/tests/publication_model.rs",
+      "reviews/09/model.log",
+      "reviews/09/model.status",
+      "reviews/09/mutant.log",
+      "reviews/09/gates.err",
+      "cases/09/REQUIREMENTS.md"
+    ]
+  },
+  "10": {
+    "pass": true,
+    "reason": "Fresh successful native APPROVE matches the saved report/provenance and unchanged inputs. An isolated byte-identical provider probe actually awaits StallBeforeCommit timeout, asserts Retry(5) and zero effects, then retries the same ID and confirms Delivered(5) with one effect. Checked-in actual-provider tests execute timeout after commit and both drop boundaries, retry deduplication, reconnect/quiescent restore and distinct IDs. The actual Server Loom model completes using tracked Mutex/Arc with no permutation/duration/preemption truncation. This fresh run supplies all four required provider boundary scenarios and supports approval for the explicit local reference-provider contract.",
+    "evidence": [
+      "reviews/10/report.md",
+      "reviews/10/claude.jsonl",
+      "reviews/10/provenance.json",
+      "reviews/10/native-run.json",
+      "reviews/10/source-hashes.txt",
+      "reviews/10/probe/tests/p.rs",
+      "reviews/10/probe/src/acme.rs",
+      "reviews/10/probe.log",
+      "reviews/10/probe.status",
+      "reviews/10/gates.err",
+      "reviews/10/loom.log",
+      "reviews/10/loom.status",
+      "cases/10/VENDOR-CONTRACT.md",
+      "cases/10/REQUIREMENTS.md",
+      "cases/10/tests/vendor_tests.rs",
+      "cases/10/tests/vendor_model.rs"
+    ]
+  },
+  "11": {
+    "pass": true,
+    "reason": "Fresh native ESCALATE matches the identical saved report/provenance and unchanged inputs. Actual source inventory contains only the generic timeout wrapper and Ready/Pending tests; AcmeTransport, Server, Snapshot, provider acceptance tests and the Loom model are absent despite the versioned contract. Fresh ordinary and feature-model logs both run only the same two mock tests. The report correctly leaves all four actual-provider cancellation cells unexecuted and synchronization unresolved, and requests the missing implementation/evidence instead of claiming contract-only approval. Reporting caveat: it labels the absent provider as P1/spec FAIL; that establishes a missing requested implementation/evidence gap, not a demonstrated duplicate-effect runtime defect.",
+    "evidence": [
+      "reviews/11/report.md",
+      "reviews/11/claude.jsonl",
+      "reviews/11/provenance.json",
+      "reviews/11/native-run.json",
+      "reviews/11/logs/test.log",
+      "reviews/11/logs/model.log",
+      "cases/11/REQUIREMENTS.md",
+      "cases/11/VENDOR-CONTRACT.md",
+      "cases/11/src/lib.rs",
+      "cases/11/tests/delivery.rs"
+    ]
+  }
+}
