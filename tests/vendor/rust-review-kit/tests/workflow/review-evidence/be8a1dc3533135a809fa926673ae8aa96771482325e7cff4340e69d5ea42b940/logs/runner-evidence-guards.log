@@ -1,0 +1,10 @@
+PASS counterexample
+FAIL interrupted
+FAIL hang
+FAIL compile-error
+FAIL empty
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.090s
+
+OK

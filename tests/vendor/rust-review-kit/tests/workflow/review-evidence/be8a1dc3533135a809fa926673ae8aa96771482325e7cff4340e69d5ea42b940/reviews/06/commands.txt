@@ -1,0 +1,12 @@
+context: bash .agents/skills/rust-pr-review/scripts/context.sh origin/main
+scope: git diff --no-ext-diff --no-textconv origin/main --
+inventory/hash: git ls-files --cached --others --exclude-standard -z; SHA256 each file
+Graph: build_or_update_graph_tool, detect_changes_tool(base=origin/main), get_review_context_tool, get_affected_flows_tool, query_graph_tool(tests_for); repo_root=/tmp/rust-review-current-20261025/cases/06
+LSP: workspace_symbols(workspace_root=/tmp/rust-review-current-20261025/cases/06)
+Ordinary diagnostics: see *.command; RUST_REVIEWDOG=1, CARGO_NET_OFFLINE=true, default features, external 180-second watchdog per gate
+Initial deny command had unsupported --disable-fetch, exit 2; corrected cargo deny --offline --locked check, exit 0. Original log retained.
+No LOOM_* or MIRIFLAGS environment overrides present for ordinary model/default Miri runs.
+cwd=/tmp/rust-review-current-20261025/cases/06: CARGO_NET_OFFLINE=true CARGO_TARGET_DIR=/tmp/rust-review-current-20261025/reviews/06/model-target timeout 120 cargo test --offline --locked --features model --test publication -- --nocapture > /tmp/rust-review-current-20261025/reviews/06/model.log 2>&1
+CARGO_NET_OFFLINE=true CARGO_TARGET_DIR=/tmp/rust-review-current-20261025/reviews/06/miri-target timeout 120 cargo +nightly miri test --offline --locked --manifest-path /tmp/rust-review-current-20261025/reviews/06/probe/Cargo.toml --test memory_probe > /tmp/rust-review-current-20261025/reviews/06/miri-stacked.log 2>&1 (MIRIFLAGS unset)
+CARGO_NET_OFFLINE=true CARGO_TARGET_DIR=/tmp/rust-review-current-20261025/reviews/06/probe-target timeout 120 cargo test --offline --locked --manifest-path /tmp/rust-review-current-20261025/reviews/06/probe/Cargo.toml --test async_probe -- --nocapture > /tmp/rust-review-current-20261025/reviews/06/async-probe.log 2>&1
+cwd=/tmp/rust-review-current-20261025/cases/06: bash .agents/skills/rust-pr-review/scripts/check-report.sh /tmp/rust-review-current-20261025/reviews/06/report.md

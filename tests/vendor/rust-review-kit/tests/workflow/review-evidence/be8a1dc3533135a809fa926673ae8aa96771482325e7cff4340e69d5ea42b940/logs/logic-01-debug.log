@@ -1,0 +1,62 @@
+
+running 6 tests
+test expiry_boundary ... FAILED
+test fee_rounding ... FAILED
+test tenant_isolation ... FAILED
+test unicode_preview ... FAILED
+test insufficient_funds ... FAILED
+test invalid_limit ... FAILED
+
+failures:
+
+---- expiry_boundary stdout ----
+
+thread 'expiry_boundary' (76042) panicked at tests/regressions.rs:11:24:
+assertion failed: !token_usable(100, 100)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- fee_rounding stdout ----
+
+thread 'fee_rounding' (76043) panicked at tests/regressions.rs:13:21:
+assertion `left == right` failed
+  left: 0
+ right: 49
+
+---- tenant_isolation stdout ----
+
+thread 'tenant_isolation' (76046) panicked at tests/regressions.rs:4:5:
+assertion failed: !can_read(Identity { tenant_id: 1, user_id: 7 },
+        Identity { tenant_id: 2, user_id: 7 })
+
+---- unicode_preview stdout ----
+
+thread 'unicode_preview' (76047) panicked at src/lib.rs:18:9:
+end byte index 1 is not a char boundary; it is inside 'ż' (bytes 0..2 of string)
+
+---- insufficient_funds stdout ----
+
+thread 'insufficient_funds' (76044) panicked at tests/regressions.rs:7:27:
+assertion `left == right` failed
+  left: Some(0)
+ right: None
+
+---- invalid_limit stdout ----
+
+thread 'invalid_limit' (76045) panicked at src/limits.rs:2:29:
+called `Result::unwrap()` on an `Err` value: ParseIntError { kind: InvalidDigit }
+
+
+failures:
+    expiry_boundary
+    fee_rounding
+    insufficient_funds
+    invalid_limit
+    tenant_isolation
+    unicode_preview
+
+test result: FAILED. 0 passed; 6 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Compiling ledger-preview v0.1.0 (/tmp/rust-review-current-20261025/probes/logic-01)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running tests/regressions.rs (target/debug/deps/regressions-4239b99130bc57e0)
+error: test failed, to rerun pass `--test regressions`

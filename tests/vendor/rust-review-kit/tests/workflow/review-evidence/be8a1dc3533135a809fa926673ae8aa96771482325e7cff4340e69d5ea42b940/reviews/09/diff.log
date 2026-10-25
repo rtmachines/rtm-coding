@@ -1,0 +1,236 @@
+diff --git a/.agents/skills/rust-pr-review/SKILL.md b/.agents/skills/rust-pr-review/SKILL.md
+index 474be40..d305ddd 100644
+--- a/.agents/skills/rust-pr-review/SKILL.md
++++ b/.agents/skills/rust-pr-review/SKILL.md
+@@ -41,6 +41,10 @@ proc macros and tests; instructions alone do not enforce read-only execution.
+   fmt, clippy, tests, doctests and deny; it has no cache or automatic retry loop.
+   Missing tools/configuration are NOT RUN, never PASS. Do not repair code during review.
+   A dirty tree or different head invalidates CI evidence for changed behavior.
++- Optionally enable local reviewdog presentation with `RUST_REVIEWDOG=1` when running
++  `gates.sh`. Read [REVIEWDOG.md](references/REVIEWDOG.md) for diff filtering and
++  existing project runners. Missing reviewdog is an optional omission; Clippy still
++  runs. An empty filtered report never overrides Clippy failure.
+ - For public library compatibility, use available semver checks against an explicit
+   release/base selected from project policy. Report omissions; this does not prove soundness.
+ - Read relevant chapters of `../rust-best-practices/SKILL.md` and
+diff --git a/.agents/skills/rust-pr-review/references/REVIEWDOG.md b/.agents/skills/rust-pr-review/references/REVIEWDOG.md
+new file mode 100644
+index 0000000..15c63c2
+--- /dev/null
++++ b/.agents/skills/rust-pr-review/references/REVIEWDOG.md
+@@ -0,0 +1,34 @@
++# Optional local reviewdog
++
++Run from the reviewed Cargo workspace:
++
++```bash
++RUST_REVIEWDOG=1 bash .agents/skills/rust-pr-review/scripts/gates.sh
++```
++
++The helper runs Clippy once, preserves raw uncolored short diagnostics and its exit
++code in a printed temporary evidence directory, then feeds that file to reviewdog.
++It uses the local reporter only and installs nothing. Missing reviewdog falls back
++to the raw diagnostics. Its errors/status are separate from the Clippy gate.
++`RUST_REVIEWDOG_BIN` can select an existing executable by name or absolute path.
++Retain the evidence files until the review is complete.
++
++Default filtering is `nofilter`. For tracked branch plus working-tree changes, set
++`RUST_REVIEWDOG_BASE` to the already resolved review base SHA. For working-tree-only
++review, use HEAD. For a committed-only scope, use matching checkout/CI evidence;
++this helper's diff includes local edits. Invalid bases fall back to unfiltered output.
++Git diff excludes untracked files: omit the base when they are in scope.
++
++Always derive the `clippy` gate from Clippy's exit status, not reviewdog's report or
++exit status. Inspect raw output on compilation failure, parser failure or an empty
++report. A successful reviewdog process with zero displayed diagnostics is not a
++passing lint check. Record presentation failures/omissions separately in the report;
++reviewdog does not replace Miri, Loom, tests or semantic review.
++
++If the project already has `.reviewdog.yml` or `.reviewdog.yaml`, prefer its relevant
++lint runners with `-reporter=local -filter-mode=nofilter -fail-level=warning` for
++project presentation. Still run the Clippy gate independently: config runners may
++filter, mask failures or use different flags. Do not automatically execute every
++runner. Do not feed RTK-condensed output to a parser; use `rtk bypass` for a producer
++if it is intercepted. The helper calls Cargo directly without a condensing wrapper.
++Remote reporters require an explicit request to publish results.
+diff --git a/.agents/skills/rust-pr-review/scripts/clippy.sh b/.agents/skills/rust-pr-review/scripts/clippy.sh
+new file mode 100644
+index 0000000..f361d72
+--- /dev/null
++++ b/.agents/skills/rust-pr-review/scripts/clippy.sh
+@@ -0,0 +1,38 @@
++#!/usr/bin/env bash
++# Preserve Clippy's exit status independently of optional diagnostic presentation.
++set -uo pipefail
++export CARGO_TERM_COLOR=never
++if [[ ${RUST_REVIEWDOG:-0} != 1 ]]; then
++  exec cargo clippy "$@"
++fi
++logs=$(mktemp -d "${TMPDIR:-/tmp}/rust-review-clippy.XXXXXXXX") || exit 2
++printf 'Clippy/reviewdog evidence: %s\n' "$logs" >&2
++# Capture raw output without a pipeline; retain unfiltered compiler errors.
++cargo clippy --message-format=short --color=never "$@" > "$logs/clippy.log" 2>&1
++clippy_status=$?
++printf '%s\n' "$clippy_status" > "$logs/clippy.exit"
++cat "$logs/clippy.log" >&2
++reviewdog_bin=${RUST_REVIEWDOG_BIN:-reviewdog}
++if ! command -v "$reviewdog_bin" >/dev/null 2>&1; then
++  echo 'reviewdog: NOT RUN (optional tool missing; Clippy result retained)' >&2
++  exit "$clippy_status"
++fi
++args=(-f=clippy -reporter=local -filter-mode=nofilter -fail-level=warning)
++if [[ -n ${RUST_REVIEWDOG_BASE:-} ]]; then
++  # Only a resolved commit hash enters reviewdog's shell diff command.
++  if base=$(git rev-parse --verify --end-of-options "${RUST_REVIEWDOG_BASE}^{commit}" 2>/dev/null); then
++    args=(-f=clippy -reporter=local -filter-mode=added -fail-level=warning
++      "-diff=git diff --no-ext-diff --no-textconv --no-color $base --")
++  else
++    echo 'reviewdog: invalid base; displaying unfiltered diagnostics' >&2
++  fi
++fi
++"$reviewdog_bin" "${args[@]}" < "$logs/clippy.log" > "$logs/reviewdog.log" 2> "$logs/reviewdog.stderr"
++reviewdog_status=$?
++printf '%s\n' "$reviewdog_status" > "$logs/reviewdog.exit"
++cat "$logs/reviewdog.log" "$logs/reviewdog.stderr" >&2
++printf 'reviewdog: exit=%s (presentation only; Clippy exit=%s)\n' "$reviewdog_status" "$clippy_status" >&2
++if [[ ! -s "$logs/reviewdog.log" ]]; then
++  echo 'Empty reviewdog report is not evidence of Clippy PASS; inspect clippy.log.' >&2
++fi
++exit "$clippy_status"
+diff --git a/.agents/skills/rust-pr-review/scripts/gates.sh b/.agents/skills/rust-pr-review/scripts/gates.sh
+index 1cdea90..735ccd8 100755
+--- a/.agents/skills/rust-pr-review/scripts/gates.sh
++++ b/.agents/skills/rust-pr-review/scripts/gates.sh
+@@ -23,7 +23,7 @@ run_gate() {
+   else printf -- '- %s: FAIL\n' "$name"; failed=1; fi
+ }
+ run_gate fmt cargo fmt --all -- --check
+-run_gate clippy cargo clippy --workspace --all-targets "${features[@]}" "${locked[@]}" -- -D warnings
++run_gate clippy bash "$(dirname "${BASH_SOURCE[0]}")/clippy.sh" --workspace --all-targets "${features[@]}" "${locked[@]}" -- -D warnings
+ if cargo nextest --version >/dev/null 2>&1; then
+   run_gate tests cargo nextest run --workspace "${features[@]}" "${locked[@]}" --no-fail-fast --no-tests=pass
+   run_gate doctests cargo test --workspace --doc "${features[@]}" "${locked[@]}"
+diff --git a/.gitignore b/.gitignore
+index 95f4e7e..030f1d6 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,2 +1,4 @@
+ /target
+ /.code-review-graph
++
++/.code-review-graph/
+diff --git a/REQUIREMENTS.md b/REQUIREMENTS.md
+new file mode 100644
+index 0000000..8838947
+--- /dev/null
++++ b/REQUIREMENTS.md
+@@ -0,0 +1 @@
++One writer calls publish exactly once. A concurrent snapshot may return None; if it returns Some, it must equal the published value. Require model exploration of this publication/read protocol.
+diff --git a/REVIEW.md b/REVIEW.md
+index 4c3be73..a9a1f6b 100644
+--- a/REVIEW.md
++++ b/REVIEW.md
+@@ -50,6 +50,40 @@ The skill provides smell, safety and spec references under
+ `.agents/skills/rust-pr-review/references/`. They inform judgment and do not override
+ verified source, repository policy or explicit user instructions.
+ 
++## Project policy (configure)
++
++- Use the actual edition, MSRV, toolchain, lint levels and error conventions in this repo.
++- Review public API compatibility against the project's supported release baseline.
++- Check unsafe invariants, aliasing/lifetimes, ownership across FFI and Send/Sync claims.
++- Check async blocking, lock order, cancellation, bounded resource use and error paths.
++- Require tests for meaningful behavior changes where they protect against regressions.
++- Default checks: fmt, clippy, tests (including doctests), cargo-deny with deny.toml.
++- Default feature configuration: --all-features. Replace with the supported feature
++  matrix for mutually exclusive features; align local checks and CI.
++- Configure deny.toml using the project's license, advisory and source policy.
++- Only mark deny N/A if project policy explicitly makes it inapplicable; missing
++  cargo-deny or deny.toml means NOT RUN. If required evidence is absent, INCOMPLETE.
++- Spec PASS requires user requirements or PR acceptance criteria; commit claims alone
++  yield PARTIAL. No findings does not mean all requirements were verified.
++- For affected unsafe/FFI boundaries, targeted Miri tests and a separate aliasing/
++  provenance argument are required before approval. Use isolated exact-source probes
++  when existing tests do not cover the path and execution is authorized. Unknown FFI
++  guarantees, unavailable targeted execution or conflicting alias models require ESCALATE.
++  General tests passing under Miri are not a substitute. Follow the skill’s
++  references/MEMORY-VALIDATION.md and report the Memory safety section.
++- For affected async behavior, require targeted progress/deadlock, cancellation and
++  task-termination tests as applicable. For changed custom synchronization protocols,
++  require Loom models and an independent invariant/ordering argument. Missing relevant
++  evidence or incomplete models require ESCALATE. Follow references/CONCURRENCY-VALIDATION.md
++  and report the Concurrency section; green ordinary tests are not a substitute.
++- Semver-checks remain conditional; document applicability and skipped checks.
++
++The skill provides smell, safety and spec references under
++`.agents/skills/rust-pr-review/references/`. They inform judgment and do not override
++verified source, repository policy or explicit user instructions.
++
+ ## Project policy
+-Use RUST_GATE_FEATURES='' for ordinary gates. Feature model is a separate Loom run.
+-This evaluation environment permits at most one Loom permutation per model invocation, including isolated probes. Do not increase this limit or aggregate reruns to bypass it. Static analysis and ordinary tests are unrestricted. Record execution limits.
++Use RUST_GATE_FEATURES='' for ordinary gates. Run feature model separately.
++Model exploration may run to completion. Use an external process watchdog of 120 seconds; reaching it is not evidence of completion. Do not install dependencies or access external services.
++
++Run diagnostics offline using the existing toolchains and advisory database. Record this freshness limitation. Use equivalent offline gate commands if necessary. Do not install dependencies or access external services.
+diff --git a/src/lib.rs b/src/lib.rs
+index a202d7e..21acb2a 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -1 +1,22 @@
+-// Initial library.
++#[cfg(feature = "model")]
++use loom::sync::atomic::{AtomicBool, AtomicUsize, Ordering};
++#[cfg(not(feature = "model"))]
++use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};
++
++#[derive(Default)]
++pub struct Published {
++    value: AtomicUsize,
++    ready: AtomicBool,
++}
++impl Published {
++    /// The caller publishes at most once, from one writer.
++    pub fn publish(&self, value: usize) {
++        self.value.store(value, Ordering::Relaxed);
++        self.ready.store(true, Ordering::Release);
++    }
++    pub fn snapshot(&self) -> Option<usize> {
++        self.ready
++            .load(Ordering::Acquire)
++            .then(|| self.value.load(Ordering::Relaxed))
++    }
++}
+diff --git a/tests/publication_model.rs b/tests/publication_model.rs
+new file mode 100644
+index 0000000..6b0da91
+--- /dev/null
++++ b/tests/publication_model.rs
+@@ -0,0 +1,27 @@
++#![cfg(feature = "model")]
++use runtime_bridge::Published;
++#[test]
++fn publication_model() {
++    let mut builder = loom::model::Builder::new();
++    builder.checkpoint_interval = 1;
++    builder.max_permutations = None;
++    builder.max_duration = None;
++    builder.preemption_bound = None;
++    builder.checkpoint_file = None;
++    let executions = std::sync::Arc::new(std::sync::atomic::AtomicUsize::new(0));
++    let seen = executions.clone();
++    builder.check(move || {
++        seen.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
++        let data = loom::sync::Arc::new(Published::default());
++        let writer = data.clone();
++        let task = loom::thread::spawn(move || writer.publish(42));
++        if let Some(value) = data.snapshot() {
++            assert_eq!(value, 42);
++        }
++        task.join().unwrap();
++        assert_eq!(data.snapshot(), Some(42));
++    });
++    let count = executions.load(std::sync::atomic::Ordering::SeqCst);
++    println!("completed model executions: {count}");
++    assert!(count > 1);
++}

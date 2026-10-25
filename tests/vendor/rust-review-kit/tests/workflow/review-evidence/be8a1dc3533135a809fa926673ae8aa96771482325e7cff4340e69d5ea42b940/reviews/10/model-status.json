@@ -1,0 +1,16 @@
+{
+  "cwd": "/tmp/rust-review-current-20261025/cases/10",
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "--features",
+    "model",
+    "--test",
+    "vendor_model"
+  ],
+  "environment": {},
+  "status": 0,
+  "watchdog_seconds": 120
+}

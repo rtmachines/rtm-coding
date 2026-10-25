@@ -1,0 +1,30 @@
+$ cargo +nightly miri test --offline retained_until_unregister
+{'MIRI_SYSROOT': '/home/rtm/.cache/miri', 'MIRIFLAGS': ''}
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.00s
+     Running unittests src/lib.rs (/tmp/rust-review-current-20261025/reviews/03/memory-target/miri/x86_64-unknown-linux-gnu/debug/build/memory-probe/60e9a77f15144ae3/out/memory_probe-60e9a77f15144ae3)
+
+running 1 test
+test tests::retained_until_unregister ... error: Undefined Behavior: constructing invalid value of type &u8: encountered a dangling reference (use-after-free)
+  --> src/lib.rs:14:9
+   |
+14 |  unsafe{assert_eq!(*RETAINED,7);}
+   |         ^^^^^^^^^^^^^^^^^^^^^^^ Undefined Behavior occurred here
+   |
+   = help: this indicates a bug in the program: it performed an invalid operation, and caused Undefined Behavior
+   = help: see https://doc.rust-lang.org/nightly/reference/behavior-considered-undefined.html for further information
+   = note: this is on thread `tests::retained`
+   = note: stack backtrace:
+           0: tests::retained_until_unregister
+               at /home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:16: 45:22
+           1: tests::retained_until_unregister::{closure#0}
+               at src/lib.rs:11:40: 11:40
+
+note: some details are omitted, run with `MIRIFLAGS=-Zmiri-backtrace=full` for a verbose backtrace
+
+error: aborting due to 1 previous error
+
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/cargo-miri runner /tmp/rust-review-current-20261025/reviews/03/memory-target/miri/x86_64-unknown-linux-gnu/debug/build/memory-probe/60e9a77f15144ae3/out/memory_probe-60e9a77f15144ae3 retained_until_unregister` (exit status: 1)
+note: test exited abnormally; to see the full output pass --no-capture to the harness.

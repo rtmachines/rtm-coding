@@ -1,0 +1,1 @@
+{"command": ["cargo", "test", "--offline", "--locked", "--test", "contracts"], "cwd": "/tmp/rust-review-current-20261025/reviews/02/probe", "env": {}, "exit": 0}

@@ -1,0 +1,33 @@
+$ cargo +nightly miri test --offline unaligned_word
+{'MIRI_SYSROOT': '/home/rtm/.cache/miri', 'MIRIFLAGS': ''}
+   Compiling memory-probe v0.1.0 (/tmp/rust-review-current-20261025/reviews/03/memory)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running unittests src/lib.rs (/tmp/rust-review-current-20261025/reviews/03/memory-target/miri/x86_64-unknown-linux-gnu/debug/build/memory-probe/60e9a77f15144ae3/out/memory_probe-60e9a77f15144ae3)
+
+running 1 test
+test tests::unaligned_word ... error: Undefined Behavior: accessing memory based on pointer with alignment 1, but alignment 4 is required
+ --> src/bytes.rs:7:19
+  |
+7 |     Some(unsafe { bytes.as_ptr().cast::<u32>().read() })
+  |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Undefined Behavior occurred here
+  |
+  = help: this indicates a bug in the program: it performed an invalid operation, and caused Undefined Behavior
+  = help: see https://doc.rust-lang.org/nightly/reference/behavior-considered-undefined.html for further information
+  = note: this is on thread `tests::unaligne`
+  = note: stack backtrace:
+          0: bytes::read_word
+              at src/bytes.rs:7:19: 7:54
+          1: tests::unaligned_word
+              at src/lib.rs:6:63: 6:91
+          2: tests::unaligned_word::{closure#0}
+              at src/lib.rs:6:29: 6:29
+
+note: some details are omitted, run with `MIRIFLAGS=-Zmiri-backtrace=full` for a verbose backtrace
+
+error: aborting due to 1 previous error
+
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/cargo-miri runner /tmp/rust-review-current-20261025/reviews/03/memory-target/miri/x86_64-unknown-linux-gnu/debug/build/memory-probe/60e9a77f15144ae3/out/memory_probe-60e9a77f15144ae3 unaligned_word` (exit status: 1)
+note: test exited abnormally; to see the full output pass --no-capture to the harness.

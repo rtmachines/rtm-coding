@@ -1,0 +1,27 @@
+BASE_REF=origin/main
+BASE_SHA=ff58dc91708bd68170abfefc93bca294034242ac
+HEAD_SHA=4a30f4b9d3159b98ac732110afad372a3eaa5816
+
+### Working-tree status (includes untracked files)
+
+### Tracked changes: merge base -> working tree
+ .agents/rust-review-kit/vendored.tsv               |  2 +-
+ .agents/skills/rust-pr-review/SKILL.md             | 49 +++++++++--
+ .../references/CONCURRENCY-VALIDATION.md           | 94 ++++++++++++++++++++++
+ .../rust-pr-review/references/MEMORY-VALIDATION.md | 79 ++++++++++++++++++
+ .../skills/rust-pr-review/references/REVIEWDOG.md  | 34 ++++++++
+ .../rust-pr-review/references/SAFETY-PRECHECK.md   |  6 +-
+ .../skills/rust-pr-review/scripts/check-report.sh  | 69 +++++++++++++++-
+ .agents/skills/rust-pr-review/scripts/clippy.sh    | 38 +++++++++
+ .agents/skills/rust-pr-review/scripts/gates.sh     |  2 +-
+ .gitignore                                         |  2 +
+ REVIEW.md                                          | 34 ++++++++
+ src/lib.rs                                         |  3 +
+ src/limits.rs                                      |  3 +
+ 13 files changed, 404 insertions(+), 11 deletions(-)
+
+### Commit claims (not an independent specification)
+- Install current workflow for regression review
+- Correct parse_limit implementation
+
+Untracked files are NOT included in git diff; inspect them separately.

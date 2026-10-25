@@ -1,0 +1,11 @@
+{
+  "fmt": 0,
+  "clippy": 0,
+  "tests": 0,
+  "doctests": 0,
+  "deny": 0,
+  "deny_initial_invalid_command": 2,
+  "deny-offline": 0,
+  "model": 0,
+  "report_validation": 0
+}

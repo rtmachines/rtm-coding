@@ -1,0 +1,13 @@
+
+<!-- rust-review-kit-codex:begin -->
+## Code Review Rules
+
+For Rust PR, branch or working-tree reviews, read `REVIEW.md` and use the workflow
+in `.agents/skills/rust-pr-review/SKILL.md` (invocation: `$rust-pr-review`).
+Respect the requested comparison scope and distinguish committed changes from local work.
+Check correctness, regression risks and requirements; report actionable defects with
+verified locations and triggers. Do not edit reviewed code unless the user asks for fixes.
+Report unavailable checks honestly. Cargo checks run repository code; use the execution
+permissions of the current session. The kit's instructions are not a sandbox or Git hook.
+Do not post PR comments, push or merge without user authorization.
+<!-- rust-review-kit-codex:end -->

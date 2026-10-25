@@ -1,0 +1,12 @@
+{
+  "fmt": 0,
+  "clippy": 0,
+  "tests": 0,
+  "doctests": 0,
+  "deny": 0,
+  "deny_initial_invalid_command": 2,
+  "miri-tree": 0,
+  "miri-stacked": 1,
+  "deny-offline": 0,
+  "report_validation": 0
+}

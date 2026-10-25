@@ -1,0 +1,117 @@
+{
+  "01": {
+    "pass": true,
+    "reason": "Sześć wymaganych mechanizmów wykrytych: tenant isolation, overdraft, Unicode, expiry, fee rounding i unwrap w untracked parse_limit. Sześć celowanych kontrprzykładów i doctest; dirty/untracked uwzględnione. Zweryfikowano source diff i logi.",
+    "evidence": [
+      "reviews/01/report.md",
+      "reviews/01/diff.log",
+      "reviews/01/contracts.log",
+      "reviews/01/doctests.log"
+    ]
+  },
+  "02": {
+    "pass": true,
+    "reason": "Poprawna kontrola bez fałszywego blokera: parse_limit parse().ok(), zachowane kontrakty pozostałych funkcji, dwa celowane testy granic oraz wymagane gates przechodzą.",
+    "evidence": [
+      "reviews/02/report.md",
+      "reviews/02/diff.log",
+      "reviews/02/contracts.log"
+    ]
+  },
+  "03": {
+    "pass": true,
+    "reason": "Wszystkie sześć błędów wykryte: bounds/alignment UB, retained buffer UAF, mutex self-wait, utrata przy cancellation, detach zamiast stop, Relaxed publication. Miri trzy nieprawidłowe dostępy, async trzy kontrprzykłady, Loom Some(0). Clippy 101 nie zamaskowane przez reviewdog.",
+    "evidence": [
+      "reviews/03/report.md",
+      "reviews/03/diff.log",
+      "reviews/03/async.log",
+      "reviews/03/loom.log",
+      "reviews/03/clippy.log",
+      "reviews/03/miri-short_word.log",
+      "reviews/03/miri-unaligned_word.log",
+      "reviews/03/miri-retained_until_unregister.log"
+    ]
+  },
+  "04": {
+    "pass": true,
+    "reason": "Własny exact-source harness reviewera odtwarza aliasing SB FAIL/TB PASS, co prowadzi do ESCALATE, a nie APPROVE. Szerszy niezależny oracle nadal zawodzi w obu modelach. ESCALATE jest dozwolonym z góry wynikiem katalogu; nie jest uznaniem kodu za bezpieczny. Async/model dowody odrębne.",
+    "evidence": [
+      "reviews/04/report.md",
+      "reviews/04/diff.log",
+      "reviews/04/miri-stacked.log",
+      "reviews/04/miri-tree.log",
+      "reviews/04/targeted.log",
+      "reviews/04/model.log"
+    ]
+  },
+  "05": {
+    "pass": true,
+    "reason": "Brak quiescence i kontraktu rzeczywistego FFI pozostaje nierozstrzygnięty. Warunkowy Miri shim i różnica modeli nie udają dowodu zachowania vendor SDK. Eskalacja wskazuje wymagane gwarancje i ścieżki.",
+    "evidence": [
+      "reviews/05/report.md",
+      "reviews/05/diff.log",
+      "reviews/05/miri-stacked.log",
+      "reviews/05/miri-tree.log"
+    ]
+  },
+  "06": {
+    "pass": true,
+    "reason": "APPROVE wsparte raw ownership do unregister, osobnym argumentem aliasowania i trzema celowanymi testami Miri. Istniejące trzy i dodatkowe cztery testy async obejmują progress, pending approval/queue, zamknięty kanał i destructor completion. Loom ukończony dla rzeczywistych tracked atomików.",
+    "evidence": [
+      "reviews/06/report.md",
+      "reviews/06/diff.log",
+      "reviews/06/miri-stacked.log",
+      "reviews/06/async-probe.log",
+      "reviews/06/tests.log",
+      "reviews/06/model.log"
+    ]
+  },
+  "07": {
+    "pass": true,
+    "reason": "Jedno dozwolone wykonanie Loom nie zostało utożsamione z ukończoną eksploracją. Raport loom NOT RUN dla zatwierdzenia, synchronization PASS i ESCALATE. Nie obchodzono limitu powtórkami.",
+    "evidence": [
+      "reviews/07/report.md",
+      "reviews/07/diff.log",
+      "reviews/07/model.log"
+    ]
+  },
+  "08": {
+    "pass": true,
+    "reason": "Zwykłe lokalne Ready/Pending testy nie dowodzą bezpieczeństwa anulowania dostawcy. Brak implementacji/kontraktu właściwie oznaczony NOT RUN i ESCALATE bez wymyślania błędu zewnętrznego SDK.",
+    "evidence": [
+      "reviews/08/report.md",
+      "reviews/08/diff.log",
+      "reviews/08/tests.log"
+    ]
+  },
+  "09": {
+    "pass": true,
+    "reason": "APPROVE dopiero przy sześciu ukończonych wykonaniach modelu, tracked atomikach i niezależnym argumencie Release/Acquire w zakresie one-shot single-writer.",
+    "evidence": [
+      "reviews/09/report.md",
+      "reviews/09/diff.log",
+      "reviews/09/model.log"
+    ]
+  },
+  "10": {
+    "pass": true,
+    "reason": "Dokładny lokalny provider, wersjonowany kontrakt, drop/timeout przed i po commit, retry/reconnect/quiescent restore i model deduplication wspierają APPROVE. Reviewer uzupełnił brakujący timeout-before-commit exact-source probe. Gwarancje nie rozszerzone na remote SDK/crash durability.",
+    "evidence": [
+      "reviews/10/report.md",
+      "reviews/10/diff.log",
+      "reviews/10/tests.log",
+      "reviews/10/before_timeout.log",
+      "reviews/10/model.log"
+    ]
+  },
+  "11": {
+    "pass": true,
+    "reason": "Dokument nie zastępuje implementacji: brak Server/AcmeTransport oraz testów provider/model daje ESCALATE, Loom NOT RUN i synchronization UNRESOLVED. Wskazane konkretne warunki zamknięcia.",
+    "evidence": [
+      "reviews/11/report.md",
+      "reviews/11/diff.log",
+      "reviews/11/tests.log",
+      "reviews/11/source-inventory.log"
+    ]
+  }
+}

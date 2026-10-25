@@ -1,0 +1,12 @@
+
+running 4 tests
+test cancellation_waiting_for_queue_and_closed_approval ... ok
+test progress_and_later_snapshot ... ok
+test shutdown_waits_for_running_blocking_worker ... ok
+test shutdown_waits_for_destructor ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Compiling runtime-bridge v0.1.0 (/tmp/rust-review-current-20261025/probes/runtime-04)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.36s
+     Running tests/async_control.rs (target/debug/deps/async_control-79efda90d1cb5e1c)

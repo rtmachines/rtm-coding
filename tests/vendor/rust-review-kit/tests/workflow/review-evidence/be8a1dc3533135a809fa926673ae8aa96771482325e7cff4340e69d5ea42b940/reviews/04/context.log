@@ -1,0 +1,30 @@
+BASE_REF=origin/main
+BASE_SHA=007e8d5210660d3bdc54d78b49d6100f8ff2b399
+HEAD_SHA=2997ae3d7ee078e7953932f577b34696e4ed36fa
+
+### Working-tree status (includes untracked files)
+
+### Tracked changes: merge base -> working tree
+ .agents/rust-review-kit/vendored.tsv               |  2 +-
+ .agents/skills/rust-pr-review/SKILL.md             | 49 +++++++++--
+ .../references/CONCURRENCY-VALIDATION.md           | 94 ++++++++++++++++++++++
+ .../rust-pr-review/references/MEMORY-VALIDATION.md | 79 ++++++++++++++++++
+ .../skills/rust-pr-review/references/REVIEWDOG.md  | 34 ++++++++
+ .../rust-pr-review/references/SAFETY-PRECHECK.md   |  6 +-
+ .../skills/rust-pr-review/scripts/check-report.sh  | 69 +++++++++++++++-
+ .agents/skills/rust-pr-review/scripts/clippy.sh    | 38 +++++++++
+ .agents/skills/rust-pr-review/scripts/gates.sh     |  2 +-
+ .gitignore                                         |  2 +
+ REVIEW.md                                          | 34 ++++++++
+ src/bytes.rs                                       |  5 ++
+ src/lib.rs                                         |  5 +-
+ src/publication.rs                                 | 30 +++++++
+ src/registration.rs                                | 35 ++++++++
+ src/service.rs                                     | 51 ++++++++++++
+ 16 files changed, 523 insertions(+), 12 deletions(-)
+
+### Commit claims (not an independent specification)
+- Install current workflow for regression review
+- Implement runtime adapters
+
+Untracked files are NOT included in git diff; inspect them separately.
