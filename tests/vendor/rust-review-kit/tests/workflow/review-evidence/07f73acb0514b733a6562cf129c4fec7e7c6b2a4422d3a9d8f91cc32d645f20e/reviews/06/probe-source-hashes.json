@@ -1,0 +1,7 @@
+{
+  "src/lib.rs": "a067e9f25abd293d1e2b325aa9ad878d10f4df5bfe7ec3e5caede243c7039561",
+  "src/bytes.rs": "c798d7b2e76cc340da55dc8b9d90b0974a07020d358dd6dad91c0a9342385157",
+  "src/publication.rs": "a9812c1a3a795b9473e31c06663abdb7ad5ac208034f8ab54c2a2fa7439eed13",
+  "src/registration.rs": "afb645985a6227f208e8e7628b9bf0147e2b05d7c663d04d41292627d7a0ad24",
+  "src/service.rs": "cadbd58c2c9fdcd9e081f63ab89bef4fb021261d9eb7566b37cfdc4c5eaa6da3"
+}

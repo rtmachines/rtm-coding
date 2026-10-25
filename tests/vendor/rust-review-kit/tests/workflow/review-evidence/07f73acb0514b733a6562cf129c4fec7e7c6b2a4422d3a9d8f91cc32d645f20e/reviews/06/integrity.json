@@ -1,0 +1,8 @@
+{
+  "before.json": "ed539df267bff86d1904a187857462c37adc65aad7165fc0dd9114ef4a9eec32",
+  "after.json": "ed539df267bff86d1904a187857462c37adc65aad7165fc0dd9114ef4a9eec32",
+  "git-before.txt": "14e1bb14dfbb22ff2df52963f6ecd031c59c73869ae4b59e79a28afd5fc426a7",
+  "git-after.txt": "14e1bb14dfbb22ff2df52963f6ecd031c59c73869ae4b59e79a28afd5fc426a7",
+  "source_hash_sets_equal": true,
+  "git_snapshot_equal": true
+}

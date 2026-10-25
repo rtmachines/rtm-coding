@@ -1,0 +1,14 @@
+
+running 6 tests
+test expiry_boundary ... ok
+test fee_rounding ... ok
+test tenant_isolation ... ok
+test insufficient_funds ... ok
+test unicode_preview ... ok
+test invalid_limit ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Compiling ledger-preview v0.1.0 (/tmp/rust-review-lsp-20261025/probes/logic-02)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.21s
+     Running tests/regressions.rs (target/debug/deps/regressions-4239b99130bc57e0)

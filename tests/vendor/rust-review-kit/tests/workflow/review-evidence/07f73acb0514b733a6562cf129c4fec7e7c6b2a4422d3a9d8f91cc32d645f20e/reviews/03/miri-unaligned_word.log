@@ -1,0 +1,30 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.01s
+     Running tests/memory.rs (/tmp/rust-review-lsp-20261025/reviews/03/target/miri/x86_64-unknown-linux-gnu/debug/build/runtime-bridge/9e5cfe160a495fa0/out/memory-9e5cfe160a495fa0)
+
+running 1 test
+test unaligned_word ... error: Undefined Behavior: accessing memory based on pointer with alignment 1, but alignment 4 is required
+ --> src/bytes.rs:7:19
+  |
+7 |     Some(unsafe { bytes.as_ptr().cast::<u32>().read() })
+  |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Undefined Behavior occurred here
+  |
+  = help: this indicates a bug in the program: it performed an invalid operation, and caused Undefined Behavior
+  = help: see https://doc.rust-lang.org/nightly/reference/behavior-considered-undefined.html for further information
+  = note: this is on thread `unaligned_word`
+  = note: stack backtrace:
+          0: runtime_bridge::bytes::read_word
+              at src/bytes.rs:7:19: 7:54
+          1: unaligned_word
+              at tests/memory.rs:3:101: 3:122
+          2: unaligned_word::{closure#0}
+              at tests/memory.rs:3:28: 3:28
+
+note: some details are omitted, run with `MIRIFLAGS=-Zmiri-backtrace=full` for a verbose backtrace
+
+error: aborting due to 1 previous error
+
+error: test failed, to rerun pass `--test memory`
+
+Caused by:
+  process didn't exit successfully: `/home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/cargo-miri runner /tmp/rust-review-lsp-20261025/reviews/03/target/miri/x86_64-unknown-linux-gnu/debug/build/runtime-bridge/9e5cfe160a495fa0/out/memory-9e5cfe160a495fa0 unaligned_word --test-threads=1` (exit status: 1)
+note: test exited abnormally; to see the full output pass --no-capture to the harness.

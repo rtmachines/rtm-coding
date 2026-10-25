@@ -1,0 +1,24 @@
+   Compiling pin-project-lite v0.2.17
+   Compiling tokio v1.54.1
+   Compiling runtime-bridge v0.1.0 (/tmp/rust-review-lsp-20261025/cases/11)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.48s
+     Running unittests src/lib.rs (/tmp/rust-review-lsp-20261025/reviews/11/target/debug/deps/runtime_bridge-d57904a07b874bfc)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/delivery.rs (/tmp/rust-review-lsp-20261025/reviews/11/target/debug/deps/delivery-673b149ffaaa7046)
+
+running 2 tests
+test delivers ... ok
+test returns_for_retry ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests runtime_bridge
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,41 @@
+
+running 1 test
+test tests::retained_after_constructor_and_owner_move ...    Compiling alias-probe v0.1.0 (/tmp/rust-review-lsp-20261025/probes/alias-04)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+     Running unittests src/lib.rs (target/miri/x86_64-unknown-linux-gnu/debug/build/alias-probe/022580197bafef02/out/alias_probe-022580197bafef02)
+error: Undefined Behavior: trying to retag from <133861> for SharedReadOnly permission at alloc41960[0x0], but that tag does not exist in the borrow stack for this location
+  --> src/lib.rs:11:41
+   |
+11 |         if n != 0 { assert_eq!(unsafe { std::slice::from_raw_parts(p,n) }, &[1,2,3,4]); }
+   |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this error occurs as part of retag at alloc41960[0x0..0x4]
+   |
+   = help: this indicates a potential bug in the program: it performed an invalid operation, but the Stacked Borrows rules it violated are still experimental
+   = help: see https://github.com/rust-lang/unsafe-code-guidelines/blob/master/wip/stacked-borrows.md for further information
+help: <133861> was created by a SharedReadOnly retag at offsets [0x0..0x4]
+  --> src/registration.rs:20:27
+   |
+20 |         unsafe { register(bytes.as_ptr(), bytes.len()) };
+   |                           ^^^^^^^^^^^^^^
+help: <133861> was later invalidated at offsets [0x0..0x4] by a Unique retag
+  --> src/registration.rs:21:16
+   |
+21 |         Self { bytes, unregister }
+   |                ^^^^^
+   = note: this is on thread `tests::retained`
+   = note: stack backtrace:
+           0: tests::read_retained
+               at src/lib.rs:11:41: 11:72
+           1: tests::retained_after_constructor_and_owner_move
+               at src/lib.rs:19:9: 19:24
+           2: tests::retained_after_constructor_and_owner_move::{closure#0}
+               at src/lib.rs:17:51: 17:51
+
+note: some details are omitted, run with `MIRIFLAGS=-Zmiri-backtrace=full` for a verbose backtrace
+
+error: aborting due to 1 previous error
+
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/cargo-miri runner /tmp/rust-review-lsp-20261025/probes/alias-04/target/miri/x86_64-unknown-linux-gnu/debug/build/alias-probe/022580197bafef02/out/alias_probe-022580197bafef02 retained_after_constructor_and_owner_move` (exit status: 1)
+note: test exited abnormally; to see the full output pass --no-capture to the harness.
