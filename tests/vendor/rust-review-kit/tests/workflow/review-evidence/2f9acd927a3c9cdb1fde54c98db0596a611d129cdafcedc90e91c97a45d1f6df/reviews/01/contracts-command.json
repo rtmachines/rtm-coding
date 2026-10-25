@@ -1,0 +1,13 @@
+{
+  "command": [
+    "cargo",
+    "+stable",
+    "test",
+    "--locked",
+    "--offline",
+    "--test",
+    "contracts"
+  ],
+  "exit": 101,
+  "cwd": "/tmp/rust-skills-review-20261025/reviews/01/probe"
+}

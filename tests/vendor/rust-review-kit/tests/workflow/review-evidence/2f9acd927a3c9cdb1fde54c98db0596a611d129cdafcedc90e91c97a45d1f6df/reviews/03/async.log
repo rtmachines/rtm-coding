@@ -1,0 +1,46 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling pin-project-lite v0.2.17
+   Compiling syn v3.0.9
+   Compiling tokio-macros v2.7.2
+   Compiling tokio v1.54.1
+   Compiling runtime-bridge v0.1.0 (/tmp/rust-skills-review-20261025/reviews/03/probe)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.46s
+     Running tests/async.rs (/tmp/rust-review-build-b/probes/debug/deps/async-45a76f53b7606295)
+
+running 3 tests
+test stop_prevents_later_effect ... FAILED
+test cancel_before_approval ... FAILED
+test increment_progress ... FAILED
+
+failures:
+
+---- stop_prevents_later_effect stdout ----
+
+thread 'stop_prevents_later_effect' (317497) panicked at tests/async.rs:22:2:
+assertion failed: tokio::time::timeout(Duration::from_millis(50),
+                observed).await.unwrap().is_err()
+
+---- cancel_before_approval stdout ----
+
+thread 'cancel_before_approval' (317495) panicked at tests/async.rs:15:2:
+assertion `left == right` failed
+  left: []
+ right: [7]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- increment_progress stdout ----
+
+thread 'increment_progress' (317496) panicked at tests/async.rs:7:94:
+called `Result::unwrap()` on an `Err` value: Elapsed(())
+
+
+failures:
+    cancel_before_approval
+    increment_progress
+    stop_prevents_later_effect
+
+test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+error: test failed, to rerun pass `--test async`

@@ -1,0 +1,44 @@
+
+running 1 test
+test registration_read_after_move ...     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.02s
+     Running tests/memory_edges.rs (target/miri/x86_64-unknown-linux-gnu/debug/build/runtime-bridge/eb390135f8d27806/out/memory_edges-eb390135f8d27806)
+error: Undefined Behavior: memory access failed: alloc41154 has been freed, so this pointer is dangling
+  --> tests/memory_edges.rs:14:204
+   |
+14 | ...oved.len(),3);PTR.with(|v|assert_eq!(unsafe{*v.get()},7));drop(moved);}
+   |                                                ^^^^^^^^ Undefined Behavior occurred here
+   |
+   = help: this indicates a bug in the program: it performed an invalid operation, and caused Undefined Behavior
+   = help: see https://doc.rust-lang.org/nightly/reference/behavior-considered-undefined.html for further information
+help: alloc41154 was allocated here:
+  --> tests/memory_edges.rs:14:73
+   |
+14 | #[test]fn registration_read_after_move(){let r=unsafe{Registration::new(vec![7,8,9].into_boxed_slice(),register,unregister)};let mov...
+   |                                                                         ^^^^^^^^^^^
+help: alloc41154 was deallocated here:
+  --> src/registration.rs:25:5
+   |
+25 |     }
+   |     ^
+   = note: this is on thread `registration_re`
+   = note: stack backtrace:
+           0: registration_read_after_move::{closure#0}
+               at tests/memory_edges.rs:14:204: 14:212
+           1: std::thread::LocalKey::<std::cell::Cell<*const u8>>::try_with::<{closure@tests/memory_edges.rs:14:183: 14:186}, ()>
+               at /home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/thread/local.rs:470:12: 470:27
+           2: std::thread::LocalKey::<std::cell::Cell<*const u8>>::with::<{closure@tests/memory_edges.rs:14:183: 14:186}, ()>
+               at /home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/thread/local.rs:434:15: 434:31
+           3: registration_read_after_move
+               at tests/memory_edges.rs:14:174: 14:217
+           4: registration_read_after_move::{closure#0}
+               at tests/memory_edges.rs:14:41: 14:41
+
+note: some details are omitted, run with `MIRIFLAGS=-Zmiri-backtrace=full` for a verbose backtrace
+
+error: aborting due to 1 previous error
+
+error: test failed, to rerun pass `--test memory_edges`
+
+Caused by:
+  process didn't exit successfully: `/home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/cargo-miri runner /tmp/rust-skills-review-20261025/probes/runtime-03/target/miri/x86_64-unknown-linux-gnu/debug/build/runtime-bridge/eb390135f8d27806/out/memory_edges-eb390135f8d27806 registration_read_after_move` (exit status: 1)
+note: test exited abnormally; to see the full output pass --no-capture to the harness.

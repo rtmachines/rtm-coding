@@ -1,0 +1,8 @@
+{
+  "command": [
+    "bash",
+    ".agents/skills/rust-pr-review/scripts/check-report.sh",
+    "/tmp/rust-skills-review-20261025/reviews/10/report.md"
+  ],
+  "exit": 0
+}

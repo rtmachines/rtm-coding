@@ -1,0 +1,10 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.01s
+     Running tests/async_regressions.rs (/tmp/rust-review-target-c-06/debug/deps/async_regressions-36dabde0e0c57276)
+
+running 3 tests
+test cancel_before_approval_preserves_item ... ok
+test nested_lock_completes ... ok
+test stopped_worker_cannot_receive_more_work ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

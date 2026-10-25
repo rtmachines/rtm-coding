@@ -1,0 +1,47 @@
+   Compiling rustversion v1.0.23
+   Compiling find-msvc-tools v0.1.15
+   Compiling once_cell v1.21.4
+   Compiling shlex v2.0.1
+   Compiling regex-syntax v0.8.11
+   Compiling log v0.4.34
+   Compiling libc v0.2.191
+   Compiling cfg-if v1.0.5
+   Compiling lazy_static v1.5.1
+   Compiling nu-ansi-term v0.50.3
+   Compiling smallvec v1.16.4
+   Compiling scoped-tls v1.0.1
+   Compiling sharded-slab v0.1.7
+   Compiling thread_local v1.1.10
+   Compiling cc v1.10.0
+   Compiling tracing-core v0.1.36
+   Compiling tracing-log v0.2.0
+   Compiling tracing v0.1.44
+   Compiling regex-automata v0.4.18
+   Compiling generator v0.8.11
+   Compiling matchers v0.2.0
+   Compiling tracing-subscriber v0.3.23
+   Compiling loom v0.7.2
+   Compiling runtime-bridge v0.1.0 (/tmp/rust-skills-review-20261025/reviews/03/probe)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.48s
+     Running tests/model.rs (/tmp/rust-review-build-b/probes/debug/deps/model-0f5e359f3cda6639)
+
+running 1 test
+test one_shot_publication ... FAILED
+
+failures:
+
+---- one_shot_publication stdout ----
+
+thread 'one_shot_publication' (319767) panicked at tests/model.rs:6:30:
+assertion `left == right` failed
+  left: 0
+ right: 7
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    one_shot_publication
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test model`

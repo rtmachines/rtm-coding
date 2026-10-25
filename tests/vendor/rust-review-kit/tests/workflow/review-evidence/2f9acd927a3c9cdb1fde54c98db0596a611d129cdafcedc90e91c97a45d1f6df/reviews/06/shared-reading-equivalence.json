@@ -1,0 +1,17 @@
+{
+  ".agents/skills/rust-pr-review/SKILL.md": true,
+  ".agents/skills/rust-skills/SKILL.md": true,
+  ".agents/skills/rust-pr-review/references/MEMORY-VALIDATION.md": true,
+  ".agents/skills/rust-pr-review/references/CONCURRENCY-VALIDATION.md": true,
+  ".agents/skills/rust-pr-review/references/RUST-LSP.md": true,
+  ".agents/skills/rust-pr-review/references/REVIEWDOG.md": true,
+  ".agents/skills/rust-pr-review/references/SMELLS.md": true,
+  ".agents/skills/rust-pr-review/references/SAFETY-PRECHECK.md": true,
+  ".agents/skills/rust-pr-review/references/SPEC-PASS.md": true,
+  ".agents/skills/rust-skills/rules/conc-atomic-ordering.md": true,
+  ".agents/skills/rust-skills/rules/test-loom-concurrency.md": true,
+  ".agents/skills/rust-skills/rules/unsafe-safety-comment.md": true,
+  ".agents/skills/rust-skills/rules/unsafe-miri-ci.md": true,
+  ".agents/skills/rust-skills/rules/async-cancel-safety.md": true,
+  ".agents/skills/rust-skills/rules/async-no-lock-await.md": true
+}

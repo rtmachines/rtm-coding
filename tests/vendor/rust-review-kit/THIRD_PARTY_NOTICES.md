@@ -5,6 +5,7 @@ local modifications are listed in `vendored.tsv`. Full license texts are in `lic
 
 | Component | Source | License | Where in the kit | Modified |
 |---|---|---|---|---|
+| rust-skills corrected edition | rtmachines/rust-skills @ a1e290d53d43a85421ff16dde23b5f8ec0b48539, © 2025 Leonardo Maldonado | MIT | `codex-template/.agents/skills/rust-skills/` | SKILL.md, rules, LICENSE and CORRECTIONS.json unchanged; LOCAL_CHANGES.md regression instructions link points to the pinned upstream commit; checks and agent configuration omitted |
 | rust-best-practices skill | apollographql/skills @ f9843dc, © 2024 Apollo Graph, Inc. | MIT | `template/.claude/skills/rust-best-practices/` | no |
 | Smell baseline | rewrite-rs/skills @ ae0fd62, © 2026-Present rewrite.rs | BSD-3-Clause | `template/.claude/skills/rust-pr-review/references/SMELLS.md` | yes: removed one incorrect row, added mapping note |
 | Safety pre-check | rewrite-rs/skills @ ae0fd62 | BSD-3-Clause | `…/references/SAFETY-PRECHECK.md` | header note only |

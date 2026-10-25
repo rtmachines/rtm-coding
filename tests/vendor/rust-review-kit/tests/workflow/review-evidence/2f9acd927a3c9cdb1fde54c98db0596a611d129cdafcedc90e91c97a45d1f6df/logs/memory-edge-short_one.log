@@ -1,0 +1,45 @@
+
+running 1 test
+test short_one ...     Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling pin-project-lite v0.2.17
+   Compiling syn v3.0.9
+   Compiling tokio-macros v2.7.2
+   Compiling tokio v1.54.1
+   Compiling runtime-bridge v0.1.0 (/tmp/rust-skills-review-20261025/probes/runtime-03)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.88s
+     Running tests/memory_edges.rs (target/miri/x86_64-unknown-linux-gnu/debug/build/runtime-bridge/eb390135f8d27806/out/memory_edges-eb390135f8d27806)
+error: Undefined Behavior: memory access failed: attempting to access 4 bytes, but got alloc41857 which is only 1 byte from the end of the allocation
+ --> src/bytes.rs:7:19
+  |
+7 |     Some(unsafe { bytes.as_ptr().cast::<u32>().read() })
+  |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Undefined Behavior occurred here
+  |
+  = help: this indicates a bug in the program: it performed an invalid operation, and caused Undefined Behavior
+  = help: see https://doc.rust-lang.org/nightly/reference/behavior-considered-undefined.html for further information
+help: alloc41857 was allocated here:
+ --> tests/memory_edges.rs:7:29
+  |
+7 | #[test]fn short_one(){let a=vec![1].into_boxed_slice();assert_eq!(read_word(&a),None);}
+  |                             ^^^^^^^
+  = note: this is on thread `short_one`
+  = note: stack backtrace:
+          0: runtime_bridge::bytes::read_word
+              at src/bytes.rs:7:19: 7:54
+          1: short_one
+              at tests/memory_edges.rs:7:67: 7:80
+          2: short_one::{closure#0}
+              at tests/memory_edges.rs:7:22: 7:22
+
+note: some details are omitted, run with `MIRIFLAGS=-Zmiri-backtrace=full` for a verbose backtrace
+
+error: aborting due to 1 previous error
+
+error: test failed, to rerun pass `--test memory_edges`
+
+Caused by:
+  process didn't exit successfully: `/home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/cargo-miri runner /tmp/rust-skills-review-20261025/probes/runtime-03/target/miri/x86_64-unknown-linux-gnu/debug/build/runtime-bridge/eb390135f8d27806/out/memory_edges-eb390135f8d27806 short_one` (exit status: 1)
+note: test exited abnormally; to see the full output pass --no-capture to the harness.

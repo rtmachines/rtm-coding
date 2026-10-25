@@ -1,0 +1,37 @@
+[
+  {
+    "copy": "/tmp/rust-skills-review-20261025/reviews/03/probe/src/service.rs",
+    "original": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+    "matches": true
+  },
+  {
+    "copy": "/tmp/rust-skills-review-20261025/reviews/03/probe/src/registration.rs",
+    "original": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+    "matches": true
+  },
+  {
+    "copy": "/tmp/rust-skills-review-20261025/reviews/03/probe/src/publication.rs",
+    "original": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs",
+    "matches": true
+  },
+  {
+    "copy": "/tmp/rust-skills-review-20261025/reviews/03/probe/src/bytes.rs",
+    "original": "/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs",
+    "matches": true
+  },
+  {
+    "copy": "/tmp/rust-skills-review-20261025/reviews/03/probe/src/lib.rs",
+    "original": "/tmp/rust-skills-review-20261025/cases/03/src/lib.rs",
+    "matches": true
+  },
+  {
+    "copy": "/tmp/rust-skills-review-20261025/reviews/03/memory/src/registration.rs",
+    "original": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+    "matches": true
+  },
+  {
+    "copy": "/tmp/rust-skills-review-20261025/reviews/03/memory/src/bytes.rs",
+    "original": "/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs",
+    "matches": true
+  }
+]

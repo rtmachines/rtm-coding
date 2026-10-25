@@ -1,0 +1,29 @@
+     Locking 7 packages to highest Rust 1.99.1 compatible versions
+      Adding pin-project-lite v0.2.17
+      Adding proc-macro2 v1.0.107
+      Adding quote v1.0.47
+      Adding syn v3.0.9
+      Adding tokio v1.54.1
+      Adding tokio-macros v2.7.2
+      Adding unicode-ident v1.0.27
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling pin-project-lite v0.2.17
+   Compiling syn v3.0.9
+   Compiling tokio-macros v2.7.2
+   Compiling tokio v1.54.1
+   Compiling memory-probe v0.0.0 (/tmp/rust-skills-review-20261025/reviews/06/probe)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.11s
+     Running tests/async_boundaries.rs (/tmp/rust-review-target-c-probe-06/debug/deps/async_boundaries-9d8fb996b9d2bb96)
+
+running 6 tests
+test already_finished_worker_can_be_stopped ... ok
+test cancellation_after_approval_while_lock_waiting ... ok
+test async_worker_destructor_completed_before_return ... ok
+test successive_increment_and_snapshot_progress ... ok
+test closed_approval_preserves_queue ... ok
+test started_blocking_worker_is_joined ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

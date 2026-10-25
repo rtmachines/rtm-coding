@@ -1,0 +1,42 @@
+   Compiling ledger-preview v0.1.0 (/tmp/rust-skills-review-20261025/cases/01)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running unittests src/lib.rs (/tmp/rust-review-target-a-01/debug/deps/ledger_preview-024ec4fc58881d6f)
+
+running 5 tests
+test tests::owner_can_read ... ok
+test tests::ascii_preview ... ok
+test tests::funded_debit ... ok
+test tests::token_before_expiry ... ok
+test tests::whole_fee ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests ledger_preview
+
+running 1 test
+test src/lib.rs - fee (line 27) ... FAILED
+
+failures:
+
+---- src/lib.rs - fee (line 27) stdout ----
+Test executable failed (exit status: 101).
+
+stderr:
+
+thread 'main' (309073) panicked at /tmp/rustdoctest94e2tt/doctest_bundle_2024.rs:6:1:
+assertion `left == right` failed
+  left: 0
+ right: 49
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+
+failures:
+    src/lib.rs - fee (line 27)
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.20s; merged doctests compilation took 0.19s
+error: doctest failed, to rerun pass `--doc`
+error: 1 target failed:
+    `--doc`

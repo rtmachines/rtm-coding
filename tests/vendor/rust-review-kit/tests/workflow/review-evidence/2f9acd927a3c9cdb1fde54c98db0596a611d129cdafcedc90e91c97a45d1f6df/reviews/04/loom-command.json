@@ -1,0 +1,6 @@
+{
+  "command": "cargo +stable test --locked --offline --features model --test publication_model",
+  "cwd": "/tmp/rust-skills-review-20261025/reviews/04/probe",
+  "exit": 0,
+  "timeout_seconds": 120
+}

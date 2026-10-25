@@ -1,0 +1,533 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"status\":\"ok\",\"summary\":\"Review context for 5 changed file(s):\\n  - 22 directly changed nodes\\n  - 0 impacted nodes in 0 files\\n\\nReview guidance:\\n- 12 changed function(s) have no direct test: read_word, default, publish, snapshot, drop\",\"context\":{\"changed_files\":[\"src/registration.rs\",\"src/service.rs\",\"src/bytes.rs\",\"src/publication.rs\",\"src/lib.rs\"],\"changed_files_total\":5,\"file_risk\":{\"src/registration.rs\":0.64,\"src/service.rs\":0.59,\"src/bytes.rs\":0.3,\"src/publication.rs\":0.3,\"src/lib.rs\":0.0},\"impacted_files\":[],\"impacted_files_total\":0,\"graph\":{\"changed_nodes\":[{\"id\":7,\"kind\":\"File\",\"name\":\"/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs\",\"line_start\":1,\"line_end\":9,\"language\":\"rust\",\"parent_name\":null,\"is_test\":false},{\"id\":8,\"kind\":\"Function\",\"name\":\"read_word\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs::read_word\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs\",\"line_start\":2,\"line_end\":8,\"language\":\"rust\",\"parent_name\":null,\"is_test\":false},{\"id\":9,\"kind\":\"File\",\"name\":\"/tmp/rust-skills-review-20261025/cases/03/src/lib.rs\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/lib.rs\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/lib.rs\",\"line_start\":1,\"line_end\":5,\"language\":\"rust\",\"parent_name\":null,\"is_test\":false},{\"id\":10,\"kind\":\"File\",\"name\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs\",\"line_start\":1,\"line_end\":31,\"language\":\"rust\",\"parent_name\":null,\"is_test\":false},{\"id\":11,\"kind\":\"Class\",\"name\":\"Published\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs\",\"line_start\":8,\"line_end\":11,\"language\":\"rust\",\"parent_name\":null,\"is_test\":false},{\"id\":12,\"kind\":\"Function\",\"name\":\"default\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published.default\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs\",\"line_start\":13,\"line_end\":18,\"language\":\"rust\",\"parent_name\":\"Published\",\"is_test\":false},{\"id\":13,\"kind\":\"Function\",\"name\":\"publish\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published.publish\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs\",\"line_start\":21,\"line_end\":24,\"language\":\"rust\",\"parent_name\":\"Published\",\"is_test\":false},{\"id\":14,\"kind\":\"Function\",\"name\":\"snapshot\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published.snapshot\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs\",\"line_start\":25,\"line_end\":29,\"language\":\"rust\",\"parent_name\":\"Published\",\"is_test\":false},{\"id\":15,\"kind\":\"File\",\"name\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs\",\"line_start\":1,\"line_end\":39,\"language\":\"rust\",\"parent_name\":null,\"is_test\":false},{\"id\":16,\"kind\":\"Class\",\"name\":\"Registration\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs\",\"line_start\":2,\"line_end\":5,\"language\":\"rust\",\"parent_name\":null,\"is_test\":false},{\"id\":20,\"kind\":\"Function\",\"name\":\"drop\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.drop\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs\",\"line_start\":34,\"line_end\":37,\"language\":\"rust\",\"parent_name\":\"Registration\",\"is_test\":false},{\"id\":19,\"kind\":\"Function\",\"name\":\"is_empty\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.is_empty\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs\",\"line_start\":29,\"line_end\":31,\"language\":\"rust\",\"parent_name\":\"Registration\",\"is_test\":false},{\"id\":18,\"kind\":\"Function\",\"name\":\"len\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.len\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs\",\"line_start\":26,\"line_end\":28,\"language\":\"rust\",\"parent_name\":\"Registration\",\"is_test\":false},{\"id\":17,\"kind\":\"Function\",\"name\":\"new\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.new\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs\",\"line_start\":14,\"line_end\":25,\"language\":\"rust\",\"parent_name\":\"Registration\",\"is_test\":false},{\"id\":21,\"kind\":\"File\",\"name\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"line_start\":1,\"line_end\":50,\"language\":\"rust\",\"parent_name\":null,\"is_test\":false},{\"id\":22,\"kind\":\"Class\",\"name\":\"Service\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"line_start\":6,\"line_end\":8,\"language\":\"rust\",\"parent_name\":null,\"is_test\":false},{\"id\":24,\"kind\":\"Function\",\"name\":\"increment_and_snapshot\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service.increment_and_snapshot\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"line_start\":13,\"line_end\":17,\"language\":\"rust\",\"parent_name\":\"Service\",\"is_test\":false},{\"id\":23,\"kind\":\"Function\",\"name\":\"snapshot\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service.snapshot\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"line_start\":10,\"line_end\":12,\"language\":\"rust\",\"parent_name\":\"Service\",\"is_test\":false},{\"id\":28,\"kind\":\"Test\",\"name\":\"approved_delivery\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::approved_delivery\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"line_start\":43,\"line_end\":48,\"language\":\"rust\",\"parent_name\":null,\"is_test\":true},{\"id\":25,\"kind\":\"Function\",\"name\":\"approved_pop\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::approved_pop\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"line_start\":21,\"line_end\":28,\"language\":\"rust\",\"parent_name\":null,\"is_test\":false},{\"id\":27,\"kind\":\"Test\",\"name\":\"snapshot_initial\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::snapshot_initial\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"line_start\":39,\"line_end\":41,\"language\":\"rust\",\"parent_name\":null,\"is_test\":true},{\"id\":26,\"kind\":\"Function\",\"name\":\"stop_worker\",\"qualified_name\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::stop_worker\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"line_start\":31,\"line_end\":33,\"language\":\"rust\",\"parent_name\":null,\"is_test\":false}],\"changed_nodes_total\":22,\"impacted_nodes\":[],\"impacted_nodes_total\":0,\"edges\":[{\"id\":95,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs::read_word\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs\",\"line\":2,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":107,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs\",\"line\":8,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":109,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published.default\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs\",\"line\":13,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":112,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published.publish\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs\",\"line\":21,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":115,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published.snapshot\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/publication.rs\",\"line\":25,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":119,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs\",\"line\":2,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":120,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.new\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs\",\"line\":14,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":125,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.len\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs\",\"line\":26,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":126,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.is_empty\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs\",\"line\":29,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":128,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.drop\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs\",\"line\":34,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":123,\"kind\":\"CALLS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.new\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.len\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs\",\"line\":20,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":124,\"kind\":\"CALLS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.new\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.len\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/registration.rs\",\"line\":22,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":133,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"line\":6,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":139,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::approved_pop\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"line\":21,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":143,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::stop_worker\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"line\":31,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":145,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::snapshot_initial\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"line\":39,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":147,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::approved_delivery\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"line\":43,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":134,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service.snapshot\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"line\":10,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":136,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service.increment_and_snapshot\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"line\":13,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":138,\"kind\":\"CALLS\",\"source\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service.increment_and_snapshot\",\"target\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service.snapshot\",\"file_path\":\"/tmp/rust-skills-review-20261025/cases/03/src/service.rs\",\"line\":16,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"}],\"edges_total\":20},\"truncated\":false,\"source_snippets\":{\"src/registration.rs\":\"1: /// C-ABI registration retains a read-only buffer until unregister returns.\\n2: pub struct Registration {\\n3:     len: usize,\\n4:     unregister: unsafe extern \\\"C\\\" fn(),\\n5: }\\n6: impl Registration {\\n7:     /// Register a stable buffer with a foreign consumer.\\n8:     ///\\n9:     /// # Safety\\n10:     /// Callbacks must form one valid registration pair. register may retain and read\\n11:     /// the provided range but cannot write or free it. unregister must synchronously\\n12:     /// stop all reads before returning and must not unwind. Calls must be serialized\\n13:     /// by the owner; no other registration may replace the active one.\\n14:     pub unsafe fn new(\\n15:         bytes: Box<[u8]>,\\n16:         register: unsafe extern \\\"C\\\" fn(*const u8, usize),\\n17:         unregister: unsafe extern \\\"C\\\" fn(),\\n18:     ) -> Self {\\n19:         // SAFETY: bytes has a stable heap address.\\n20:         unsafe { register(bytes.as_ptr(), bytes.len()) };\\n21:         Self {\\n22:             len: bytes.len(),\\n23:             unregister,\\n24:         }\\n25:     }\\n26:     pub fn len(&self) -> usize {\\n27:         self.len\\n28:     }\\n29:     pub fn is_empty(&self) -> bool {\\n30:         self.len == 0\\n31:     }\\n32: }\\n33: impl Drop for Registration {\\n34:     fn drop(&mut self) {\\n35:         // SAFETY: constructor contract guarantees synchronous quiescence.\\n36:         unsafe { (self.unregister)() };\\n37:     }\\n38: }\",\"src/service.rs\":\"1: use std::collections::VecDeque;\\n2: use tokio::sync::{Mutex, oneshot};\\n3: use tokio::task::JoinHandle;\\n4: \\n5: #[derive(Default)]\\n6: pub struct Service {\\n7:     count: Mutex<u64>,\\n8: }\\n9: impl Service {\\n10:     pub async fn snapshot(&self) -> u64 {\\n11:         *self.count.lock().await\\n12:     }\\n13:     pub async fn increment_and_snapshot(&self) -> u64 {\\n14:         let mut count = self.count.lock().await;\\n15:         *count += 1;\\n16:         self.snapshot().await\\n17:     }\\n18: }\\n19: \\n20: /// Dequeue only when approval arrives. Dropping this future must preserve the queue.\\n21: pub async fn approved_pop(\\n22:     queue: &Mutex<VecDeque<u64>>,\\n23:     approval: oneshot::Receiver<()>,\\n24: ) -> Option<u64> {\\n25:     let item = queue.lock().await.pop_front();\\n26:     approval.await.ok()?;\\n27:     item\\n28: }\\n29: \\n30: /// Return only after the owned worker can no longer cause side effects.\\n31: pub async fn stop_worker(worker: JoinHandle<()>) {\\n32:     drop(worker);\\n33: }\\n34: \\n35: #[cfg(test)]\\n36: mod tests {\\n37:     use super::*;\\n38:     #[tokio::test]\\n39:     async fn snapshot_initial() {\\n40:         assert_eq!(Service::default().snapshot().await, 0);\\n41:     }\\n42:     #[tokio::test]\\n43:     async fn approved_delivery() {\\n44:         let queue = Mutex::new(VecDeque::from([7]));\\n45:         let (tx, rx) = oneshot::channel();\\n46:         tx.send(()).unwrap();\\n47:         assert_eq!(approved_pop(&queue, rx).await, Some(7));\\n48:     }\\n49: }\",\"src/bytes.rs\":\"1: /// Decode a native-endian word; short inputs return None, unaligned input is allowed.\\n2: pub fn read_word(bytes: &[u8]) -> Option<u32> {\\n3:     if bytes.is_empty() {\\n4:         return None;\\n5:     }\\n6:     // SAFETY: the slice owns initialized bytes for the duration of the read.\\n7:     Some(unsafe { bytes.as_ptr().cast::<u32>().read() })\\n8: }\",\"src/publication.rs\":\"1: #[cfg(feature = \\\"model\\\")]\\n2: use loom::sync::atomic::{AtomicBool, AtomicUsize, Ordering};\\n3: #[cfg(not(feature = \\\"model\\\"))]\\n4: use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};\\n5: \\n6: /// One-shot publication. The owner calls publish exactly once.\\n7: /// A reader observing Some must see the value passed to publish.\\n8: pub struct Published {\\n9:     value: AtomicUsize,\\n10:     ready: AtomicBool,\\n11: }\\n12: impl Default for Published {\\n13:     fn default() -> Self {\\n14:         Self {\\n15:             value: AtomicUsize::new(0),\\n16:             ready: AtomicBool::new(false),\\n17:         }\\n18:     }\\n19: }\\n20: impl Published {\\n21:     pub fn publish(&self, value: usize) {\\n22:         self.value.store(value, Ordering::Relaxed);\\n23:         self.ready.store(true, Ordering::Relaxed);\\n24:     }\\n25:     pub fn snapshot(&self) -> Option<usize> {\\n26:         self.ready\\n27:             .load(Ordering::Relaxed)\\n28:             .then(|| self.value.load(Ordering::Relaxed))\\n29:     }\\n30: }\",\"src/lib.rs\":\"1: pub mod bytes;\\n2: pub mod publication;\\n3: pub mod registration;\\n4: pub mod service;\"},\"source_regions\":{\"shown\":5,\"total\":5,\"incomplete\":{}},\"review_guidance\":\"- 12 changed function(s) have no direct test: read_word, default, publish, snapshot, drop\"},\"context_savings\":{\"estimated\":true,\"saved_tokens\":0,\"saved_percent\":0},\"_graph\":{\"updated_at\":\"2026-10-25T10:41:42\",\"age_seconds\":194,\"built_at_sha\":\"4e95a8098ff56532f0f7c76e1ad62f1672b88e2a\",\"built_on_branch\":\"master\",\"head_sha\":\"4e95a8098ff56532f0f7c76e1ad62f1672b88e2a\",\"head_matches_build\":true}}"
+    }
+  ],
+  "structuredContent": {
+    "status": "ok",
+    "summary": "Review context for 5 changed file(s):\n  - 22 directly changed nodes\n  - 0 impacted nodes in 0 files\n\nReview guidance:\n- 12 changed function(s) have no direct test: read_word, default, publish, snapshot, drop",
+    "context": {
+      "changed_files": [
+        "src/registration.rs",
+        "src/service.rs",
+        "src/bytes.rs",
+        "src/publication.rs",
+        "src/lib.rs"
+      ],
+      "changed_files_total": 5,
+      "file_risk": {
+        "src/registration.rs": 0.64,
+        "src/service.rs": 0.59,
+        "src/bytes.rs": 0.3,
+        "src/publication.rs": 0.3,
+        "src/lib.rs": 0
+      },
+      "impacted_files": [],
+      "impacted_files_total": 0,
+      "graph": {
+        "changed_nodes": [
+          {
+            "id": 7,
+            "kind": "File",
+            "name": "/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs",
+            "line_start": 1,
+            "line_end": 9,
+            "language": "rust",
+            "parent_name": null,
+            "is_test": false
+          },
+          {
+            "id": 8,
+            "kind": "Function",
+            "name": "read_word",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs::read_word",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs",
+            "line_start": 2,
+            "line_end": 8,
+            "language": "rust",
+            "parent_name": null,
+            "is_test": false
+          },
+          {
+            "id": 9,
+            "kind": "File",
+            "name": "/tmp/rust-skills-review-20261025/cases/03/src/lib.rs",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/lib.rs",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/lib.rs",
+            "line_start": 1,
+            "line_end": 5,
+            "language": "rust",
+            "parent_name": null,
+            "is_test": false
+          },
+          {
+            "id": 10,
+            "kind": "File",
+            "name": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs",
+            "line_start": 1,
+            "line_end": 31,
+            "language": "rust",
+            "parent_name": null,
+            "is_test": false
+          },
+          {
+            "id": 11,
+            "kind": "Class",
+            "name": "Published",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs",
+            "line_start": 8,
+            "line_end": 11,
+            "language": "rust",
+            "parent_name": null,
+            "is_test": false
+          },
+          {
+            "id": 12,
+            "kind": "Function",
+            "name": "default",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published.default",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs",
+            "line_start": 13,
+            "line_end": 18,
+            "language": "rust",
+            "parent_name": "Published",
+            "is_test": false
+          },
+          {
+            "id": 13,
+            "kind": "Function",
+            "name": "publish",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published.publish",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs",
+            "line_start": 21,
+            "line_end": 24,
+            "language": "rust",
+            "parent_name": "Published",
+            "is_test": false
+          },
+          {
+            "id": 14,
+            "kind": "Function",
+            "name": "snapshot",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published.snapshot",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs",
+            "line_start": 25,
+            "line_end": 29,
+            "language": "rust",
+            "parent_name": "Published",
+            "is_test": false
+          },
+          {
+            "id": 15,
+            "kind": "File",
+            "name": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+            "line_start": 1,
+            "line_end": 39,
+            "language": "rust",
+            "parent_name": null,
+            "is_test": false
+          },
+          {
+            "id": 16,
+            "kind": "Class",
+            "name": "Registration",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+            "line_start": 2,
+            "line_end": 5,
+            "language": "rust",
+            "parent_name": null,
+            "is_test": false
+          },
+          {
+            "id": 20,
+            "kind": "Function",
+            "name": "drop",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.drop",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+            "line_start": 34,
+            "line_end": 37,
+            "language": "rust",
+            "parent_name": "Registration",
+            "is_test": false
+          },
+          {
+            "id": 19,
+            "kind": "Function",
+            "name": "is_empty",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.is_empty",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+            "line_start": 29,
+            "line_end": 31,
+            "language": "rust",
+            "parent_name": "Registration",
+            "is_test": false
+          },
+          {
+            "id": 18,
+            "kind": "Function",
+            "name": "len",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.len",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+            "line_start": 26,
+            "line_end": 28,
+            "language": "rust",
+            "parent_name": "Registration",
+            "is_test": false
+          },
+          {
+            "id": 17,
+            "kind": "Function",
+            "name": "new",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.new",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+            "line_start": 14,
+            "line_end": 25,
+            "language": "rust",
+            "parent_name": "Registration",
+            "is_test": false
+          },
+          {
+            "id": 21,
+            "kind": "File",
+            "name": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "line_start": 1,
+            "line_end": 50,
+            "language": "rust",
+            "parent_name": null,
+            "is_test": false
+          },
+          {
+            "id": 22,
+            "kind": "Class",
+            "name": "Service",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "line_start": 6,
+            "line_end": 8,
+            "language": "rust",
+            "parent_name": null,
+            "is_test": false
+          },
+          {
+            "id": 24,
+            "kind": "Function",
+            "name": "increment_and_snapshot",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service.increment_and_snapshot",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "line_start": 13,
+            "line_end": 17,
+            "language": "rust",
+            "parent_name": "Service",
+            "is_test": false
+          },
+          {
+            "id": 23,
+            "kind": "Function",
+            "name": "snapshot",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service.snapshot",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "line_start": 10,
+            "line_end": 12,
+            "language": "rust",
+            "parent_name": "Service",
+            "is_test": false
+          },
+          {
+            "id": 28,
+            "kind": "Test",
+            "name": "approved_delivery",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::approved_delivery",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "line_start": 43,
+            "line_end": 48,
+            "language": "rust",
+            "parent_name": null,
+            "is_test": true
+          },
+          {
+            "id": 25,
+            "kind": "Function",
+            "name": "approved_pop",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::approved_pop",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "line_start": 21,
+            "line_end": 28,
+            "language": "rust",
+            "parent_name": null,
+            "is_test": false
+          },
+          {
+            "id": 27,
+            "kind": "Test",
+            "name": "snapshot_initial",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::snapshot_initial",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "line_start": 39,
+            "line_end": 41,
+            "language": "rust",
+            "parent_name": null,
+            "is_test": true
+          },
+          {
+            "id": 26,
+            "kind": "Function",
+            "name": "stop_worker",
+            "qualified_name": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::stop_worker",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "line_start": 31,
+            "line_end": 33,
+            "language": "rust",
+            "parent_name": null,
+            "is_test": false
+          }
+        ],
+        "changed_nodes_total": 22,
+        "impacted_nodes": [],
+        "impacted_nodes_total": 0,
+        "edges": [
+          {
+            "id": 95,
+            "kind": "CONTAINS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs::read_word",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/bytes.rs",
+            "line": 2,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 107,
+            "kind": "CONTAINS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs",
+            "line": 8,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 109,
+            "kind": "CONTAINS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published.default",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs",
+            "line": 13,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 112,
+            "kind": "CONTAINS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published.publish",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs",
+            "line": 21,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 115,
+            "kind": "CONTAINS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs::Published.snapshot",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/publication.rs",
+            "line": 25,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 119,
+            "kind": "CONTAINS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+            "line": 2,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 120,
+            "kind": "CONTAINS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.new",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+            "line": 14,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 125,
+            "kind": "CONTAINS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.len",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+            "line": 26,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 126,
+            "kind": "CONTAINS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.is_empty",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+            "line": 29,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 128,
+            "kind": "CONTAINS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.drop",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+            "line": 34,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 123,
+            "kind": "CALLS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.new",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.len",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+            "line": 20,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 124,
+            "kind": "CALLS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.new",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs::Registration.len",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/registration.rs",
+            "line": 22,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 133,
+            "kind": "CONTAINS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "line": 6,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 139,
+            "kind": "CONTAINS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::approved_pop",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "line": 21,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 143,
+            "kind": "CONTAINS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::stop_worker",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "line": 31,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 145,
+            "kind": "CONTAINS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::snapshot_initial",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "line": 39,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 147,
+            "kind": "CONTAINS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::approved_delivery",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "line": 43,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 134,
+            "kind": "CONTAINS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service.snapshot",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "line": 10,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 136,
+            "kind": "CONTAINS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service.increment_and_snapshot",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "line": 13,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          },
+          {
+            "id": 138,
+            "kind": "CALLS",
+            "source": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service.increment_and_snapshot",
+            "target": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs::Service.snapshot",
+            "file_path": "/tmp/rust-skills-review-20261025/cases/03/src/service.rs",
+            "line": 16,
+            "confidence": 1,
+            "confidence_tier": "EXTRACTED"
+          }
+        ],
+        "edges_total": 20
+      },
+      "truncated": false,
+      "source_snippets": {
+        "src/registration.rs": "1: /// C-ABI registration retains a read-only buffer until unregister returns.\n2: pub struct Registration {\n3:     len: usize,\n4:     unregister: unsafe extern \"C\" fn(),\n5: }\n6: impl Registration {\n7:     /// Register a stable buffer with a foreign consumer.\n8:     ///\n9:     /// # Safety\n10:     /// Callbacks must form one valid registration pair. register may retain and read\n11:     /// the provided range but cannot write or free it. unregister must synchronously\n12:     /// stop all reads before returning and must not unwind. Calls must be serialized\n13:     /// by the owner; no other registration may replace the active one.\n14:     pub unsafe fn new(\n15:         bytes: Box<[u8]>,\n16:         register: unsafe extern \"C\" fn(*const u8, usize),\n17:         unregister: unsafe extern \"C\" fn(),\n18:     ) -> Self {\n19:         // SAFETY: bytes has a stable heap address.\n20:         unsafe { register(bytes.as_ptr(), bytes.len()) };\n21:         Self {\n22:             len: bytes.len(),\n23:             unregister,\n24:         }\n25:     }\n26:     pub fn len(&self) -> usize {\n27:         self.len\n28:     }\n29:     pub fn is_empty(&self) -> bool {\n30:         self.len == 0\n31:     }\n32: }\n33: impl Drop for Registration {\n34:     fn drop(&mut self) {\n35:         // SAFETY: constructor contract guarantees synchronous quiescence.\n36:         unsafe { (self.unregister)() };\n37:     }\n38: }",
+        "src/service.rs": "1: use std::collections::VecDeque;\n2: use tokio::sync::{Mutex, oneshot};\n3: use tokio::task::JoinHandle;\n4: \n5: #[derive(Default)]\n6: pub struct Service {\n7:     count: Mutex<u64>,\n8: }\n9: impl Service {\n10:     pub async fn snapshot(&self) -> u64 {\n11:         *self.count.lock().await\n12:     }\n13:     pub async fn increment_and_snapshot(&self) -> u64 {\n14:         let mut count = self.count.lock().await;\n15:         *count += 1;\n16:         self.snapshot().await\n17:     }\n18: }\n19: \n20: /// Dequeue only when approval arrives. Dropping this future must preserve the queue.\n21: pub async fn approved_pop(\n22:     queue: &Mutex<VecDeque<u64>>,\n23:     approval: oneshot::Receiver<()>,\n24: ) -> Option<u64> {\n25:     let item = queue.lock().await.pop_front();\n26:     approval.await.ok()?;\n27:     item\n28: }\n29: \n30: /// Return only after the owned worker can no longer cause side effects.\n31: pub async fn stop_worker(worker: JoinHandle<()>) {\n32:     drop(worker);\n33: }\n34: \n35: #[cfg(test)]\n36: mod tests {\n37:     use super::*;\n38:     #[tokio::test]\n39:     async fn snapshot_initial() {\n40:         assert_eq!(Service::default().snapshot().await, 0);\n41:     }\n42:     #[tokio::test]\n43:     async fn approved_delivery() {\n44:         let queue = Mutex::new(VecDeque::from([7]));\n45:         let (tx, rx) = oneshot::channel();\n46:         tx.send(()).unwrap();\n47:         assert_eq!(approved_pop(&queue, rx).await, Some(7));\n48:     }\n49: }",
+        "src/bytes.rs": "1: /// Decode a native-endian word; short inputs return None, unaligned input is allowed.\n2: pub fn read_word(bytes: &[u8]) -> Option<u32> {\n3:     if bytes.is_empty() {\n4:         return None;\n5:     }\n6:     // SAFETY: the slice owns initialized bytes for the duration of the read.\n7:     Some(unsafe { bytes.as_ptr().cast::<u32>().read() })\n8: }",
+        "src/publication.rs": "1: #[cfg(feature = \"model\")]\n2: use loom::sync::atomic::{AtomicBool, AtomicUsize, Ordering};\n3: #[cfg(not(feature = \"model\"))]\n4: use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};\n5: \n6: /// One-shot publication. The owner calls publish exactly once.\n7: /// A reader observing Some must see the value passed to publish.\n8: pub struct Published {\n9:     value: AtomicUsize,\n10:     ready: AtomicBool,\n11: }\n12: impl Default for Published {\n13:     fn default() -> Self {\n14:         Self {\n15:             value: AtomicUsize::new(0),\n16:             ready: AtomicBool::new(false),\n17:         }\n18:     }\n19: }\n20: impl Published {\n21:     pub fn publish(&self, value: usize) {\n22:         self.value.store(value, Ordering::Relaxed);\n23:         self.ready.store(true, Ordering::Relaxed);\n24:     }\n25:     pub fn snapshot(&self) -> Option<usize> {\n26:         self.ready\n27:             .load(Ordering::Relaxed)\n28:             .then(|| self.value.load(Ordering::Relaxed))\n29:     }\n30: }",
+        "src/lib.rs": "1: pub mod bytes;\n2: pub mod publication;\n3: pub mod registration;\n4: pub mod service;"
+      },
+      "source_regions": {
+        "shown": 5,
+        "total": 5,
+        "incomplete": {}
+      },
+      "review_guidance": "- 12 changed function(s) have no direct test: read_word, default, publish, snapshot, drop"
+    },
+    "context_savings": {
+      "estimated": true,
+      "saved_tokens": 0,
+      "saved_percent": 0
+    },
+    "_graph": {
+      "updated_at": "2026-10-25T10:41:42",
+      "age_seconds": 194,
+      "built_at_sha": "4e95a8098ff56532f0f7c76e1ad62f1672b88e2a",
+      "built_on_branch": "master",
+      "head_sha": "4e95a8098ff56532f0f7c76e1ad62f1672b88e2a",
+      "head_matches_build": true
+    }
+  },
+  "isError": false
+}

@@ -1,0 +1,12 @@
+PASS optional reviewdog status isolation (6 cases)
+PASS offline knowledge installation, completeness, preservation and forced refresh
+PASS install, optional skills, idempotency, force preservation
+PASS no-ci and symlink refusal
+PASS scope binding, dirty/untracked files and invalid refs
+PASS aggregate gate preserves Clippy failures with empty or missing reviewdog
+PASS gate failures, missing tools/configuration, doctests and cargo-test fallback
+PASS report validation and INCOMPLETE support
+PASS LSP unavailability, health-only status, evidence and consistency guards
+PASS targeted memory evidence and escalation enforcement
+PASS targeted async and Loom evidence, scope and escalation enforcement
+All Codex kit tests passed.

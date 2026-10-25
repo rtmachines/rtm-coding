@@ -1,0 +1,30 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"data\":{\"contents\":{\"kind\":\"plain_text\",\"value\":\"tokio::time::timeout\\n\\npub fn timeout<F>(duration: Duration, future: F) -> Timeout<F::IntoFuture>\\nwhere\\n    F: IntoFuture,\\n\\n\\nF = Pin<Box<dyn Future<Output = …> + Send>>\\n\\n\\nRequires a Future to complete before the specified duration has elapsed.\\n\\nIf the future completes before the duration has elapsed, then the completed value is returned. Otherwise, an error is returned and the future is canceled.\\n\\nNote that the future is polled before the timeout is checked, so if the future does not yield during execution then it is possible for the future to complete and exceed the timeout without returning an error.\\n\\nThis function returns a future whose return type is Result<T,Elapsed>, where T is the return type of the provided future.\\n\\nIf the provided future completes immediately, then the future returned from this function is guaranteed to complete immediately with an Ok variant no matter the provided duration.\\n\\nCancellationCancelling a timeout is done by dropping the future. No additional cleanup or other work is required.\\n\\nThe original future may be obtained by calling Timeout::into_inner. This consumes the Timeout.\\n\\nExamplesCreate a new Timeout set to expire in 10 milliseconds.\\n\\nuse tokio::time::timeout;\\nuse tokio::sync::oneshot;\\n\\nuse std::time::Duration;\\n\\n# async fn dox() {\\nlet (tx, rx) = oneshot::channel();\\n# tx.send(()).unwrap();\\n\\n// Wrap the future with a `Timeout` set to expire in 10 milliseconds.\\nif let Err(_) = timeout(Duration::from_millis(10), rx).await {\\n    println!(\\\"did not receive value within 10 ms\\\");\\n}\\n# }\\n\\nPanicsThis function panics if there is no current timer set.\\n\\nIt can be triggered when Builder::enable_time or Builder::enable_all are not included in the builder.\\n\\nIt can also panic whenever a timer is created outside of a Tokio runtime. That is why rt.block_on(sleep(...)) will panic, since the function is executed outside of the runtime. Whereas rt.block_on(async {sleep(...).await}) doesn't panic. And this is because wrapping the function on an async makes it lazy, and so gets executed inside the runtime successfully without panicking.\"},\"range\":{\"end\":{\"character\":30,\"line\":13},\"start\":{\"character\":23,\"line\":13}}},\"execution\":{\"progress_phase\":\"completed\"}}"
+    }
+  ],
+  "structuredContent": {
+    "data": {
+      "contents": {
+        "kind": "plain_text",
+        "value": "tokio::time::timeout\n\npub fn timeout<F>(duration: Duration, future: F) -> Timeout<F::IntoFuture>\nwhere\n    F: IntoFuture,\n\n\nF = Pin<Box<dyn Future<Output = …> + Send>>\n\n\nRequires a Future to complete before the specified duration has elapsed.\n\nIf the future completes before the duration has elapsed, then the completed value is returned. Otherwise, an error is returned and the future is canceled.\n\nNote that the future is polled before the timeout is checked, so if the future does not yield during execution then it is possible for the future to complete and exceed the timeout without returning an error.\n\nThis function returns a future whose return type is Result<T,Elapsed>, where T is the return type of the provided future.\n\nIf the provided future completes immediately, then the future returned from this function is guaranteed to complete immediately with an Ok variant no matter the provided duration.\n\nCancellationCancelling a timeout is done by dropping the future. No additional cleanup or other work is required.\n\nThe original future may be obtained by calling Timeout::into_inner. This consumes the Timeout.\n\nExamplesCreate a new Timeout set to expire in 10 milliseconds.\n\nuse tokio::time::timeout;\nuse tokio::sync::oneshot;\n\nuse std::time::Duration;\n\n# async fn dox() {\nlet (tx, rx) = oneshot::channel();\n# tx.send(()).unwrap();\n\n// Wrap the future with a `Timeout` set to expire in 10 milliseconds.\nif let Err(_) = timeout(Duration::from_millis(10), rx).await {\n    println!(\"did not receive value within 10 ms\");\n}\n# }\n\nPanicsThis function panics if there is no current timer set.\n\nIt can be triggered when Builder::enable_time or Builder::enable_all are not included in the builder.\n\nIt can also panic whenever a timer is created outside of a Tokio runtime. That is why rt.block_on(sleep(...)) will panic, since the function is executed outside of the runtime. Whereas rt.block_on(async {sleep(...).await}) doesn't panic. And this is because wrapping the function on an async makes it lazy, and so gets executed inside the runtime successfully without panicking."
+      },
+      "range": {
+        "end": {
+          "character": 30,
+          "line": 13
+        },
+        "start": {
+          "character": 23,
+          "line": 13
+        }
+      }
+    },
+    "execution": {
+      "progress_phase": "completed"
+    }
+  },
+  "isError": false
+}

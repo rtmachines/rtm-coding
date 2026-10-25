@@ -1,0 +1,60 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.00s
+     Running unittests src/lib.rs (/tmp/rust-review-build-b/probes/miri/x86_64-unknown-linux-gnu/debug/build/memory-probe/60e9a77f15144ae3/out/memory_probe-60e9a77f15144ae3)
+warning: field `len` is never read
+ --> src/registration.rs:3:5
+  |
+2 | pub struct Registration {
+  |            ------------ field in this struct
+3 |     len: usize,
+  |     ^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: methods `len` and `is_empty` are never used
+  --> src/registration.rs:26:12
+   |
+ 6 | impl Registration {
+   | ----------------- methods in this implementation
+...
+26 |     pub fn len(&self) -> usize {
+   |            ^^^
+...
+29 |     pub fn is_empty(&self) -> bool {
+   |            ^^^^^^^^
+
+
+running 1 test
+test probes::unregister_retained_buffer ... error: Undefined Behavior: constructing invalid value of type &u8: encountered a dangling reference (use-after-free)
+ --> src/lib.rs:8:43
+  |
+8 |  unsafe extern "C" fn unregister(){unsafe{assert_eq!(*RETAINED,7);RETAINED=std::ptr::null();}}
+  |                                           ^^^^^^^^^^^^^^^^^^^^^^^ Undefined Behavior occurred here
+  |
+  = help: this indicates a bug in the program: it performed an invalid operation, and caused Undefined Behavior
+  = help: see https://doc.rust-lang.org/nightly/reference/behavior-considered-undefined.html for further information
+  = note: this is on thread `probes::unregis`
+  = note: stack backtrace:
+          0: probes::unregister
+              at /home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:16: 45:22
+          1: <registration::Registration as std::ops::Drop>::drop
+              at src/registration.rs:36:18: 36:37
+          2: std::ptr::drop_glue::<registration::Registration> - shim(Some(registration::Registration))
+              at /home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:844:1: 846:25
+          3: std::ptr::drop_glue::<std::boxed::Box<registration::Registration>> - shim(Some(std::boxed::Box<registration::Registration>))
+              at /home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:844:1: 846:25
+          4: std::mem::drop::<std::boxed::Box<registration::Registration>>
+              at /home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/mem/mod.rs:1051:1: 1051:2
+          5: probes::unregister_retained_buffer
+              at src/lib.rs:10:138: 10:155
+          6: probes::unregister_retained_buffer::{closure#0}
+              at src/lib.rs:10:41: 10:41
+
+note: some details are omitted, run with `MIRIFLAGS=-Zmiri-backtrace=full` for a verbose backtrace
+
+error: aborting due to 1 previous error; 2 warnings emitted
+
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/cargo-miri runner /tmp/rust-review-build-b/probes/miri/x86_64-unknown-linux-gnu/debug/build/memory-probe/60e9a77f15144ae3/out/memory_probe-60e9a77f15144ae3 unregister_retained_buffer` (exit status: 1)
+note: test exited abnormally; to see the full output pass --no-capture to the harness.

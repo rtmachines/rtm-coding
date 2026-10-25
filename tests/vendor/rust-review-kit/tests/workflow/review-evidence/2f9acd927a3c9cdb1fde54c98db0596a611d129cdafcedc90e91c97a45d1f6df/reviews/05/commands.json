@@ -1,0 +1,153 @@
+[
+  {
+    "name": "versions",
+    "command": "rustc -Vv; cargo -V; cargo deny --version; cargo +nightly miri --version",
+    "cwd": "/tmp/rust-skills-review-20261025/cases/05",
+    "environment": {
+      "CARGO_NET_OFFLINE": "true",
+      "CARGO_TARGET_DIR": "/tmp/rust-review-target-c-05",
+      "RUSTUP_TOOLCHAIN": "stable",
+      "CARGO_TERM_COLOR": "never"
+    },
+    "exit": 0
+  },
+  {
+    "name": "fmt",
+    "command": "cargo fmt --all -- --check",
+    "cwd": "/tmp/rust-skills-review-20261025/cases/05",
+    "environment": {
+      "CARGO_NET_OFFLINE": "true",
+      "CARGO_TARGET_DIR": "/tmp/rust-review-target-c-05",
+      "RUSTUP_TOOLCHAIN": "stable",
+      "CARGO_TERM_COLOR": "never"
+    },
+    "exit": 0
+  },
+  {
+    "name": "clippy",
+    "command": "cargo clippy --workspace --all-targets --locked --offline --message-format=short -- -D warnings",
+    "cwd": "/tmp/rust-skills-review-20261025/cases/05",
+    "environment": {
+      "CARGO_NET_OFFLINE": "true",
+      "CARGO_TARGET_DIR": "/tmp/rust-review-target-c-05",
+      "RUSTUP_TOOLCHAIN": "stable",
+      "CARGO_TERM_COLOR": "never"
+    },
+    "exit": 0
+  },
+  {
+    "name": "reviewdog",
+    "command": "/home/rtm/.local/bin/reviewdog -f=clippy -reporter=local -filter-mode=nofilter -fail-level=warning < /tmp/rust-skills-review-20261025/reviews/05/clippy.log",
+    "cwd": "/tmp/rust-skills-review-20261025/cases/05",
+    "environment": {
+      "CARGO_NET_OFFLINE": "true",
+      "CARGO_TARGET_DIR": "/tmp/rust-review-target-c-05",
+      "RUSTUP_TOOLCHAIN": "stable",
+      "CARGO_TERM_COLOR": "never"
+    },
+    "exit": 0
+  },
+  {
+    "name": "tests",
+    "command": "cargo test --workspace --locked --offline --no-fail-fast",
+    "cwd": "/tmp/rust-skills-review-20261025/cases/05",
+    "environment": {
+      "CARGO_NET_OFFLINE": "true",
+      "CARGO_TARGET_DIR": "/tmp/rust-review-target-c-05",
+      "RUSTUP_TOOLCHAIN": "stable",
+      "CARGO_TERM_COLOR": "never"
+    },
+    "exit": 0
+  },
+  {
+    "name": "doctests",
+    "command": "cargo test --workspace --doc --locked --offline",
+    "cwd": "/tmp/rust-skills-review-20261025/cases/05",
+    "environment": {
+      "CARGO_NET_OFFLINE": "true",
+      "CARGO_TARGET_DIR": "/tmp/rust-review-target-c-05",
+      "RUSTUP_TOOLCHAIN": "stable",
+      "CARGO_TERM_COLOR": "never"
+    },
+    "exit": 0
+  },
+  {
+    "name": "deny",
+    "command": "cargo deny --locked --offline check",
+    "cwd": "/tmp/rust-skills-review-20261025/cases/05",
+    "environment": {
+      "CARGO_NET_OFFLINE": "true",
+      "CARGO_TARGET_DIR": "/tmp/rust-review-target-c-05",
+      "RUSTUP_TOOLCHAIN": "stable",
+      "CARGO_TERM_COLOR": "never"
+    },
+    "exit": 0
+  },
+  {
+    "name": "probe-stacked",
+    "command": [
+      "timeout",
+      "120",
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--",
+      "--nocapture"
+    ],
+    "cwd": "/tmp/rust-skills-review-20261025/reviews/05/probe",
+    "MIRIFLAGS": "-Zmiri-strict-provenance",
+    "exit": 1
+  },
+  {
+    "name": "probe-tree",
+    "command": [
+      "timeout",
+      "120",
+      "cargo",
+      "+nightly",
+      "miri",
+      "test",
+      "--offline",
+      "--",
+      "--nocapture"
+    ],
+    "cwd": "/tmp/rust-skills-review-20261025/reviews/05/probe",
+    "MIRIFLAGS": "-Zmiri-strict-provenance -Zmiri-tree-borrows",
+    "exit": 0
+  },
+  {
+    "name": "context",
+    "command": [
+      "bash",
+      ".agents/skills/rust-pr-review/scripts/context.sh",
+      "origin/main"
+    ],
+    "cwd": "/tmp/rust-skills-review-20261025/cases/05",
+    "exit": 0
+  },
+  {
+    "name": "diff",
+    "command": [
+      "git",
+      "diff",
+      "--no-ext-diff",
+      "--no-textconv",
+      "origin/main",
+      "--"
+    ],
+    "cwd": "/tmp/rust-skills-review-20261025/cases/05",
+    "exit": 0
+  },
+  {
+    "name": "report-validation",
+    "command": [
+      "bash",
+      ".agents/skills/rust-pr-review/scripts/check-report.sh",
+      "/tmp/rust-skills-review-20261025/reviews/05/report.md"
+    ],
+    "cwd": "/tmp/rust-skills-review-20261025/cases/05",
+    "exit": 0
+  }
+]

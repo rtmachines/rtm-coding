@@ -1,0 +1,30 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"data\":{\"contents\":{\"kind\":\"plain_text\",\"value\":\"let mut count: MutexGuard<'_, u64>\"},\"range\":{\"end\":{\"character\":14,\"line\":14},\"start\":{\"character\":9,\"line\":14}}},\"execution\":{\"progress_phase\":\"completed\"}}"
+    }
+  ],
+  "structuredContent": {
+    "data": {
+      "contents": {
+        "kind": "plain_text",
+        "value": "let mut count: MutexGuard<'_, u64>"
+      },
+      "range": {
+        "end": {
+          "character": 14,
+          "line": 14
+        },
+        "start": {
+          "character": 9,
+          "line": 14
+        }
+      }
+    },
+    "execution": {
+      "progress_phase": "completed"
+    }
+  },
+  "isError": false
+}

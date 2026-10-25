@@ -8,19 +8,44 @@ repo="$tmp/repo with spaces"
 mkdir -p "$repo"
 printf '[workspace]\nmembers=[]\n' > "$repo/Cargo.toml"
 printf 'Existing instructions\n' > "$repo/AGENTS.md"
-bash "$kit/install.sh" --all-optional "$repo" > "$tmp/install.log"
+# Installation must use bundled knowledge, not fetch it from the network.
+mkdir "$tmp/no-network"
+for command in git curl wget npx npm ssh; do
+  cat > "$tmp/no-network/$command" <<'BLOCK'
+#!/usr/bin/env bash
+echo "$0 $*" >> "$NETWORK_ATTEMPTS"
+exit 99
+BLOCK
+  chmod +x "$tmp/no-network/$command"
+done
+NETWORK_ATTEMPTS="$tmp/network-attempts" PATH="$tmp/no-network:$PATH" \
+  bash "$kit/install.sh" --all-optional "$repo" > "$tmp/install.log"
+[[ ! -e "$tmp/network-attempts" ]]
+knowledge="$repo/.agents/skills/rust-skills"
+diff -r "$kit/codex-template/.agents/skills/rust-skills" "$knowledge"
+[[ $(find "$knowledge/rules" -type f -name '*.md' | wc -l) -eq 265 ]]
+cmp "$knowledge/LICENSE" "$repo/.agents/rust-review-kit/licenses/rtmachines-rust-skills-MIT.txt"
+cmp "$kit/vendored.tsv" "$repo/.agents/rust-review-kit/vendored.tsv"
 [[ -f "$repo/.agents/skills/rust-pr-review/SKILL.md" ]]
 [[ -f "$repo/.agents/skills/tailrocks-grpc-review/agents/openai.yaml" ]]
 [[ ! -d "$repo/.claude" ]]
 [[ -f "$repo/.github/workflows/rust-gates.yml" ]]
 printf 'custom policy\n' > "$repo/REVIEW.md"
+printf 'local knowledge customization\n' >> "$knowledge/SKILL.md"
+cp "$knowledge/SKILL.md" "$tmp/custom-knowledge"
+rm "$knowledge/rules/own-borrow-over-clone.md"
 bash "$kit/install.sh" --all-optional "$repo" > /dev/null
+cmp "$knowledge/SKILL.md" "$tmp/custom-knowledge"
+cmp "$knowledge/rules/own-borrow-over-clone.md" \
+  "$kit/codex-template/.agents/skills/rust-skills/rules/own-borrow-over-clone.md"
 [[ $(cat "$repo/REVIEW.md") == 'custom policy' ]]
 [[ $(grep -c 'rust-review-kit-codex:begin' "$repo/AGENTS.md") == 1 ]]
 grep -q 'Existing instructions' "$repo/AGENTS.md"
 printf 'user addition\n' > "$repo/.agents/skills/rust-pr-review/custom.txt"
 bash "$kit/install.sh" --force "$repo" > /dev/null
 [[ -f "$repo/.agents/skills/rust-pr-review/custom.txt" ]]
+diff -r "$kit/codex-template/.agents/skills/rust-skills" "$knowledge"
+echo 'PASS offline knowledge installation, completeness, preservation and forced refresh'
 echo 'PASS install, optional skills, idempotency, force preservation'
 mkdir "$tmp/no-ci"
 bash "$kit/install.sh" --no-ci "$tmp/no-ci" > /dev/null 2>&1

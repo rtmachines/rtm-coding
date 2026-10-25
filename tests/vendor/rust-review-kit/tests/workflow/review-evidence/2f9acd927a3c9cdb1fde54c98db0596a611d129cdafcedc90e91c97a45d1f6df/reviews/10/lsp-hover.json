@@ -1,0 +1,30 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"data\":{\"contents\":{\"kind\":\"plain_text\",\"value\":\"runtime_bridge::acme::Server\\n\\npub fn commit(&self, request: u64) -> Receipt\\n\\n\\nThe insertion and effect form one synchronous transaction.\"},\"range\":{\"end\":{\"character\":17,\"line\":24},\"start\":{\"character\":11,\"line\":24}}},\"execution\":{\"progress_phase\":\"completed\"}}"
+    }
+  ],
+  "structuredContent": {
+    "data": {
+      "contents": {
+        "kind": "plain_text",
+        "value": "runtime_bridge::acme::Server\n\npub fn commit(&self, request: u64) -> Receipt\n\n\nThe insertion and effect form one synchronous transaction."
+      },
+      "range": {
+        "end": {
+          "character": 17,
+          "line": 24
+        },
+        "start": {
+          "character": 11,
+          "line": 24
+        }
+      }
+    },
+    "execution": {
+      "progress_phase": "completed"
+    }
+  },
+  "isError": false
+}
