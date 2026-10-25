@@ -18,6 +18,11 @@ spec=importlib.util.spec_from_file_location('regression_runner',manage.RUNNER)
 runner=importlib.util.module_from_spec(spec);spec.loader.exec_module(runner)
 
 REPORT='''## Verdict: APPROVE
+## Tooling
+- rust-lsp: AVAILABLE (synthetic fixture)
+- lsp-used: YES (synthetic semantic query)
+- lsp-evidence: Test fixture query returned the expected definition; no live MCP claim.
+- lsp-limitations: NONE within this synthetic validator fixture.
 ## Gates
 - fmt: PASS
 - clippy: PASS

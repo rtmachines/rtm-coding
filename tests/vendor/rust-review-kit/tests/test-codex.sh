@@ -97,6 +97,11 @@ echo 'PASS gate failures, missing tools/configuration, doctests and cargo-test f
 cat > "$tmp/report" <<'REPORT'
 ## Verdict: APPROVE
 Verified.
+## Tooling
+- rust-lsp: AVAILABLE (synthetic fixture)
+- lsp-used: YES (synthetic semantic query)
+- lsp-evidence: Test fixture query returned the expected definition; no live MCP claim.
+- lsp-limitations: NONE within this synthetic validator fixture.
 ## Gates
 - fmt: PASS
 - clippy: PASS
@@ -136,6 +141,24 @@ for change in 's/tests: PASS/tests: NOT RUN (unavailable)/' 's/spec: PASS/spec: 
 done
 sed 's/Verdict: APPROVE/Verdict: INCOMPLETE/;s/tests: PASS/tests: NOT RUN (unavailable)/' "$tmp/report" | bash "$scripts/check-report.sh"
 echo 'PASS report validation and INCOMPLETE support'
+# These are report-contract scenarios, not claims that an MCP server was executed.
+sed 's/rust-lsp: AVAILABLE.*/rust-lsp: UNAVAILABLE (MCP API absent)/;s/lsp-used: YES.*/lsp-used: NO (no semantic calls)/;s/lsp-evidence: .*/lsp-evidence: Tool discovery found no APIs; installation not authorized./;s/lsp-limitations: .*/lsp-limitations: Source and tests inspected; inferred types not verified by LSP./' "$tmp/report" > "$tmp/no-lsp"
+bash "$scripts/check-report.sh" "$tmp/no-lsp"
+for reason in 'MCP API absent' 'workspace load failed' 'initialization timed out' 'setup failed'; do
+  sed "s/MCP API absent/$reason/" "$tmp/no-lsp" | bash "$scripts/check-report.sh"
+done
+# A health probe alone can report AVAILABLE, but must retain NO semantic use.
+sed 's/rust-lsp: UNAVAILABLE.*/rust-lsp: AVAILABLE (health probe only)/' "$tmp/no-lsp" | bash "$scripts/check-report.sh"
+for change in 's/lsp-used: NO/lsp-used: YES/' '/^## Tooling/d' '/^- lsp-evidence:/d' 's/lsp-evidence: .*/lsp-evidence: N\/A/' 's/lsp-limitations: .*/lsp-limitations: NONE no limitations/' 's/rust-lsp: UNAVAILABLE/rust-lsp: PASS/' '/^- lsp-used:/p'; do
+  sed "$change" "$tmp/no-lsp" > "$tmp/invalid"
+  if bash "$scripts/check-report.sh" "$tmp/invalid" > /dev/null 2>&1; then echo "Invalid LSP disclosure accepted: $change" >&2; exit 1; fi
+done
+# LSP absence never bypasses the existing gates and safety escalation rules.
+sed 's/tests: PASS/tests: NOT RUN (unavailable)/' "$tmp/no-lsp" > "$tmp/invalid"
+if bash "$scripts/check-report.sh" "$tmp/invalid" > /dev/null 2>&1; then exit 1; fi
+sed 's/Verdict: APPROVE/Verdict: INCOMPLETE/;s/tests: PASS/tests: NOT RUN (unavailable)/' "$tmp/no-lsp" | bash "$scripts/check-report.sh"
+echo 'PASS LSP unavailability, health-only status, evidence and consistency guards'
+
 # A structurally complete required-memory report may approve only with both gates PASS.
 sed 's/memory-scope: NONE.*/memory-scope: REQUIRED (src\/ffi.rs)/;s/miri: N\/A/miri: PASS/;s/aliasing: N\/A/aliasing: PASS/;s/memory-evidence: .*/memory-evidence: retained_pointer test, 1 run; toolchain and log attached/;s/aliasing-evidence: .*/aliasing-evidence: ownership and pointer access chain checked/' "$tmp/report" > "$tmp/memory-report"
 bash "$scripts/check-report.sh" "$tmp/memory-report"

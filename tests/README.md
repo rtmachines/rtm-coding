@@ -9,10 +9,13 @@ Workflow uruchamia się dla każdego PR, push do main oraz ręcznie. Brak filtr�
   11 raportów z dowodami oraz oceną semantyczną dla dokładnej wersji i wejść.
   Brak, nieaktualność lub uszkodzenie paczki oznaczają niepowodzenie.
 
-`vendor/rust-review-kit/` zawiera niezmieniony zestaw źródłowy wraz z zamrożonymi
-wejściami i paczką dowodów z 25 października 2026. Zachowano fingerprint
-`be8a1dc3533135a809fa926673ae8aa96771482325e7cff4340e69d5ea42b940`.
-To ponowne użycie raportów dla identycznych skilli i wejść, nie nowe wykonanie LLM.
+`vendor/rust-review-kit/` zawiera zestaw źródłowy wraz z zamrożonymi wejściami.
+Paczka dowodów z 25 października 2026 dla fingerprintu
+`be8a1dc3533135a809fa926673ae8aa96771482325e7cff4340e69d5ea42b940`
+pozostaje historyczna: dodanie kontroli rust-lsp zmieniło workflow i schemat raportu.
+Bramka wymaga teraz nowych review; dawnych raportów nie uzupełniono wstecznie
+o deklaracje użycia LSP. Testy kontraktu raportu symulują niedostępność API, błędy
+ładowania i timeout; nie są wykonaniem review przez model ani awarią żywego serwera.
 CI ponownie wykonuje automatykę; dowodów z paczki nie wykonuje jako kodu.
 Opcjonalne skille wewnątrz zestawu są danymi dla testów instalatora.
 

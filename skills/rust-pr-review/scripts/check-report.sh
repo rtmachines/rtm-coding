@@ -11,6 +11,15 @@ function error(message) { print message > "/dev/stderr"; bad=1 }
   }
   seen[$0]++
 }
+section == "## Tooling" && /^- / {
+  key=$2; sub(/:$/, "", key)
+  if (key ~ /^(rust-lsp|lsp-used|lsp-evidence|lsp-limitations)$/) {
+    if (tooling_seen[key]++) error("Duplicate tooling field: " key)
+    tooling[key]=$3
+    tooling_words[key]=NF
+    if (NF < 3) error("Empty tooling field: " key)
+  }
+}
 section == "## Gates" && /^- / {
   key=$2; sub(/:$/, "", key); value=$3
   if (key ~ /^(fmt|clippy|tests|doctests|deny)$/) {
@@ -55,8 +64,16 @@ section == "## Findings" && /^No findings\.$/ { empty_findings++ }
 END {
   if (verdict_count != 1) error("Exactly one valid Verdict required")
   required[1]="## Gates"; required[2]="## Spec"; required[3]="## Findings"; required[4]="## Residual risks"; required[5]="## Memory safety"
-  required[6]="## Concurrency"
-  for (i=1;i<=6;i++) if (seen[required[i]] != 1) error("Missing/duplicate section: " required[i])
+  required[6]="## Concurrency"; required[7]="## Tooling"
+  for (i=1;i<=7;i++) if (seen[required[i]] != 1) error("Missing/duplicate section: " required[i])
+  split("rust-lsp lsp-used lsp-evidence lsp-limitations", names, " ")
+  for (i=1;i<=4;i++) if (tooling_seen[names[i]] != 1) error("Missing tooling field: " names[i])
+  if (tooling["rust-lsp"] !~ /^(AVAILABLE|UNAVAILABLE)$/) error("Invalid rust-lsp availability")
+  if (tooling["lsp-used"] !~ /^(YES|NO)$/) error("Invalid lsp-used status")
+  if (tooling["rust-lsp"] == "UNAVAILABLE" && tooling["lsp-used"] != "NO") error("Unavailable LSP cannot be reported as used")
+  if (tooling_words["lsp-evidence"] < 4 || tooling["lsp-evidence"] ~ /^(N\/A|NONE)$/) error("LSP discovery/query evidence required")
+  if (tooling_words["lsp-limitations"] < 4) error("Explain LSP limitations or why none remain")
+  if (tooling["lsp-used"] == "NO" && tooling["lsp-limitations"] ~ /^(N\/A|NONE)$/) error("Unused LSP requires fallback and limitations")
   split("fmt clippy tests doctests deny", names, " ")
   for (i=1;i<=5;i++) {
     key=names[i]
