@@ -1,0 +1,577 @@
+{
+  "graph": {
+    "status": "ok",
+    "summary": "Analyzed 9 changed file(s):\n  - 4 changed function(s)/class(es)\n  - 0 affected flow(s)\n  - 3 test gap(s)\n  - Overall risk score: 0.30\n  - Untested: Published, publish, snapshot",
+    "risk_score": 0.3,
+    "changed_functions": [
+      {
+        "id": 8,
+        "kind": "Class",
+        "name": "Published",
+        "qualified_name": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published",
+        "file_path": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+        "line_start": 7,
+        "line_end": 10,
+        "language": "rust",
+        "parent_name": null,
+        "is_test": false,
+        "risk_score": 0.3
+      },
+      {
+        "id": 9,
+        "kind": "Function",
+        "name": "publish",
+        "qualified_name": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published.publish",
+        "file_path": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+        "line_start": 13,
+        "line_end": 16,
+        "language": "rust",
+        "parent_name": "Published",
+        "is_test": false,
+        "risk_score": 0.3
+      },
+      {
+        "id": 10,
+        "kind": "Function",
+        "name": "snapshot",
+        "qualified_name": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published.snapshot",
+        "file_path": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+        "line_start": 17,
+        "line_end": 21,
+        "language": "rust",
+        "parent_name": "Published",
+        "is_test": false,
+        "risk_score": 0.3
+      },
+      {
+        "id": 12,
+        "kind": "Test",
+        "name": "publication_model",
+        "qualified_name": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs::publication_model",
+        "file_path": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs",
+        "line_start": 4,
+        "line_end": 27,
+        "language": "rust",
+        "parent_name": null,
+        "is_test": true,
+        "risk_score": 0.25
+      }
+    ],
+    "affected_flows": [],
+    "test_gaps": [
+      {
+        "name": "Published",
+        "qualified_name": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published",
+        "file": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+        "line_start": 7,
+        "line_end": 10,
+        "coverage": "none"
+      },
+      {
+        "name": "publish",
+        "qualified_name": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published.publish",
+        "file": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+        "line_start": 13,
+        "line_end": 16,
+        "coverage": "none"
+      },
+      {
+        "name": "snapshot",
+        "qualified_name": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published.snapshot",
+        "file": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+        "line_start": 17,
+        "line_end": 21,
+        "coverage": "none"
+      }
+    ],
+    "test_gaps_total": 3,
+    "test_gaps_uncovered": 3,
+    "test_gaps_indirect": 0,
+    "review_priorities": [
+      {
+        "id": 8,
+        "kind": "Class",
+        "name": "Published",
+        "qualified_name": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published",
+        "file_path": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+        "line_start": 7,
+        "line_end": 10,
+        "language": "rust",
+        "parent_name": null,
+        "is_test": false,
+        "risk_score": 0.3
+      },
+      {
+        "id": 9,
+        "kind": "Function",
+        "name": "publish",
+        "qualified_name": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published.publish",
+        "file_path": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+        "line_start": 13,
+        "line_end": 16,
+        "language": "rust",
+        "parent_name": "Published",
+        "is_test": false,
+        "risk_score": 0.3
+      },
+      {
+        "id": 10,
+        "kind": "Function",
+        "name": "snapshot",
+        "qualified_name": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published.snapshot",
+        "file_path": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+        "line_start": 17,
+        "line_end": 21,
+        "language": "rust",
+        "parent_name": "Published",
+        "is_test": false,
+        "risk_score": 0.3
+      },
+      {
+        "id": 12,
+        "kind": "Test",
+        "name": "publication_model",
+        "qualified_name": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs::publication_model",
+        "file_path": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs",
+        "line_start": 4,
+        "line_end": 27,
+        "language": "rust",
+        "parent_name": null,
+        "is_test": true,
+        "risk_score": 0.25
+      }
+    ],
+    "functions_truncated": false,
+    "diff_ranges_unavailable": "",
+    "churn_status": "ok",
+    "changed_files": [
+      ".agents/skills/rust-pr-review/SKILL.md",
+      ".agents/skills/rust-pr-review/references/REVIEWDOG.md",
+      ".agents/skills/rust-pr-review/scripts/clippy.sh",
+      ".agents/skills/rust-pr-review/scripts/gates.sh",
+      ".gitignore",
+      "REQUIREMENTS.md",
+      "REVIEW.md",
+      "src/lib.rs",
+      "tests/publication_model.rs"
+    ],
+    "changed_file_count": 9,
+    "changed_functions_total": 4,
+    "affected_flows_total": 0,
+    "truncated": false,
+    "_hints": {
+      "next_steps": [
+        {
+          "tool": "get_review_context_tool",
+          "suggestion": "Build a full review context with source snippets"
+        },
+        {
+          "tool": "get_impact_radius_tool",
+          "suggestion": "Expand the blast radius analysis"
+        },
+        {
+          "tool": "refactor_tool",
+          "suggestion": "Look for refactoring opportunities in changed code"
+        }
+      ],
+      "related": [],
+      "warnings": [
+        "Test coverage gaps: Published, publish, snapshot"
+      ]
+    },
+    "context_savings": {
+      "estimated": true,
+      "saved_tokens": 4619,
+      "saved_percent": 81
+    },
+    "_graph": {
+      "updated_at": "2026-10-25T08:22:51",
+      "age_seconds": 82,
+      "built_at_sha": "646d6eee82ec869164487e4991631b9bdf62877e",
+      "built_on_branch": "master",
+      "head_sha": "646d6eee82ec869164487e4991631b9bdf62877e",
+      "head_matches_build": true
+    }
+  },
+  "flows": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"status\":\"ok\",\"summary\":\"0 flow(s) affected by changes in 9 file(s)\",\"changed_files\":[\".agents/skills/rust-pr-review/SKILL.md\",\".agents/skills/rust-pr-review/references/REVIEWDOG.md\",\".agents/skills/rust-pr-review/scripts/clippy.sh\",\".agents/skills/rust-pr-review/scripts/gates.sh\",\".gitignore\",\"REQUIREMENTS.md\",\"REVIEW.md\",\"src/lib.rs\",\"tests/publication_model.rs\"],\"affected_flows\":[],\"total\":0,\"truncated\":false,\"_hints\":{\"next_steps\":[{\"tool\":\"get_flow_tool\",\"suggestion\":\"Inspect a specific affected flow\"},{\"tool\":\"get_review_context_tool\",\"suggestion\":\"Build a full review context for the changes\"}],\"related\":[],\"warnings\":[]},\"_graph\":{\"updated_at\":\"2026-10-25T08:22:51\",\"age_seconds\":82,\"built_at_sha\":\"646d6eee82ec869164487e4991631b9bdf62877e\",\"built_on_branch\":\"master\",\"head_sha\":\"646d6eee82ec869164487e4991631b9bdf62877e\",\"head_matches_build\":true}}"
+      }
+    ],
+    "structuredContent": {
+      "status": "ok",
+      "summary": "0 flow(s) affected by changes in 9 file(s)",
+      "changed_files": [
+        ".agents/skills/rust-pr-review/SKILL.md",
+        ".agents/skills/rust-pr-review/references/REVIEWDOG.md",
+        ".agents/skills/rust-pr-review/scripts/clippy.sh",
+        ".agents/skills/rust-pr-review/scripts/gates.sh",
+        ".gitignore",
+        "REQUIREMENTS.md",
+        "REVIEW.md",
+        "src/lib.rs",
+        "tests/publication_model.rs"
+      ],
+      "affected_flows": [],
+      "total": 0,
+      "truncated": false,
+      "_hints": {
+        "next_steps": [
+          {
+            "tool": "get_flow_tool",
+            "suggestion": "Inspect a specific affected flow"
+          },
+          {
+            "tool": "get_review_context_tool",
+            "suggestion": "Build a full review context for the changes"
+          }
+        ],
+        "related": [],
+        "warnings": []
+      },
+      "_graph": {
+        "updated_at": "2026-10-25T08:22:51",
+        "age_seconds": 82,
+        "built_at_sha": "646d6eee82ec869164487e4991631b9bdf62877e",
+        "built_on_branch": "master",
+        "head_sha": "646d6eee82ec869164487e4991631b9bdf62877e",
+        "head_matches_build": true
+      }
+    },
+    "isError": false
+  },
+  "context": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"status\":\"ok\",\"summary\":\"Review context for 9 changed file(s):\\n  - 9 directly changed nodes\\n  - 0 impacted nodes in 0 files\\n\\nReview guidance:\\n- 3 changed function(s) have no direct test: run_gate, publish, snapshot\",\"context\":{\"changed_files\":[\".agents/skills/rust-pr-review/scripts/gates.sh\",\"src/lib.rs\",\"tests/publication_model.rs\",\".agents/skills/rust-pr-review/SKILL.md\",\".agents/skills/rust-pr-review/references/REVIEWDOG.md\",\".agents/skills/rust-pr-review/scripts/clippy.sh\",\".gitignore\",\"REQUIREMENTS.md\",\"REVIEW.md\"],\"changed_files_total\":9,\"file_risk\":{\".agents/skills/rust-pr-review/scripts/gates.sh\":0.4,\"src/lib.rs\":0.3,\"tests/publication_model.rs\":0.25,\".agents/skills/rust-pr-review/SKILL.md\":0.0,\".agents/skills/rust-pr-review/references/REVIEWDOG.md\":0.0,\".agents/skills/rust-pr-review/scripts/clippy.sh\":0.0,\".gitignore\":0.0,\"REQUIREMENTS.md\":0.0,\"REVIEW.md\":0.0},\"impacted_files\":[],\"impacted_files_total\":0,\"graph\":{\"changed_nodes\":[{\"id\":3,\"kind\":\"File\",\"name\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/clippy.sh\",\"qualified_name\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/clippy.sh\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/clippy.sh\",\"line_start\":1,\"line_end\":39,\"language\":\"bash\",\"parent_name\":null,\"is_test\":false},{\"id\":5,\"kind\":\"File\",\"name\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"qualified_name\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"line_start\":1,\"line_end\":43,\"language\":\"bash\",\"parent_name\":null,\"is_test\":false},{\"id\":6,\"kind\":\"Function\",\"name\":\"run_gate\",\"qualified_name\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh::run_gate\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"line_start\":19,\"line_end\":24,\"language\":\"bash\",\"parent_name\":null,\"is_test\":false},{\"id\":7,\"kind\":\"File\",\"name\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs\",\"qualified_name\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs\",\"line_start\":1,\"line_end\":23,\"language\":\"rust\",\"parent_name\":null,\"is_test\":false},{\"id\":8,\"kind\":\"Class\",\"name\":\"Published\",\"qualified_name\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs\",\"line_start\":7,\"line_end\":10,\"language\":\"rust\",\"parent_name\":null,\"is_test\":false},{\"id\":9,\"kind\":\"Function\",\"name\":\"publish\",\"qualified_name\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published.publish\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs\",\"line_start\":13,\"line_end\":16,\"language\":\"rust\",\"parent_name\":\"Published\",\"is_test\":false},{\"id\":10,\"kind\":\"Function\",\"name\":\"snapshot\",\"qualified_name\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published.snapshot\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs\",\"line_start\":17,\"line_end\":21,\"language\":\"rust\",\"parent_name\":\"Published\",\"is_test\":false},{\"id\":11,\"kind\":\"File\",\"name\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs\",\"qualified_name\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs\",\"line_start\":1,\"line_end\":28,\"language\":\"rust\",\"parent_name\":null,\"is_test\":true},{\"id\":12,\"kind\":\"Test\",\"name\":\"publication_model\",\"qualified_name\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs::publication_model\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs\",\"line_start\":4,\"line_end\":27,\"language\":\"rust\",\"parent_name\":null,\"is_test\":true}],\"changed_nodes_total\":9,\"impacted_nodes\":[],\"impacted_nodes_total\":0,\"edges\":[{\"id\":76,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"target\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh::run_gate\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"line\":19,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":82,\"kind\":\"CALLS\",\"source\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"target\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh::run_gate\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"line\":25,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":83,\"kind\":\"CALLS\",\"source\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"target\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh::run_gate\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"line\":26,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":86,\"kind\":\"CALLS\",\"source\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"target\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh::run_gate\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"line\":28,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":87,\"kind\":\"CALLS\",\"source\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"target\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh::run_gate\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"line\":29,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":88,\"kind\":\"CALLS\",\"source\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"target\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh::run_gate\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"line\":32,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":93,\"kind\":\"CALLS\",\"source\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"target\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh::run_gate\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh\",\"line\":40,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":101,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs\",\"target\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs\",\"line\":7,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":102,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published\",\"target\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published.publish\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs\",\"line\":13,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":105,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published\",\"target\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published.snapshot\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs\",\"line\":17,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"},{\"id\":110,\"kind\":\"CONTAINS\",\"source\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs\",\"target\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs::publication_model\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs\",\"line\":4,\"confidence\":1.0,\"confidence_tier\":\"EXTRACTED\"}],\"edges_total\":11},\"truncated\":false,\"source_snippets\":{\".agents/skills/rust-pr-review/scripts/gates.sh\":\"1: #!/usr/bin/env bash\\n2: # Run from a trusted Cargo workspace. Additional arguments are Cargo feature flags.\\n3: # Example: gates.sh --no-default-features --features 'server,tls'\\n4: # No arguments: --all-features. RUST_GATE_FEATURES= disables that default.\\n5: set -uo pipefail\\n6: export CARGO_TERM_COLOR=never\\n7: [[ -f Cargo.toml ]] || { echo 'Run gates.sh from the Cargo workspace root.' >&2; exit 2; }\\n8: features=(--all-features)\\n9: if [[ ${RUST_GATE_FEATURES+x} ]]; then\\n10:   read -r -a features <<< \\\"$RUST_GATE_FEATURES\\\"\\n11: fi\\n12: if (( $# )); then features=(\\\"$@\\\"); fi\\n13: for arg in \\\"${features[@]}\\\"; do\\n14:   case \\\"$arg\\\" in --manifest-path*|--target-dir*|--config*|--help|--version) echo \\\"Unsupported feature argument: $arg\\\" >&2; exit 2;; esac\\n15: done\\n16: locked=()\\n17: [[ ! -f Cargo.lock ]] || locked=(--locked)\\n18: failed=0\\n19: run_gate() {\\n20:   local name=$1; shift\\n21:   printf '\\\\n$' >&2; printf ' %q' \\\"$@\\\" >&2; printf '\\\\n' >&2\\n22:   if \\\"$@\\\" >&2; then printf -- '- %s: PASS\\\\n' \\\"$name\\\"\\n23:   else printf -- '- %s: FAIL\\\\n' \\\"$name\\\"; failed=1; fi\\n24: }\\n25: run_gate fmt cargo fmt --all -- --check\\n26: run_gate clippy bash \\\"$(dirname \\\"${BASH_SOURCE[0]}\\\")/clippy.sh\\\" --workspace --all-targets \\\"${features[@]}\\\" \\\"${locked[@]}\\\" -- -D warnings\\n27: if cargo nextest --version >/dev/null 2>&1; then\\n28:   run_gate tests cargo nextest run --workspace \\\"${features[@]}\\\" \\\"${locked[@]}\\\" --no-fail-fast --no-tests=pass\\n29:   run_gate doctests cargo test --workspace --doc \\\"${features[@]}\\\" \\\"${locked[@]}\\\"\\n30: else\\n31:   # cargo test includes doctests by default; no --all-targets here.\\n32:   run_gate tests cargo test --workspace \\\"${features[@]}\\\" \\\"${locked[@]}\\\" --no-fail-fast\\n33:   echo '- doctests: N/A (included in cargo test)'\\n34: fi\\n35: if [[ ! -f deny.toml ]]; then\\n36:   echo '- deny: NOT RUN (deny.toml missing)'; failed=1\\n37: elif ! cargo deny --version >/dev/null 2>&1; then\\n38:   echo '- deny: NOT RUN (cargo-deny missing)'; failed=1\\n39: else\\n40:   run_gate deny cargo deny \\\"${locked[@]}\\\" check\\n41: fi\\n42: exit \\\"$failed\\\"\",\"src/lib.rs\":\"1: #[cfg(feature = \\\"model\\\")]\\n2: use loom::sync::atomic::{AtomicBool, AtomicUsize, Ordering};\\n3: #[cfg(not(feature = \\\"model\\\"))]\\n4: use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};\\n5: \\n6: #[derive(Default)]\\n7: pub struct Published {\\n8:     value: AtomicUsize,\\n9:     ready: AtomicBool,\\n10: }\\n11: impl Published {\\n12:     /// The caller publishes at most once, from one writer.\\n13:     pub fn publish(&self, value: usize) {\\n14:         self.value.store(value, Ordering::Relaxed);\\n15:         self.ready.store(true, Ordering::Release);\\n16:     }\\n17:     pub fn snapshot(&self) -> Option<usize> {\\n18:         self.ready\\n19:             .load(Ordering::Acquire)\\n20:             .then(|| self.value.load(Ordering::Relaxed))\\n21:     }\\n22: }\",\"tests/publication_model.rs\":\"1: #![cfg(feature = \\\"model\\\")]\\n2: use runtime_bridge::Published;\\n3: #[test]\\n4: fn publication_model() {\\n5:     let mut builder = loom::model::Builder::new();\\n6:     builder.checkpoint_interval = 1;\\n7:     builder.max_permutations = None;\\n8:     builder.max_duration = None;\\n9:     builder.preemption_bound = None;\\n10:     builder.checkpoint_file = None;\\n11:     let executions = std::sync::Arc::new(std::sync::atomic::AtomicUsize::new(0));\\n12:     let seen = executions.clone();\\n13:     builder.check(move || {\\n14:         seen.fetch_add(1, std::sync::atomic::Ordering::SeqCst);\\n15:         let data = loom::sync::Arc::new(Published::default());\\n16:         let writer = data.clone();\\n17:         let task = loom::thread::spawn(move || writer.publish(42));\\n18:         if let Some(value) = data.snapshot() {\\n19:             assert_eq!(value, 42);\\n20:         }\\n21:         task.join().unwrap();\\n22:         assert_eq!(data.snapshot(), Some(42));\\n23:     });\\n24:     let count = executions.load(std::sync::atomic::Ordering::SeqCst);\\n25:     println!(\\\"completed model executions: {count}\\\");\\n26:     assert!(count > 1);\\n27: }\",\".agents/skills/rust-pr-review/SKILL.md\":\"38:   root when execution is permitted, or use equivalent existing CI evidence for the\\n39:   exact reviewed revision/configuration. Configure feature arguments to match the\\n40:   supported matrix, especially mutually exclusive features. The script reports\\n41:   fmt, clippy, tests, doctests and deny; it has no cache or automatic retry loop.\\n42:   Missing tools/configuration are NOT RUN, never PASS. Do not repair code during review.\\n43:   A dirty tree or different head invalidates CI evidence for changed behavior.\\n44: - Optionally enable local reviewdog presentation with `RUST_REVIEWDOG=1` when running\\n45:   `gates.sh`. Read [REVIEWDOG.md](references/REVIEWDOG.md) for diff filtering and\\n46:   existing project runners. Missing reviewdog is an optional omission; Clippy still\\n47:   runs. An empty filtered report never overrides Clippy failure.\\n48: - For public library compatibility, use available semver checks against an explicit\\n49:   release/base selected from project policy. Report omissions; this does not prove soundness.\\n50: - Read relevant chapters of `../rust-best-practices/SKILL.md` and\\n51:   [SMELLS.md](references/SMELLS.md). These are heuristics: clone, bool, public pointer\\n52:   types and loops are not defects by themselves. Inspect callers, error paths and tests,\\n53:   not just changed lines. Review unsafe/FFI, destructive operations, public contracts,\",\".agents/skills/rust-pr-review/references/REVIEWDOG.md\":\"1: # Optional local reviewdog\\n2: \\n3: Run from the reviewed Cargo workspace:\\n4: \\n5: ```bash\\n6: RUST_REVIEWDOG=1 bash .agents/skills/rust-pr-review/scripts/gates.sh\\n7: ```\\n8: \\n9: The helper runs Clippy once, preserves raw uncolored short diagnostics and its exit\\n10: code in a printed temporary evidence directory, then feeds that file to reviewdog.\\n11: It uses the local reporter only and installs nothing. Missing reviewdog falls back\\n12: to the raw diagnostics. Its errors/status are separate from the Clippy gate.\\n13: `RUST_REVIEWDOG_BIN` can select an existing executable by name or absolute path.\\n14: Retain the evidence files until the review is complete.\\n15: \\n16: Default filtering is `nofilter`. For tracked branch plus working-tree changes, set\\n17: `RUST_REVIEWDOG_BASE` to the already resolved review base SHA. For working-tree-only\\n18: review, use HEAD. For a committed-only scope, use matching checkout/CI evidence;\\n19: this helper's diff includes local edits. Invalid bases fall back to unfiltered output.\\n20: Git diff excludes untracked files: omit the base when they are in scope.\\n21: \\n22: Always derive the `clippy` gate from Clippy's exit status, not reviewdog's report or\\n23: exit status. Inspect raw output on compilation failure, parser failure or an empty\\n24: report. A successful reviewdog process with zero displayed diagnostics is not a\\n25: passing lint check. Record presentation failures/omissions separately in the report;\\n26: reviewdog does not replace Miri, Loom, tests or semantic review.\\n27: \\n28: If the project already has `.reviewdog.yml` or `.reviewdog.yaml`, prefer its relevant\\n29: lint runners with `-reporter=local -filter-mode=nofilter -fail-level=warning` for\\n30: project presentation. Still run the Clippy gate independently: config runners may\\n31: filter, mask failures or use different flags. Do not automatically execute every\\n32: runner. Do not feed RTK-condensed output to a parser; use `rtk bypass` for a producer\\n33: if it is intercepted. The helper calls Cargo directly without a condensing wrapper.\\n34: Remote reporters require an explicit request to publish results.\",\".agents/skills/rust-pr-review/scripts/clippy.sh\":\"1: #!/usr/bin/env bash\\n2: # Preserve Clippy's exit status independently of optional diagnostic presentation.\\n3: set -uo pipefail\\n4: export CARGO_TERM_COLOR=never\\n5: if [[ ${RUST_REVIEWDOG:-0} != 1 ]]; then\\n6:   exec cargo clippy \\\"$@\\\"\\n7: fi\\n8: logs=$(mktemp -d \\\"${TMPDIR:-/tmp}/rust-review-clippy.XXXXXXXX\\\") || exit 2\\n9: printf 'Clippy/reviewdog evidence: %s\\\\n' \\\"$logs\\\" >&2\\n10: # Capture raw output without a pipeline; retain unfiltered compiler errors.\\n11: cargo clippy --message-format=short --color=never \\\"$@\\\" > \\\"$logs/clippy.log\\\" 2>&1\\n12: clippy_status=$?\\n13: printf '%s\\\\n' \\\"$clippy_status\\\" > \\\"$logs/clippy.exit\\\"\\n14: cat \\\"$logs/clippy.log\\\" >&2\\n15: reviewdog_bin=${RUST_REVIEWDOG_BIN:-reviewdog}\\n16: if ! command -v \\\"$reviewdog_bin\\\" >/dev/null 2>&1; then\\n17:   echo 'reviewdog: NOT RUN (optional tool missing; Clippy result retained)' >&2\\n18:   exit \\\"$clippy_status\\\"\\n19: fi\\n20: args=(-f=clippy -reporter=local -filter-mode=nofilter -fail-level=warning)\\n21: if [[ -n ${RUST_REVIEWDOG_BASE:-} ]]; then\\n22:   # Only a resolved commit hash enters reviewdog's shell diff command.\\n23:   if base=$(git rev-parse --verify --end-of-options \\\"${RUST_REVIEWDOG_BASE}^{commit}\\\" 2>/dev/null); then\\n24:     args=(-f=clippy -reporter=local -filter-mode=added -fail-level=warning\\n25:       \\\"-diff=git diff --no-ext-diff --no-textconv --no-color $base --\\\")\\n26:   else\\n27:     echo 'reviewdog: invalid base; displaying unfiltered diagnostics' >&2\\n28:   fi\\n29: fi\\n30: \\\"$reviewdog_bin\\\" \\\"${args[@]}\\\" < \\\"$logs/clippy.log\\\" > \\\"$logs/reviewdog.log\\\" 2> \\\"$logs/reviewdog.stderr\\\"\\n31: reviewdog_status=$?\\n32: printf '%s\\\\n' \\\"$reviewdog_status\\\" > \\\"$logs/reviewdog.exit\\\"\\n33: cat \\\"$logs/reviewdog.log\\\" \\\"$logs/reviewdog.stderr\\\" >&2\\n34: printf 'reviewdog: exit=%s (presentation only; Clippy exit=%s)\\\\n' \\\"$reviewdog_status\\\" \\\"$clippy_status\\\" >&2\\n35: if [[ ! -s \\\"$logs/reviewdog.log\\\" ]]; then\\n36:   echo 'Empty reviewdog report is not evidence of Clippy PASS; inspect clippy.log.' >&2\\n37: fi\\n38: exit \\\"$clippy_status\\\"\",\".gitignore\":\"1: /target\\n2: /.code-review-graph\\n3: \\n4: /.code-review-graph/\",\"REQUIREMENTS.md\":\"1: One writer calls publish exactly once. A concurrent snapshot may return None; if it returns Some, it must equal the published value. Require model exploration of this publication/read protocol.\",\"REVIEW.md\":\"1: # Rust review rules\\n2: \\n3: Read by the Codex `rust-pr-review` skill. Adapt the project policy below before\\n4: using this template as a merge gate. Existing repository contracts take precedence.\\n5: \\n6: ## Severity\\n7: \\n8: | Level | Meaning |\\n9: |---|---|\\n10: | P0 | Proven critical defect with broad impact: memory unsoundness, data destruction or secret disclosure |\\n11: | P1 | Reachable regression, broken contract, deadlock or other defect that must be fixed before merge |\\n12: | P2 | Concrete non-blocking correctness, maintainability or measured performance issue |\\n13: | P3 | Optional actionable improvement; omit taste-only comments |\\n14: \\n15: Determine priority from reachability, impact and preconditions. A panic, unsafe block,\\n16: clone, lint violation or failing command does not automatically establish P0/P1.\\n17: Distinguish environment failures and pre-existing failures from defects in the diff.\\n18: Each finding needs an exact location, trigger, impact and practical fix. For a deletion,\\n19: identify its base-side location explicitly; never invent a current line for missing code.\\n20: \\n21: ## Project policy (configure)\\n22: \\n23: - Use the actual edition, MSRV, toolchain, lint levels and error conventions in this repo.\\n24: - Review public API compatibility against the project's supported release baseline.\\n25: - Check unsafe invariants, aliasing/lifetimes, ownership across FFI and Send/Sync claims.\\n26: - Check async blocking, lock order, cancellation, bounded resource use and error paths.\\n27: - Require tests for meaningful behavior changes where they protect against regressions.\\n28: - Default checks: fmt, clippy, tests (including doctests), cargo-deny with deny.toml.\\n29: - Default feature configuration: --all-features. Replace with the supported feature\\n30:   matrix for mutually exclusive features; align local checks and CI.\\n31: - Configure deny.toml using the project's license, advisory and source policy.\\n32: - Only mark deny N/A if project policy explicitly makes it inapplicable; missing\\n33:   cargo-deny or deny.toml means NOT RUN. If required evidence is absent, INCOMPLETE.\\n34: - Spec PASS requires user requirements or PR acceptance criteria; commit claims alone\\n35:   yield PARTIAL. No findings does not mean all requirements were verified.\\n36: - For affected unsafe/FFI boundaries, targeted Miri tests and a separate aliasing/\\n37:   provenance argument are required before approval. Use isolated exact-source probes\\n38:   when existing tests do not cover the path and execution is authorized. Unknown FFI\\n39:   guarantees, unavailable targeted execution or conflicting alias models require ESCALATE.\\n40:   General tests passing under Miri are not a substitute. Follow the skill’s\\n41:   references/MEMORY-VALIDATION.md and report the Memory safety section.\\n42: - For affected async behavior, require targeted progress/deadlock, cancellation and\\n43:   task-termination tests as applicable. For changed custom synchronization protocols,\\n44:   require Loom models and an independent invariant/ordering argument. Missing relevant\\n45:   evidence or incomplete models require ESCALATE. Follow references/CONCURRENCY-VALIDATION.md\\n46:   and report the Concurrency section; green ordinary tests are not a substitute.\\n47: - Semver-checks remain conditional; document applicability and skipped checks.\\n48: \\n49: The skill provides smell, safety and spec references under\\n50: `.agents/skills/rust-pr-review/references/`. They inform judgment and do not override\\n51: verified source, repository policy or explicit user instructions.\\n52: \\n53: ## Project policy (configure)\\n54: \\n55: - Use the actual edition, MSRV, toolchain, lint levels and error conventions in this repo.\\n56: - Review public API compatibility against the project's supported release baseline.\\n57: - Check unsafe invariants, aliasing/lifetimes, ownership across FFI and Send/Sync claims.\\n58: - Check async blocking, lock order, cancellation, bounded resource use and error paths.\\n59: - Require tests for meaningful behavior changes where they protect against regressions.\\n60: - Default checks: fmt, clippy, tests (including doctests), cargo-deny with deny.toml.\\n61: - Default feature configuration: --all-features. Replace with the supported feature\\n62:   matrix for mutually exclusive features; align local checks and CI.\\n63: - Configure deny.toml using the project's license, advisory and source policy.\\n64: - Only mark deny N/A if project policy explicitly makes it inapplicable; missing\\n65:   cargo-deny or deny.toml means NOT RUN. If required evidence is absent, INCOMPLETE.\\n66: - Spec PASS requires user requirements or PR acceptance criteria; commit claims alone\\n67:   yield PARTIAL. No findings does not mean all requirements were verified.\\n68: - For affected unsafe/FFI boundaries, targeted Miri tests and a separate aliasing/\\n69:   provenance argument are required before approval. Use isolated exact-source probes\\n70:   when existing tests do not cover the path and execution is authorized. Unknown FFI\\n71:   guarantees, unavailable targeted execution or conflicting alias models require ESCALATE.\\n72:   General tests passing under Miri are not a substitute. Follow the skill’s\\n73:   references/MEMORY-VALIDATION.md and report the Memory safety section.\\n74: - For affected async behavior, require targeted progress/deadlock, cancellation and\\n75:   task-termination tests as applicable. For changed custom synchronization protocols,\\n76:   require Loom models and an independent invariant/ordering argument. Missing relevant\\n77:   evidence or incomplete models require ESCALATE. Follow references/CONCURRENCY-VALIDATION.md\\n78:   and report the Concurrency section; green ordinary tests are not a substitute.\\n79: - Semver-checks remain conditional; document applicability and skipped checks.\\n80: \\n81: The skill provides smell, safety and spec references under\\n82: `.agents/skills/rust-pr-review/references/`. They inform judgment and do not override\\n83: verified source, repository policy or explicit user instructions.\\n84: \\n85: ## Project policy\\n86: Use RUST_GATE_FEATURES='' for ordinary gates. Run feature model separately.\\n87: Model exploration may run to completion. Use an external process watchdog of 120 seconds; reaching it is not evidence of completion. Do not install dependencies or access external services.\\n88: \\n89: Run diagnostics offline using the existing toolchains and advisory database. Record this freshness limitation. Use equivalent offline gate commands if necessary. Do not install dependencies or access external services.\"},\"source_regions\":{\"shown\":9,\"total\":9,\"incomplete\":{}},\"review_guidance\":\"- 3 changed function(s) have no direct test: run_gate, publish, snapshot\"},\"context_savings\":{\"estimated\":true,\"saved_tokens\":0,\"saved_percent\":0},\"_graph\":{\"updated_at\":\"2026-10-25T08:22:51\",\"age_seconds\":82,\"built_at_sha\":\"646d6eee82ec869164487e4991631b9bdf62877e\",\"built_on_branch\":\"master\",\"head_sha\":\"646d6eee82ec869164487e4991631b9bdf62877e\",\"head_matches_build\":true}}"
+      }
+    ],
+    "structuredContent": {
+      "status": "ok",
+      "summary": "Review context for 9 changed file(s):\n  - 9 directly changed nodes\n  - 0 impacted nodes in 0 files\n\nReview guidance:\n- 3 changed function(s) have no direct test: run_gate, publish, snapshot",
+      "context": {
+        "changed_files": [
+          ".agents/skills/rust-pr-review/scripts/gates.sh",
+          "src/lib.rs",
+          "tests/publication_model.rs",
+          ".agents/skills/rust-pr-review/SKILL.md",
+          ".agents/skills/rust-pr-review/references/REVIEWDOG.md",
+          ".agents/skills/rust-pr-review/scripts/clippy.sh",
+          ".gitignore",
+          "REQUIREMENTS.md",
+          "REVIEW.md"
+        ],
+        "changed_files_total": 9,
+        "file_risk": {
+          ".agents/skills/rust-pr-review/scripts/gates.sh": 0.4,
+          "src/lib.rs": 0.3,
+          "tests/publication_model.rs": 0.25,
+          ".agents/skills/rust-pr-review/SKILL.md": 0,
+          ".agents/skills/rust-pr-review/references/REVIEWDOG.md": 0,
+          ".agents/skills/rust-pr-review/scripts/clippy.sh": 0,
+          ".gitignore": 0,
+          "REQUIREMENTS.md": 0,
+          "REVIEW.md": 0
+        },
+        "impacted_files": [],
+        "impacted_files_total": 0,
+        "graph": {
+          "changed_nodes": [
+            {
+              "id": 3,
+              "kind": "File",
+              "name": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/clippy.sh",
+              "qualified_name": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/clippy.sh",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/clippy.sh",
+              "line_start": 1,
+              "line_end": 39,
+              "language": "bash",
+              "parent_name": null,
+              "is_test": false
+            },
+            {
+              "id": 5,
+              "kind": "File",
+              "name": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "qualified_name": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "line_start": 1,
+              "line_end": 43,
+              "language": "bash",
+              "parent_name": null,
+              "is_test": false
+            },
+            {
+              "id": 6,
+              "kind": "Function",
+              "name": "run_gate",
+              "qualified_name": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh::run_gate",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "line_start": 19,
+              "line_end": 24,
+              "language": "bash",
+              "parent_name": null,
+              "is_test": false
+            },
+            {
+              "id": 7,
+              "kind": "File",
+              "name": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+              "qualified_name": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+              "line_start": 1,
+              "line_end": 23,
+              "language": "rust",
+              "parent_name": null,
+              "is_test": false
+            },
+            {
+              "id": 8,
+              "kind": "Class",
+              "name": "Published",
+              "qualified_name": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+              "line_start": 7,
+              "line_end": 10,
+              "language": "rust",
+              "parent_name": null,
+              "is_test": false
+            },
+            {
+              "id": 9,
+              "kind": "Function",
+              "name": "publish",
+              "qualified_name": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published.publish",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+              "line_start": 13,
+              "line_end": 16,
+              "language": "rust",
+              "parent_name": "Published",
+              "is_test": false
+            },
+            {
+              "id": 10,
+              "kind": "Function",
+              "name": "snapshot",
+              "qualified_name": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published.snapshot",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+              "line_start": 17,
+              "line_end": 21,
+              "language": "rust",
+              "parent_name": "Published",
+              "is_test": false
+            },
+            {
+              "id": 11,
+              "kind": "File",
+              "name": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs",
+              "qualified_name": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs",
+              "line_start": 1,
+              "line_end": 28,
+              "language": "rust",
+              "parent_name": null,
+              "is_test": true
+            },
+            {
+              "id": 12,
+              "kind": "Test",
+              "name": "publication_model",
+              "qualified_name": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs::publication_model",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs",
+              "line_start": 4,
+              "line_end": 27,
+              "language": "rust",
+              "parent_name": null,
+              "is_test": true
+            }
+          ],
+          "changed_nodes_total": 9,
+          "impacted_nodes": [],
+          "impacted_nodes_total": 0,
+          "edges": [
+            {
+              "id": 76,
+              "kind": "CONTAINS",
+              "source": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "target": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh::run_gate",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "line": 19,
+              "confidence": 1,
+              "confidence_tier": "EXTRACTED"
+            },
+            {
+              "id": 82,
+              "kind": "CALLS",
+              "source": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "target": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh::run_gate",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "line": 25,
+              "confidence": 1,
+              "confidence_tier": "EXTRACTED"
+            },
+            {
+              "id": 83,
+              "kind": "CALLS",
+              "source": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "target": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh::run_gate",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "line": 26,
+              "confidence": 1,
+              "confidence_tier": "EXTRACTED"
+            },
+            {
+              "id": 86,
+              "kind": "CALLS",
+              "source": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "target": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh::run_gate",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "line": 28,
+              "confidence": 1,
+              "confidence_tier": "EXTRACTED"
+            },
+            {
+              "id": 87,
+              "kind": "CALLS",
+              "source": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "target": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh::run_gate",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "line": 29,
+              "confidence": 1,
+              "confidence_tier": "EXTRACTED"
+            },
+            {
+              "id": 88,
+              "kind": "CALLS",
+              "source": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "target": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh::run_gate",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "line": 32,
+              "confidence": 1,
+              "confidence_tier": "EXTRACTED"
+            },
+            {
+              "id": 93,
+              "kind": "CALLS",
+              "source": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "target": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh::run_gate",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/.agents/skills/rust-pr-review/scripts/gates.sh",
+              "line": 40,
+              "confidence": 1,
+              "confidence_tier": "EXTRACTED"
+            },
+            {
+              "id": 101,
+              "kind": "CONTAINS",
+              "source": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+              "target": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+              "line": 7,
+              "confidence": 1,
+              "confidence_tier": "EXTRACTED"
+            },
+            {
+              "id": 102,
+              "kind": "CONTAINS",
+              "source": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published",
+              "target": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published.publish",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+              "line": 13,
+              "confidence": 1,
+              "confidence_tier": "EXTRACTED"
+            },
+            {
+              "id": 105,
+              "kind": "CONTAINS",
+              "source": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published",
+              "target": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs::Published.snapshot",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+              "line": 17,
+              "confidence": 1,
+              "confidence_tier": "EXTRACTED"
+            },
+            {
+              "id": 110,
+              "kind": "CONTAINS",
+              "source": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs",
+              "target": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs::publication_model",
+              "file_path": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs",
+              "line": 4,
+              "confidence": 1,
+              "confidence_tier": "EXTRACTED"
+            }
+          ],
+          "edges_total": 11
+        },
+        "truncated": false,
+        "source_snippets": {
+          ".agents/skills/rust-pr-review/scripts/gates.sh": "1: #!/usr/bin/env bash\n2: # Run from a trusted Cargo workspace. Additional arguments are Cargo feature flags.\n3: # Example: gates.sh --no-default-features --features 'server,tls'\n4: # No arguments: --all-features. RUST_GATE_FEATURES= disables that default.\n5: set -uo pipefail\n6: export CARGO_TERM_COLOR=never\n7: [[ -f Cargo.toml ]] || { echo 'Run gates.sh from the Cargo workspace root.' >&2; exit 2; }\n8: features=(--all-features)\n9: if [[ ${RUST_GATE_FEATURES+x} ]]; then\n10:   read -r -a features <<< \"$RUST_GATE_FEATURES\"\n11: fi\n12: if (( $# )); then features=(\"$@\"); fi\n13: for arg in \"${features[@]}\"; do\n14:   case \"$arg\" in --manifest-path*|--target-dir*|--config*|--help|--version) echo \"Unsupported feature argument: $arg\" >&2; exit 2;; esac\n15: done\n16: locked=()\n17: [[ ! -f Cargo.lock ]] || locked=(--locked)\n18: failed=0\n19: run_gate() {\n20:   local name=$1; shift\n21:   printf '\\n$' >&2; printf ' %q' \"$@\" >&2; printf '\\n' >&2\n22:   if \"$@\" >&2; then printf -- '- %s: PASS\\n' \"$name\"\n23:   else printf -- '- %s: FAIL\\n' \"$name\"; failed=1; fi\n24: }\n25: run_gate fmt cargo fmt --all -- --check\n26: run_gate clippy bash \"$(dirname \"${BASH_SOURCE[0]}\")/clippy.sh\" --workspace --all-targets \"${features[@]}\" \"${locked[@]}\" -- -D warnings\n27: if cargo nextest --version >/dev/null 2>&1; then\n28:   run_gate tests cargo nextest run --workspace \"${features[@]}\" \"${locked[@]}\" --no-fail-fast --no-tests=pass\n29:   run_gate doctests cargo test --workspace --doc \"${features[@]}\" \"${locked[@]}\"\n30: else\n31:   # cargo test includes doctests by default; no --all-targets here.\n32:   run_gate tests cargo test --workspace \"${features[@]}\" \"${locked[@]}\" --no-fail-fast\n33:   echo '- doctests: N/A (included in cargo test)'\n34: fi\n35: if [[ ! -f deny.toml ]]; then\n36:   echo '- deny: NOT RUN (deny.toml missing)'; failed=1\n37: elif ! cargo deny --version >/dev/null 2>&1; then\n38:   echo '- deny: NOT RUN (cargo-deny missing)'; failed=1\n39: else\n40:   run_gate deny cargo deny \"${locked[@]}\" check\n41: fi\n42: exit \"$failed\"",
+          "src/lib.rs": "1: #[cfg(feature = \"model\")]\n2: use loom::sync::atomic::{AtomicBool, AtomicUsize, Ordering};\n3: #[cfg(not(feature = \"model\"))]\n4: use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};\n5: \n6: #[derive(Default)]\n7: pub struct Published {\n8:     value: AtomicUsize,\n9:     ready: AtomicBool,\n10: }\n11: impl Published {\n12:     /// The caller publishes at most once, from one writer.\n13:     pub fn publish(&self, value: usize) {\n14:         self.value.store(value, Ordering::Relaxed);\n15:         self.ready.store(true, Ordering::Release);\n16:     }\n17:     pub fn snapshot(&self) -> Option<usize> {\n18:         self.ready\n19:             .load(Ordering::Acquire)\n20:             .then(|| self.value.load(Ordering::Relaxed))\n21:     }\n22: }",
+          "tests/publication_model.rs": "1: #![cfg(feature = \"model\")]\n2: use runtime_bridge::Published;\n3: #[test]\n4: fn publication_model() {\n5:     let mut builder = loom::model::Builder::new();\n6:     builder.checkpoint_interval = 1;\n7:     builder.max_permutations = None;\n8:     builder.max_duration = None;\n9:     builder.preemption_bound = None;\n10:     builder.checkpoint_file = None;\n11:     let executions = std::sync::Arc::new(std::sync::atomic::AtomicUsize::new(0));\n12:     let seen = executions.clone();\n13:     builder.check(move || {\n14:         seen.fetch_add(1, std::sync::atomic::Ordering::SeqCst);\n15:         let data = loom::sync::Arc::new(Published::default());\n16:         let writer = data.clone();\n17:         let task = loom::thread::spawn(move || writer.publish(42));\n18:         if let Some(value) = data.snapshot() {\n19:             assert_eq!(value, 42);\n20:         }\n21:         task.join().unwrap();\n22:         assert_eq!(data.snapshot(), Some(42));\n23:     });\n24:     let count = executions.load(std::sync::atomic::Ordering::SeqCst);\n25:     println!(\"completed model executions: {count}\");\n26:     assert!(count > 1);\n27: }",
+          ".agents/skills/rust-pr-review/SKILL.md": "38:   root when execution is permitted, or use equivalent existing CI evidence for the\n39:   exact reviewed revision/configuration. Configure feature arguments to match the\n40:   supported matrix, especially mutually exclusive features. The script reports\n41:   fmt, clippy, tests, doctests and deny; it has no cache or automatic retry loop.\n42:   Missing tools/configuration are NOT RUN, never PASS. Do not repair code during review.\n43:   A dirty tree or different head invalidates CI evidence for changed behavior.\n44: - Optionally enable local reviewdog presentation with `RUST_REVIEWDOG=1` when running\n45:   `gates.sh`. Read [REVIEWDOG.md](references/REVIEWDOG.md) for diff filtering and\n46:   existing project runners. Missing reviewdog is an optional omission; Clippy still\n47:   runs. An empty filtered report never overrides Clippy failure.\n48: - For public library compatibility, use available semver checks against an explicit\n49:   release/base selected from project policy. Report omissions; this does not prove soundness.\n50: - Read relevant chapters of `../rust-best-practices/SKILL.md` and\n51:   [SMELLS.md](references/SMELLS.md). These are heuristics: clone, bool, public pointer\n52:   types and loops are not defects by themselves. Inspect callers, error paths and tests,\n53:   not just changed lines. Review unsafe/FFI, destructive operations, public contracts,",
+          ".agents/skills/rust-pr-review/references/REVIEWDOG.md": "1: # Optional local reviewdog\n2: \n3: Run from the reviewed Cargo workspace:\n4: \n5: ```bash\n6: RUST_REVIEWDOG=1 bash .agents/skills/rust-pr-review/scripts/gates.sh\n7: ```\n8: \n9: The helper runs Clippy once, preserves raw uncolored short diagnostics and its exit\n10: code in a printed temporary evidence directory, then feeds that file to reviewdog.\n11: It uses the local reporter only and installs nothing. Missing reviewdog falls back\n12: to the raw diagnostics. Its errors/status are separate from the Clippy gate.\n13: `RUST_REVIEWDOG_BIN` can select an existing executable by name or absolute path.\n14: Retain the evidence files until the review is complete.\n15: \n16: Default filtering is `nofilter`. For tracked branch plus working-tree changes, set\n17: `RUST_REVIEWDOG_BASE` to the already resolved review base SHA. For working-tree-only\n18: review, use HEAD. For a committed-only scope, use matching checkout/CI evidence;\n19: this helper's diff includes local edits. Invalid bases fall back to unfiltered output.\n20: Git diff excludes untracked files: omit the base when they are in scope.\n21: \n22: Always derive the `clippy` gate from Clippy's exit status, not reviewdog's report or\n23: exit status. Inspect raw output on compilation failure, parser failure or an empty\n24: report. A successful reviewdog process with zero displayed diagnostics is not a\n25: passing lint check. Record presentation failures/omissions separately in the report;\n26: reviewdog does not replace Miri, Loom, tests or semantic review.\n27: \n28: If the project already has `.reviewdog.yml` or `.reviewdog.yaml`, prefer its relevant\n29: lint runners with `-reporter=local -filter-mode=nofilter -fail-level=warning` for\n30: project presentation. Still run the Clippy gate independently: config runners may\n31: filter, mask failures or use different flags. Do not automatically execute every\n32: runner. Do not feed RTK-condensed output to a parser; use `rtk bypass` for a producer\n33: if it is intercepted. The helper calls Cargo directly without a condensing wrapper.\n34: Remote reporters require an explicit request to publish results.",
+          ".agents/skills/rust-pr-review/scripts/clippy.sh": "1: #!/usr/bin/env bash\n2: # Preserve Clippy's exit status independently of optional diagnostic presentation.\n3: set -uo pipefail\n4: export CARGO_TERM_COLOR=never\n5: if [[ ${RUST_REVIEWDOG:-0} != 1 ]]; then\n6:   exec cargo clippy \"$@\"\n7: fi\n8: logs=$(mktemp -d \"${TMPDIR:-/tmp}/rust-review-clippy.XXXXXXXX\") || exit 2\n9: printf 'Clippy/reviewdog evidence: %s\\n' \"$logs\" >&2\n10: # Capture raw output without a pipeline; retain unfiltered compiler errors.\n11: cargo clippy --message-format=short --color=never \"$@\" > \"$logs/clippy.log\" 2>&1\n12: clippy_status=$?\n13: printf '%s\\n' \"$clippy_status\" > \"$logs/clippy.exit\"\n14: cat \"$logs/clippy.log\" >&2\n15: reviewdog_bin=${RUST_REVIEWDOG_BIN:-reviewdog}\n16: if ! command -v \"$reviewdog_bin\" >/dev/null 2>&1; then\n17:   echo 'reviewdog: NOT RUN (optional tool missing; Clippy result retained)' >&2\n18:   exit \"$clippy_status\"\n19: fi\n20: args=(-f=clippy -reporter=local -filter-mode=nofilter -fail-level=warning)\n21: if [[ -n ${RUST_REVIEWDOG_BASE:-} ]]; then\n22:   # Only a resolved commit hash enters reviewdog's shell diff command.\n23:   if base=$(git rev-parse --verify --end-of-options \"${RUST_REVIEWDOG_BASE}^{commit}\" 2>/dev/null); then\n24:     args=(-f=clippy -reporter=local -filter-mode=added -fail-level=warning\n25:       \"-diff=git diff --no-ext-diff --no-textconv --no-color $base --\")\n26:   else\n27:     echo 'reviewdog: invalid base; displaying unfiltered diagnostics' >&2\n28:   fi\n29: fi\n30: \"$reviewdog_bin\" \"${args[@]}\" < \"$logs/clippy.log\" > \"$logs/reviewdog.log\" 2> \"$logs/reviewdog.stderr\"\n31: reviewdog_status=$?\n32: printf '%s\\n' \"$reviewdog_status\" > \"$logs/reviewdog.exit\"\n33: cat \"$logs/reviewdog.log\" \"$logs/reviewdog.stderr\" >&2\n34: printf 'reviewdog: exit=%s (presentation only; Clippy exit=%s)\\n' \"$reviewdog_status\" \"$clippy_status\" >&2\n35: if [[ ! -s \"$logs/reviewdog.log\" ]]; then\n36:   echo 'Empty reviewdog report is not evidence of Clippy PASS; inspect clippy.log.' >&2\n37: fi\n38: exit \"$clippy_status\"",
+          ".gitignore": "1: /target\n2: /.code-review-graph\n3: \n4: /.code-review-graph/",
+          "REQUIREMENTS.md": "1: One writer calls publish exactly once. A concurrent snapshot may return None; if it returns Some, it must equal the published value. Require model exploration of this publication/read protocol.",
+          "REVIEW.md": "1: # Rust review rules\n2: \n3: Read by the Codex `rust-pr-review` skill. Adapt the project policy below before\n4: using this template as a merge gate. Existing repository contracts take precedence.\n5: \n6: ## Severity\n7: \n8: | Level | Meaning |\n9: |---|---|\n10: | P0 | Proven critical defect with broad impact: memory unsoundness, data destruction or secret disclosure |\n11: | P1 | Reachable regression, broken contract, deadlock or other defect that must be fixed before merge |\n12: | P2 | Concrete non-blocking correctness, maintainability or measured performance issue |\n13: | P3 | Optional actionable improvement; omit taste-only comments |\n14: \n15: Determine priority from reachability, impact and preconditions. A panic, unsafe block,\n16: clone, lint violation or failing command does not automatically establish P0/P1.\n17: Distinguish environment failures and pre-existing failures from defects in the diff.\n18: Each finding needs an exact location, trigger, impact and practical fix. For a deletion,\n19: identify its base-side location explicitly; never invent a current line for missing code.\n20: \n21: ## Project policy (configure)\n22: \n23: - Use the actual edition, MSRV, toolchain, lint levels and error conventions in this repo.\n24: - Review public API compatibility against the project's supported release baseline.\n25: - Check unsafe invariants, aliasing/lifetimes, ownership across FFI and Send/Sync claims.\n26: - Check async blocking, lock order, cancellation, bounded resource use and error paths.\n27: - Require tests for meaningful behavior changes where they protect against regressions.\n28: - Default checks: fmt, clippy, tests (including doctests), cargo-deny with deny.toml.\n29: - Default feature configuration: --all-features. Replace with the supported feature\n30:   matrix for mutually exclusive features; align local checks and CI.\n31: - Configure deny.toml using the project's license, advisory and source policy.\n32: - Only mark deny N/A if project policy explicitly makes it inapplicable; missing\n33:   cargo-deny or deny.toml means NOT RUN. If required evidence is absent, INCOMPLETE.\n34: - Spec PASS requires user requirements or PR acceptance criteria; commit claims alone\n35:   yield PARTIAL. No findings does not mean all requirements were verified.\n36: - For affected unsafe/FFI boundaries, targeted Miri tests and a separate aliasing/\n37:   provenance argument are required before approval. Use isolated exact-source probes\n38:   when existing tests do not cover the path and execution is authorized. Unknown FFI\n39:   guarantees, unavailable targeted execution or conflicting alias models require ESCALATE.\n40:   General tests passing under Miri are not a substitute. Follow the skill’s\n41:   references/MEMORY-VALIDATION.md and report the Memory safety section.\n42: - For affected async behavior, require targeted progress/deadlock, cancellation and\n43:   task-termination tests as applicable. For changed custom synchronization protocols,\n44:   require Loom models and an independent invariant/ordering argument. Missing relevant\n45:   evidence or incomplete models require ESCALATE. Follow references/CONCURRENCY-VALIDATION.md\n46:   and report the Concurrency section; green ordinary tests are not a substitute.\n47: - Semver-checks remain conditional; document applicability and skipped checks.\n48: \n49: The skill provides smell, safety and spec references under\n50: `.agents/skills/rust-pr-review/references/`. They inform judgment and do not override\n51: verified source, repository policy or explicit user instructions.\n52: \n53: ## Project policy (configure)\n54: \n55: - Use the actual edition, MSRV, toolchain, lint levels and error conventions in this repo.\n56: - Review public API compatibility against the project's supported release baseline.\n57: - Check unsafe invariants, aliasing/lifetimes, ownership across FFI and Send/Sync claims.\n58: - Check async blocking, lock order, cancellation, bounded resource use and error paths.\n59: - Require tests for meaningful behavior changes where they protect against regressions.\n60: - Default checks: fmt, clippy, tests (including doctests), cargo-deny with deny.toml.\n61: - Default feature configuration: --all-features. Replace with the supported feature\n62:   matrix for mutually exclusive features; align local checks and CI.\n63: - Configure deny.toml using the project's license, advisory and source policy.\n64: - Only mark deny N/A if project policy explicitly makes it inapplicable; missing\n65:   cargo-deny or deny.toml means NOT RUN. If required evidence is absent, INCOMPLETE.\n66: - Spec PASS requires user requirements or PR acceptance criteria; commit claims alone\n67:   yield PARTIAL. No findings does not mean all requirements were verified.\n68: - For affected unsafe/FFI boundaries, targeted Miri tests and a separate aliasing/\n69:   provenance argument are required before approval. Use isolated exact-source probes\n70:   when existing tests do not cover the path and execution is authorized. Unknown FFI\n71:   guarantees, unavailable targeted execution or conflicting alias models require ESCALATE.\n72:   General tests passing under Miri are not a substitute. Follow the skill’s\n73:   references/MEMORY-VALIDATION.md and report the Memory safety section.\n74: - For affected async behavior, require targeted progress/deadlock, cancellation and\n75:   task-termination tests as applicable. For changed custom synchronization protocols,\n76:   require Loom models and an independent invariant/ordering argument. Missing relevant\n77:   evidence or incomplete models require ESCALATE. Follow references/CONCURRENCY-VALIDATION.md\n78:   and report the Concurrency section; green ordinary tests are not a substitute.\n79: - Semver-checks remain conditional; document applicability and skipped checks.\n80: \n81: The skill provides smell, safety and spec references under\n82: `.agents/skills/rust-pr-review/references/`. They inform judgment and do not override\n83: verified source, repository policy or explicit user instructions.\n84: \n85: ## Project policy\n86: Use RUST_GATE_FEATURES='' for ordinary gates. Run feature model separately.\n87: Model exploration may run to completion. Use an external process watchdog of 120 seconds; reaching it is not evidence of completion. Do not install dependencies or access external services.\n88: \n89: Run diagnostics offline using the existing toolchains and advisory database. Record this freshness limitation. Use equivalent offline gate commands if necessary. Do not install dependencies or access external services."
+        },
+        "source_regions": {
+          "shown": 9,
+          "total": 9,
+          "incomplete": {}
+        },
+        "review_guidance": "- 3 changed function(s) have no direct test: run_gate, publish, snapshot"
+      },
+      "context_savings": {
+        "estimated": true,
+        "saved_tokens": 0,
+        "saved_percent": 0
+      },
+      "_graph": {
+        "updated_at": "2026-10-25T08:22:51",
+        "age_seconds": 82,
+        "built_at_sha": "646d6eee82ec869164487e4991631b9bdf62877e",
+        "built_on_branch": "master",
+        "head_sha": "646d6eee82ec869164487e4991631b9bdf62877e",
+        "head_matches_build": true
+      }
+    },
+    "isError": false
+  },
+  "lsp": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"data\":[{\"kind\":\"struct\",\"location\":{\"document_path\":\"/tmp/rust-review-current-20261025/cases/09/src/lib.rs\",\"range\":{\"end\":{\"character\":20,\"line\":6},\"start\":{\"character\":11,\"line\":6}}},\"name\":\"Published\"}],\"execution\":{\"progress_phase\":\"completed\"}}"
+      }
+    ],
+    "structuredContent": {
+      "data": [
+        {
+          "kind": "struct",
+          "location": {
+            "document_path": "/tmp/rust-review-current-20261025/cases/09/src/lib.rs",
+            "range": {
+              "end": {
+                "character": 20,
+                "line": 6
+              },
+              "start": {
+                "character": 11,
+                "line": 6
+              }
+            }
+          },
+          "name": "Published"
+        }
+      ],
+      "execution": {
+        "progress_phase": "completed"
+      }
+    },
+    "isError": false
+  }
+}

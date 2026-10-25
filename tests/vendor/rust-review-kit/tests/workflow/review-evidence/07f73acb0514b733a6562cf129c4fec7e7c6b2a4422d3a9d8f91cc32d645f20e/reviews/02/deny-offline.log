@@ -1,0 +1,5 @@
+error: unexpected argument '--disable-fetch' found
+
+Usage: cargo-deny --locked <COMMAND>
+
+For more information, try '--help'.

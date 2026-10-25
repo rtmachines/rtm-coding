@@ -1,0 +1,2 @@
+$ bash /tmp/rust-review-lsp-20261025/cases/04/.agents/skills/rust-pr-review/scripts/check-report.sh /tmp/rust-review-lsp-20261025/reviews/04/report.md
+EXIT=0

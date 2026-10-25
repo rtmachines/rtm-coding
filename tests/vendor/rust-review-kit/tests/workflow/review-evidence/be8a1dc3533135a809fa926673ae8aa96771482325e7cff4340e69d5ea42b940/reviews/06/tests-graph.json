@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"status\":\"ok\",\"pattern\":\"tests_for\",\"target\":\"/tmp/rust-review-current-20261025/cases/06/src/service.rs::Service.increment_and_snapshot\",\"description\":\"Find all tests for a given function or class\",\"summary\":\"Found 0 result(s) for tests_for('/tmp/rust-review-current-20261025/cases/06/src/service.rs::Service.increment_and_snapshot')\",\"result_count\":0,\"results_omitted\":0,\"results\":[],\"edges\":[],\"confidence\":\"'Service.increment_and_snapshot' is indexed and the graph is current, so this 0 is a real absence\",\"_graph\":{\"updated_at\":\"2026-10-25T08:22:51\",\"age_seconds\":157,\"built_at_sha\":\"a8193bd3c5cd66bd93f14e7c58d57f480610ce4e\",\"built_on_branch\":\"master\",\"head_sha\":\"a8193bd3c5cd66bd93f14e7c58d57f480610ce4e\",\"head_matches_build\":true}}"
+    }
+  ],
+  "structuredContent": {
+    "status": "ok",
+    "pattern": "tests_for",
+    "target": "/tmp/rust-review-current-20261025/cases/06/src/service.rs::Service.increment_and_snapshot",
+    "description": "Find all tests for a given function or class",
+    "summary": "Found 0 result(s) for tests_for('/tmp/rust-review-current-20261025/cases/06/src/service.rs::Service.increment_and_snapshot')",
+    "result_count": 0,
+    "results_omitted": 0,
+    "results": [],
+    "edges": [],
+    "confidence": "'Service.increment_and_snapshot' is indexed and the graph is current, so this 0 is a real absence",
+    "_graph": {
+      "updated_at": "2026-10-25T08:22:51",
+      "age_seconds": 157,
+      "built_at_sha": "a8193bd3c5cd66bd93f14e7c58d57f480610ce4e",
+      "built_on_branch": "master",
+      "head_sha": "a8193bd3c5cd66bd93f14e7c58d57f480610ce4e",
+      "head_matches_build": true
+    }
+  },
+  "isError": false
+}

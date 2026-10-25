@@ -1,0 +1,66 @@
+$ cargo test --offline --locked --test contracts
+{}
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling ledger-preview v0.1.0 (/tmp/rust-review-current-20261025/reviews/01/probe)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.49s
+     Running tests/contracts.rs (/tmp/rust-review-current-20261025/reviews/01/contracts-target/debug/deps/contracts-1c8484d8bbb245a6)
+
+running 6 tests
+test expiry ... FAILED
+test fractional_fee ... FAILED
+test invalid_limit ... FAILED
+test overdraft ... FAILED
+test tenant_isolation ... FAILED
+test unicode_preview ... FAILED
+
+failures:
+
+---- expiry stdout ----
+
+thread 'expiry' (99860) panicked at tests/contracts.rs:5:20:
+assertion failed: !token_usable(100, 100)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- fractional_fee stdout ----
+
+thread 'fractional_fee' (99861) panicked at tests/contracts.rs:6:28:
+assertion `left == right` failed
+  left: 0
+ right: 49
+
+---- invalid_limit stdout ----
+
+thread 'invalid_limit' (99862) panicked at src/limits.rs:2:29:
+called `Result::unwrap()` on an `Err` value: ParseIntError { kind: InvalidDigit }
+
+---- overdraft stdout ----
+
+thread 'overdraft' (99863) panicked at tests/contracts.rs:3:23:
+assertion `left == right` failed
+  left: Some(0)
+ right: None
+
+---- tenant_isolation stdout ----
+
+thread 'tenant_isolation' (99864) panicked at tests/contracts.rs:2:30:
+assertion failed: !can_read(Identity { tenant_id: 1, user_id: 7 },
+        Identity { tenant_id: 2, user_id: 7 })
+
+---- unicode_preview stdout ----
+
+thread 'unicode_preview' (99865) panicked at src/lib.rs:18:9:
+end byte index 1 is not a char boundary; it is inside 'é' (bytes 0..2 of string)
+
+
+failures:
+    expiry
+    fractional_fee
+    invalid_limit
+    overdraft
+    tenant_isolation
+    unicode_preview
+
+test result: FAILED. 0 passed; 6 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test contracts`

@@ -1,0 +1,49 @@
+$ cargo test --offline --locked --test async_contracts
+{}
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling pin-project-lite v0.2.17
+   Compiling syn v3.0.9
+   Compiling tokio-macros v2.7.2
+   Compiling tokio v1.54.1
+   Compiling runtime-bridge v0.1.0 (/tmp/rust-review-current-20261025/reviews/03/probe)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.90s
+     Running tests/async_contracts.rs (/tmp/rust-review-current-20261025/reviews/03/probe-target/debug/deps/async_contracts-b702dcc1d185438d)
+
+running 3 tests
+test cancel_before_approval ... FAILED
+test worker_stopped_before_return ... FAILED
+test increment_progress ... FAILED
+
+failures:
+
+---- cancel_before_approval stdout ----
+
+thread 'cancel_before_approval' (103700) panicked at tests/async_contracts.rs:15:2:
+assertion `left == right` failed
+  left: []
+ right: [7]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- worker_stopped_before_return stdout ----
+
+thread 'worker_stopped_before_return' (103702) panicked at tests/async_contracts.rs:26:2:
+worker performed effect after stop returned
+
+---- increment_progress stdout ----
+
+thread 'increment_progress' (103701) panicked at tests/async_contracts.rs:7:2:
+assertion `left == right` failed: increment holds count lock while snapshot waits for it
+  left: Err(Elapsed(()))
+ right: Ok(1)
+
+
+failures:
+    cancel_before_approval
+    increment_progress
+    worker_stopped_before_return
+
+test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+error: test failed, to rerun pass `--test async_contracts`

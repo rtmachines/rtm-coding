@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"status\":\"ok\",\"pattern\":\"tests_for\",\"target\":\"/tmp/rust-review-current-20261025/cases/05/src/vendor.rs::Session.attach\",\"description\":\"Find all tests for a given function or class\",\"summary\":\"Found 0 result(s) for tests_for('/tmp/rust-review-current-20261025/cases/05/src/vendor.rs::Session.attach')\",\"result_count\":0,\"results_omitted\":0,\"results\":[],\"edges\":[],\"confidence\":\"'/tmp/rust-review-current-20261025/cases/05/src/vendor.rs::Session.attach' is indexed and the graph is current, so this 0 is a real absence\",\"_graph\":{\"updated_at\":\"2026-10-25T08:22:51\",\"age_seconds\":157,\"built_at_sha\":\"f15a3ba9775b4d19899aa6595412f578bdf4efd7\",\"built_on_branch\":\"master\",\"head_sha\":\"f15a3ba9775b4d19899aa6595412f578bdf4efd7\",\"head_matches_build\":true}}"
+    }
+  ],
+  "structuredContent": {
+    "status": "ok",
+    "pattern": "tests_for",
+    "target": "/tmp/rust-review-current-20261025/cases/05/src/vendor.rs::Session.attach",
+    "description": "Find all tests for a given function or class",
+    "summary": "Found 0 result(s) for tests_for('/tmp/rust-review-current-20261025/cases/05/src/vendor.rs::Session.attach')",
+    "result_count": 0,
+    "results_omitted": 0,
+    "results": [],
+    "edges": [],
+    "confidence": "'/tmp/rust-review-current-20261025/cases/05/src/vendor.rs::Session.attach' is indexed and the graph is current, so this 0 is a real absence",
+    "_graph": {
+      "updated_at": "2026-10-25T08:22:51",
+      "age_seconds": 157,
+      "built_at_sha": "f15a3ba9775b4d19899aa6595412f578bdf4efd7",
+      "built_on_branch": "master",
+      "head_sha": "f15a3ba9775b4d19899aa6595412f578bdf4efd7",
+      "head_matches_build": true
+    }
+  },
+  "isError": false
+}

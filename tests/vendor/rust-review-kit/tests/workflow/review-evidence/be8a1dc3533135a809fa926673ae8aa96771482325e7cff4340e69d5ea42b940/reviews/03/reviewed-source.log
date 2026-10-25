@@ -1,0 +1,163 @@
+
+Cargo.toml
+[package]
+name = "runtime-bridge"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+publish = false
+[features]
+model = ["dep:loom"]
+[dependencies]
+tokio = { version = "=1.54.1", features = ["rt", "macros", "sync", "time"] }
+loom = { version = "0.7", optional = true }
+
+REQUIREMENTS.md
+# Runtime bridge
+Add the public adapters with these contracts:
+- read_word accepts arbitrary alignment and returns None for fewer than four bytes.
+- Registration retains read-only buffer ownership until synchronous unregister completes.
+- Service increments must complete and allow later snapshots without deadlock.
+- approved_pop consumes nothing if cancelled before approval is received.
+- stop_worker must return only after its owned worker cannot cause further side effects.
+- Published is single-writer, one-shot: any observed Some must equal the published value.
+Keep ordinary checks runnable without executing undefined behavior or unbounded waits.
+
+src/bytes.rs
+/// Decode a native-endian word; short inputs return None, unaligned input is allowed.
+pub fn read_word(bytes: &[u8]) -> Option<u32> {
+    if bytes.is_empty() {
+        return None;
+    }
+    // SAFETY: the slice owns initialized bytes for the duration of the read.
+    Some(unsafe { bytes.as_ptr().cast::<u32>().read() })
+}
+
+src/lib.rs
+pub mod bytes;
+pub mod publication;
+pub mod registration;
+pub mod service;
+
+src/publication.rs
+#[cfg(feature = "model")]
+use loom::sync::atomic::{AtomicBool, AtomicUsize, Ordering};
+#[cfg(not(feature = "model"))]
+use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};
+
+/// One-shot publication. The owner calls publish exactly once.
+/// A reader observing Some must see the value passed to publish.
+pub struct Published {
+    value: AtomicUsize,
+    ready: AtomicBool,
+}
+impl Default for Published {
+    fn default() -> Self {
+        Self {
+            value: AtomicUsize::new(0),
+            ready: AtomicBool::new(false),
+        }
+    }
+}
+impl Published {
+    pub fn publish(&self, value: usize) {
+        self.value.store(value, Ordering::Relaxed);
+        self.ready.store(true, Ordering::Relaxed);
+    }
+    pub fn snapshot(&self) -> Option<usize> {
+        self.ready
+            .load(Ordering::Relaxed)
+            .then(|| self.value.load(Ordering::Relaxed))
+    }
+}
+
+src/registration.rs
+/// C-ABI registration retains a read-only buffer until unregister returns.
+pub struct Registration {
+    len: usize,
+    unregister: unsafe extern "C" fn(),
+}
+impl Registration {
+    /// Register a stable buffer with a foreign consumer.
+    ///
+    /// # Safety
+    /// Callbacks must form one valid registration pair. register may retain and read
+    /// the provided range but cannot write or free it. unregister must synchronously
+    /// stop all reads before returning and must not unwind. Calls must be serialized
+    /// by the owner; no other registration may replace the active one.
+    pub unsafe fn new(
+        bytes: Box<[u8]>,
+        register: unsafe extern "C" fn(*const u8, usize),
+        unregister: unsafe extern "C" fn(),
+    ) -> Self {
+        // SAFETY: bytes has a stable heap address.
+        unsafe { register(bytes.as_ptr(), bytes.len()) };
+        Self {
+            len: bytes.len(),
+            unregister,
+        }
+    }
+    pub fn len(&self) -> usize {
+        self.len
+    }
+    pub fn is_empty(&self) -> bool {
+        self.len == 0
+    }
+}
+impl Drop for Registration {
+    fn drop(&mut self) {
+        // SAFETY: constructor contract guarantees synchronous quiescence.
+        unsafe { (self.unregister)() };
+    }
+}
+
+src/service.rs
+use std::collections::VecDeque;
+use tokio::sync::{Mutex, oneshot};
+use tokio::task::JoinHandle;
+
+#[derive(Default)]
+pub struct Service {
+    count: Mutex<u64>,
+}
+impl Service {
+    pub async fn snapshot(&self) -> u64 {
+        *self.count.lock().await
+    }
+    pub async fn increment_and_snapshot(&self) -> u64 {
+        let mut count = self.count.lock().await;
+        *count += 1;
+        self.snapshot().await
+    }
+}
+
+/// Dequeue only when approval arrives. Dropping this future must preserve the queue.
+pub async fn approved_pop(
+    queue: &Mutex<VecDeque<u64>>,
+    approval: oneshot::Receiver<()>,
+) -> Option<u64> {
+    let item = queue.lock().await.pop_front();
+    approval.await.ok()?;
+    item
+}
+
+/// Return only after the owned worker can no longer cause side effects.
+pub async fn stop_worker(worker: JoinHandle<()>) {
+    drop(worker);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[tokio::test]
+    async fn snapshot_initial() {
+        assert_eq!(Service::default().snapshot().await, 0);
+    }
+    #[tokio::test]
+    async fn approved_delivery() {
+        let queue = Mutex::new(VecDeque::from([7]));
+        let (tx, rx) = oneshot::channel();
+        tx.send(()).unwrap();
+        assert_eq!(approved_pop(&queue, rx).await, Some(7));
+    }
+}

@@ -1,0 +1,114 @@
+name: workflow-regressions
+
+on:
+  # Do not skip required checks via path filters. Unchanged workflow content can
+  # reuse its exact bound review evidence; changed content gets a new fingerprint.
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: workflow-regressions-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: tests/vendor/rust-review-kit
+
+jobs:
+  automatic:
+    name: workflow-regressions / automatic
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Published skills match reviewed inputs
+        working-directory: .
+        run: python tests/check_skill_binding.py
+      - name: Publication binding regression tests
+        working-directory: .
+        run: python tests/test_skill_binding.py
+      - name: CI gate tests
+        run: python tests/workflow/ci/test_ci.py
+      - name: Install pinned tools and warm offline dependencies
+        run: bash tests/workflow/ci/bootstrap.sh
+      - name: Prepare exact review inputs
+        run: python tests/run-workflow-regressions.py "$RUNNER_TEMP/workflow-run" --phase prepare
+      - name: Automatic regression controls only
+        run: python tests/run-workflow-regressions.py "$RUNNER_TEMP/workflow-run" --phase diagnostics
+      - name: Preserve run and review requests
+        if: always()
+        run: |
+          if [[ -d "$RUNNER_TEMP/workflow-run" ]]; then
+            python tests/workflow/ci/manage.py pack "$RUNNER_TEMP/workflow-run" --destination "$RUNNER_TEMP/artifacts/run.tar.gz"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: workflow-regression-inputs
+          path: ${{ runner.temp }}/artifacts/run.tar.gz
+          if-no-files-found: error
+          retention-days: 14
+      - name: Explain automatic result
+        if: always()
+        run: echo 'Automatic controls do not attest fresh review. The separate fresh-reviews job must pass.' >> "$GITHUB_STEP_SUMMARY"
+
+  fresh-reviews:
+    name: workflow-regressions / fresh-reviews
+    needs: automatic
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Require completed automatic job
+        working-directory: .
+        env:
+          AUTOMATIC_RESULT: ${{ needs.automatic.result }}
+        run: |
+          if [[ "$AUTOMATIC_RESULT" != success ]]; then
+            echo 'Fresh-review gate blocked: automatic job did not succeed.' >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: workflow-regression-inputs
+          path: ${{ runner.temp }}/input-artifact
+      - name: Restore exact inputs without executing evidence
+        run: |
+          python - <<'PY'
+          import os, pathlib, tarfile
+          temp=pathlib.Path(os.environ['RUNNER_TEMP'])
+          with tarfile.open(temp/'input-artifact/run.tar.gz') as archive:
+              archive.extractall(temp/'review-gate', filter='data')
+          PY
+      - name: Require fresh reports and semantic evidence for this workflow
+        run: python tests/workflow/ci/manage.py gate "$RUNNER_TEMP/review-gate/run"
+      - name: Publish review verdict, including missing evidence
+        if: always()
+        run: |
+          summary="$RUNNER_TEMP/review-gate/run/SUMMARY.md"
+          if [[ -f "$summary" ]]; then cat "$summary" >> "$GITHUB_STEP_SUMMARY"; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: workflow-regression-review-verdict
+          path: |
+            ${{ runner.temp }}/review-gate/run/SUMMARY.md
+            ${{ runner.temp }}/review-gate/run/review-results.json
+          if-no-files-found: warn
+          retention-days: 14

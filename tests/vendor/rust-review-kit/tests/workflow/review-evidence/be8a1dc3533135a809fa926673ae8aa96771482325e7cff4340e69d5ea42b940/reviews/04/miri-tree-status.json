@@ -1,0 +1,19 @@
+{
+  "cwd": "/tmp/rust-review-current-20261025/reviews/04/probe",
+  "command": [
+    "cargo",
+    "+nightly",
+    "miri",
+    "test",
+    "--offline",
+    "--locked",
+    "--test",
+    "memory"
+  ],
+  "environment": {
+    "MIRI_SYSROOT": "/home/rtm/.cache/miri",
+    "MIRIFLAGS": "-Zmiri-tree-borrows"
+  },
+  "status": 0,
+  "watchdog_seconds": 120
+}

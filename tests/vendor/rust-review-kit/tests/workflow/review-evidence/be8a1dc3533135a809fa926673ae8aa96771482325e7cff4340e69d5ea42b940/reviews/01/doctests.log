@@ -1,0 +1,30 @@
+$ cargo test --offline --workspace --all-features --locked --doc
+   Compiling ledger-preview v0.1.0 (/tmp/rust-review-current-20261025/cases/01)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.04s
+   Doc-tests ledger_preview
+
+running 1 test
+test src/lib.rs - fee (line 27) ... FAILED
+
+failures:
+
+---- src/lib.rs - fee (line 27) stdout ----
+Test executable failed (exit status: 101).
+
+stderr:
+
+thread 'main' (93748) panicked at /tmp/rust-review-current-20261025/reviews/01/rustdoctestyXIKyD/doctest_bundle_2024.rs:6:1:
+assertion `left == right` failed
+  left: 0
+ right: 49
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+
+failures:
+    src/lib.rs - fee (line 27)
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+all doctests ran in 0.12s; merged doctests compilation took 0.12s
+error: doctest failed, to rerun pass `--doc`

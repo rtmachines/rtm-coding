@@ -1,0 +1,35 @@
+
+running 1 test
+test short_three ...     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.01s
+     Running tests/memory_edges.rs (target/miri/x86_64-unknown-linux-gnu/debug/build/runtime-bridge/eb390135f8d27806/out/memory_edges-eb390135f8d27806)
+error: Undefined Behavior: memory access failed: attempting to access 4 bytes, but got alloc41714 which is only 3 bytes from the end of the allocation
+ --> src/bytes.rs:7:19
+  |
+7 |     Some(unsafe { bytes.as_ptr().cast::<u32>().read() })
+  |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Undefined Behavior occurred here
+  |
+  = help: this indicates a bug in the program: it performed an invalid operation, and caused Undefined Behavior
+  = help: see https://doc.rust-lang.org/nightly/reference/behavior-considered-undefined.html for further information
+help: alloc41714 was allocated here:
+ --> tests/memory_edges.rs:9:31
+  |
+9 | #[test]fn short_three(){let a=vec![1,2,3].into_boxed_slice();assert_eq!(read_word(&a),None);}
+  |                               ^^^^^^^^^^^
+  = note: this is on thread `short_three`
+  = note: stack backtrace:
+          0: runtime_bridge::bytes::read_word
+              at src/bytes.rs:7:19: 7:54
+          1: short_three
+              at tests/memory_edges.rs:9:73: 9:86
+          2: short_three::{closure#0}
+              at tests/memory_edges.rs:9:24: 9:24
+
+note: some details are omitted, run with `MIRIFLAGS=-Zmiri-backtrace=full` for a verbose backtrace
+
+error: aborting due to 1 previous error
+
+error: test failed, to rerun pass `--test memory_edges`
+
+Caused by:
+  process didn't exit successfully: `/home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/cargo-miri runner /tmp/rust-review-current-20261025/probes/runtime-03/target/miri/x86_64-unknown-linux-gnu/debug/build/runtime-bridge/eb390135f8d27806/out/memory_edges-eb390135f8d27806 short_three` (exit status: 1)
+note: test exited abnormally; to see the full output pass --no-capture to the harness.

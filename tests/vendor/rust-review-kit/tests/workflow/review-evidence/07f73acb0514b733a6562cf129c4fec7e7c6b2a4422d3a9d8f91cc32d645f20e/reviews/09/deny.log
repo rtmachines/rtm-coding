@@ -1,0 +1,7 @@
+warning[license-not-encountered]: license was not encountered
+  ┌─ /tmp/rust-review-lsp-20261025/cases/09/deny.toml:3:45
+  │
+3 │ allow=["MIT", "Apache-2.0", "Unicode-3.0", "BSD-3-Clause"]
+  │                                             ━━━━━━━━━━━━ unmatched license allowance
+
+advisories ok, bans ok, licenses ok, sources ok

@@ -28,9 +28,12 @@ proc macros and tests; instructions alone do not enforce read-only execution.
    `query_graph_tool` (`tests_for`). Supply the resolved base and actual changed files;
    verify output scope since Git-backed tools may not include untracked work.
    Read source and relevant tests afterwards. Empty results do not prove absence.
-   For semantic Rust navigation use rust-analyzer through an available Rust LSP
-   integration. Use lockfile-matched dependency docs when available. If a tool is
-   missing or cannot index the project, use source inspection and state the limitation.
+   Before semantic Rust navigation, perform the availability check in
+   [RUST-LSP.md](references/RUST-LSP.md) through the available `rust-lsp` skill.
+   Verify the integration against the actual workspace, not just an installed binary.
+   Record availability, actual semantic use, evidence and limitations in `## Tooling`.
+   Use lockfile-matched dependency docs when available. If a tool is missing or
+   cannot index the project, use source inspection and state the limitation.
 
 ## Checks and review passes
 
@@ -86,6 +89,12 @@ include checks/limitations in its summary; do not force Markdown into JSON field
 ```text
 ## Verdict: APPROVE|REQUEST_CHANGES|ESCALATE|INCOMPLETE
 <reason; unresolved audit paths if any>
+
+## Tooling
+- rust-lsp: AVAILABLE|UNAVAILABLE (workspace probe result)
+- lsp-used: YES|NO (successful semantic query, not just a health check)
+- lsp-evidence: <tool calls, workspace/file and outcomes or discovery/setup failure>
+- lsp-limitations: <fallback coverage and remaining gaps; or NONE with reason>
 
 ## Gates
 - fmt: PASS|FAIL|NOT RUN (evidence/reason)

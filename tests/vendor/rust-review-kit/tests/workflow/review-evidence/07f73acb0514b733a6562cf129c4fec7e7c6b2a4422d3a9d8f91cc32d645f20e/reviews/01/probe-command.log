@@ -1,0 +1,3 @@
+$ rustc --edition=2024 --test check.rs -o check && timeout 20 ./check
+Working directory: reviews/01/probe
+Compilation completed; test exit 101, retained in probe.log. Generated native executable removed after recording evidence.

@@ -1,0 +1,8 @@
+{
+  "command": [
+    "bash",
+    ".agents/skills/rust-pr-review/scripts/check-report.sh",
+    "/tmp/rust-review-current-20261025/reviews/01/report.md"
+  ],
+  "status": 0
+}

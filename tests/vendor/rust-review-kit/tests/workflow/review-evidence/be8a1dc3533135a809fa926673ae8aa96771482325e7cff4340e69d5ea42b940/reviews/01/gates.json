@@ -1,0 +1,69 @@
+{
+  "versions": {
+    "cmd": [
+      "rustc",
+      "-Vv"
+    ],
+    "status": 0
+  },
+  "fmt": {
+    "cmd": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "status": 0
+  },
+  "clippy": {
+    "cmd": [
+      "bash",
+      ".agents/skills/rust-pr-review/scripts/clippy.sh",
+      "--offline",
+      "--workspace",
+      "--all-targets",
+      "--all-features",
+      "--locked",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "status": 0
+  },
+  "tests": {
+    "cmd": [
+      "cargo",
+      "test",
+      "--offline",
+      "--workspace",
+      "--all-features",
+      "--locked",
+      "--lib",
+      "--tests"
+    ],
+    "status": 0
+  },
+  "doctests": {
+    "cmd": [
+      "cargo",
+      "test",
+      "--offline",
+      "--workspace",
+      "--all-features",
+      "--locked",
+      "--doc"
+    ],
+    "status": 101
+  },
+  "deny": {
+    "cmd": [
+      "cargo",
+      "deny",
+      "--offline",
+      "--locked",
+      "check"
+    ],
+    "status": 0
+  }
+}

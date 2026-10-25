@@ -1,0 +1,28 @@
+BASE_REF=origin/main
+BASE_SHA=ff58dc91708bd68170abfefc93bca294034242ac
+HEAD_SHA=bccb54098b89b9fd21dc571718f5f0383eef546f
+
+### Working-tree status (includes untracked files)
+ M src/lib.rs
+?? src/limits.rs
+
+### Tracked changes: merge base -> working tree
+ .agents/rust-review-kit/vendored.tsv               |  2 +-
+ .agents/skills/rust-pr-review/SKILL.md             | 49 +++++++++--
+ .../references/CONCURRENCY-VALIDATION.md           | 94 ++++++++++++++++++++++
+ .../rust-pr-review/references/MEMORY-VALIDATION.md | 79 ++++++++++++++++++
+ .../skills/rust-pr-review/references/REVIEWDOG.md  | 34 ++++++++
+ .../rust-pr-review/references/SAFETY-PRECHECK.md   |  6 +-
+ .../skills/rust-pr-review/scripts/check-report.sh  | 69 +++++++++++++++-
+ .agents/skills/rust-pr-review/scripts/clippy.sh    | 38 +++++++++
+ .agents/skills/rust-pr-review/scripts/gates.sh     |  2 +-
+ .gitignore                                         |  2 +
+ REVIEW.md                                          | 34 ++++++++
+ src/lib.rs                                         | 13 +--
+ 12 files changed, 406 insertions(+), 16 deletions(-)
+
+### Commit claims (not an independent specification)
+- Install current workflow for regression review
+- Simplify ledger helper calculations
+
+Untracked files are NOT included in git diff; inspect them separately.

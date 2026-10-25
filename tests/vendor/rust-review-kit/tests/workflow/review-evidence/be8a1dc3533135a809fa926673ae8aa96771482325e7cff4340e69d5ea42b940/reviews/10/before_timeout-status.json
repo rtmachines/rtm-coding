@@ -1,0 +1,14 @@
+{
+  "cwd": "/tmp/rust-review-current-20261025/reviews/10/probe",
+  "command": [
+    "cargo",
+    "test",
+    "--offline",
+    "--locked",
+    "--test",
+    "before_timeout"
+  ],
+  "environment": {},
+  "status": 0,
+  "watchdog_seconds": 120
+}

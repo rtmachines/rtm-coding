@@ -1,0 +1,76 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"status\":\"ambiguous\",\"summary\":\"'publication_model' matches 2 node(s). Re-run with a qualified_name from disambiguation.\",\"candidates\":[{\"id\":12,\"kind\":\"Test\",\"name\":\"publication_model\",\"qualified_name\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs::publication_model\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs\",\"line_start\":4,\"line_end\":27,\"language\":\"rust\",\"parent_name\":null,\"is_test\":true},{\"id\":11,\"kind\":\"File\",\"name\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs\",\"qualified_name\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs\",\"line_start\":1,\"line_end\":28,\"language\":\"rust\",\"parent_name\":null,\"is_test\":true}],\"disambiguation\":[{\"id\":12,\"kind\":\"Test\",\"name\":\"publication_model\",\"qualified_name\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs::publication_model\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs\",\"line_start\":4,\"line_end\":27,\"language\":\"rust\",\"parent_name\":null,\"is_test\":true},{\"id\":11,\"kind\":\"File\",\"name\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs\",\"qualified_name\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs\",\"file_path\":\"/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs\",\"line_start\":1,\"line_end\":28,\"language\":\"rust\",\"parent_name\":null,\"is_test\":true}],\"candidate_count\":2,\"candidates_truncated\":false,\"hint\":\"Use a qualified_name from disambiguation as the target parameter.\",\"_graph\":{\"updated_at\":\"2026-10-25T08:22:51\",\"age_seconds\":157,\"built_at_sha\":\"646d6eee82ec869164487e4991631b9bdf62877e\",\"built_on_branch\":\"master\",\"head_sha\":\"646d6eee82ec869164487e4991631b9bdf62877e\",\"head_matches_build\":true}}"
+    }
+  ],
+  "structuredContent": {
+    "status": "ambiguous",
+    "summary": "'publication_model' matches 2 node(s). Re-run with a qualified_name from disambiguation.",
+    "candidates": [
+      {
+        "id": 12,
+        "kind": "Test",
+        "name": "publication_model",
+        "qualified_name": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs::publication_model",
+        "file_path": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs",
+        "line_start": 4,
+        "line_end": 27,
+        "language": "rust",
+        "parent_name": null,
+        "is_test": true
+      },
+      {
+        "id": 11,
+        "kind": "File",
+        "name": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs",
+        "qualified_name": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs",
+        "file_path": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs",
+        "line_start": 1,
+        "line_end": 28,
+        "language": "rust",
+        "parent_name": null,
+        "is_test": true
+      }
+    ],
+    "disambiguation": [
+      {
+        "id": 12,
+        "kind": "Test",
+        "name": "publication_model",
+        "qualified_name": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs::publication_model",
+        "file_path": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs",
+        "line_start": 4,
+        "line_end": 27,
+        "language": "rust",
+        "parent_name": null,
+        "is_test": true
+      },
+      {
+        "id": 11,
+        "kind": "File",
+        "name": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs",
+        "qualified_name": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs",
+        "file_path": "/tmp/rust-review-current-20261025/cases/09/tests/publication_model.rs",
+        "line_start": 1,
+        "line_end": 28,
+        "language": "rust",
+        "parent_name": null,
+        "is_test": true
+      }
+    ],
+    "candidate_count": 2,
+    "candidates_truncated": false,
+    "hint": "Use a qualified_name from disambiguation as the target parameter.",
+    "_graph": {
+      "updated_at": "2026-10-25T08:22:51",
+      "age_seconds": 157,
+      "built_at_sha": "646d6eee82ec869164487e4991631b9bdf62877e",
+      "built_on_branch": "master",
+      "head_sha": "646d6eee82ec869164487e4991631b9bdf62877e",
+      "head_matches_build": true
+    }
+  },
+  "isError": false
+}

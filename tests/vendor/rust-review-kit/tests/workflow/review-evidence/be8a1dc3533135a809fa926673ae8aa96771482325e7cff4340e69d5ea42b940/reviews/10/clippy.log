@@ -1,0 +1,16 @@
+$ bash .agents/skills/rust-pr-review/scripts/clippy.sh --offline --workspace --all-targets --locked -- -D warnings
+Clippy/reviewdog evidence: /tmp/rust-review-current-20261025/reviews/10/rust-review-clippy.bfHaf8HW
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+    Checking pin-project-lite v0.2.17
+   Compiling syn v3.0.9
+   Compiling tokio-macros v2.7.2
+    Checking tokio v1.54.1
+    Checking runtime-bridge v0.1.0 (/tmp/rust-review-current-20261025/cases/10)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.61s
+reviewdog: exit=0 (presentation only; Clippy exit=0)
+Empty reviewdog report is not evidence of Clippy PASS; inspect clippy.log.

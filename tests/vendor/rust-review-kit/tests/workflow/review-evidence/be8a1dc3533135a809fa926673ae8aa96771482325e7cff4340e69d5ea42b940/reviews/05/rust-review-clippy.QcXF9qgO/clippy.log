@@ -1,0 +1,9 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+    Checking pin-project-lite v0.2.17
+   Compiling syn v3.0.9
+   Compiling tokio-macros v2.7.2
+    Checking tokio v1.54.1
+    Checking runtime-bridge v0.1.0 (/tmp/rust-review-current-20261025/cases/05)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.10s

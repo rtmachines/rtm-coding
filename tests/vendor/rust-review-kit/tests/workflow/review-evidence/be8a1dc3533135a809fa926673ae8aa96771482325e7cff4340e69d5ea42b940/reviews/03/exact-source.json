@@ -1,0 +1,9 @@
+{
+  "probe/src/service.rs": true,
+  "probe/src/registration.rs": true,
+  "probe/src/publication.rs": true,
+  "probe/src/bytes.rs": true,
+  "probe/src/lib.rs": true,
+  "memory/src/registration.rs": true,
+  "memory/src/bytes.rs": true
+}

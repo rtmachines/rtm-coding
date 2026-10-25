@@ -1,0 +1,7 @@
+{
+  "CARGO_NET_OFFLINE": "true",
+  "RUST_REVIEWDOG": "1",
+  "CARGO_TARGET_DIR": "/tmp/rust-review-current-20261025/reviews/11/gate-target",
+  "TMPDIR": "/tmp/rust-review-current-20261025/reviews/11",
+  "ordinary_features": "default"
+}

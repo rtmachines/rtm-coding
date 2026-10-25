@@ -1,0 +1,1 @@
+{"command": ["cargo", "+nightly", "miri", "test", "--offline", "unaligned_word"], "cwd": "/tmp/rust-review-current-20261025/reviews/03/memory", "env": {"MIRI_SYSROOT": "/home/rtm/.cache/miri", "MIRIFLAGS": ""}, "exit": 1}

@@ -1,0 +1,44 @@
+REQUIREMENTS.md
+REVIEW.md
+VENDOR-CONTRACT.md
+deny.toml
+.agents/rust-review-kit/THIRD_PARTY_NOTICES.md
+.agents/rust-review-kit/licenses/apollo-skills-MIT.txt
+.agents/rust-review-kit/licenses/microsoft-rust-guidelines-MIT.md
+.agents/rust-review-kit/licenses/rewrite-rs-skills-BSD-3-Clause.txt
+.agents/rust-review-kit/licenses/tailrocks-rust-skills-Apache-2.0.txt
+.agents/rust-review-kit/scripts/check-upstream.sh
+.agents/rust-review-kit/vendored.tsv
+src/lib.rs
+tests/delivery.rs
+.gitignore
+AGENTS.md
+Cargo.lock
+Cargo.toml
+.agents/skills/rust-best-practices/SKILL.md
+.agents/skills/rust-pr-review/SKILL.md
+.agents/skills/rust-best-practices/references/chapter_07.md
+.agents/skills/rust-best-practices/references/chapter_01.md
+.agents/skills/rust-best-practices/references/chapter_08.md
+.agents/skills/rust-best-practices/references/chapter_02.md
+.agents/skills/rust-best-practices/references/chapter_09.md
+.agents/skills/rust-best-practices/references/chapter_03.md
+.agents/skills/rust-best-practices/references/chapter_04.md
+.agents/skills/rust-best-practices/references/chapter_05.md
+.agents/skills/rust-best-practices/references/chapter_06.md
+.agents/skills/rust-pr-review/references/CONCURRENCY-VALIDATION.md
+.agents/skills/rust-pr-review/references/MEMORY-VALIDATION.md
+.agents/skills/rust-pr-review/references/SAFETY-PRECHECK.md
+.agents/skills/rust-pr-review/references/SMELLS.md
+.agents/skills/rust-pr-review/references/SPEC-PASS.md
+.agents/skills/rust-pr-review/references/REVIEWDOG.md
+.agents/skills/rust-pr-review/references/RUST-LSP.md
+.agents/skills/rust-pr-review/scripts/check-report.sh
+.agents/skills/rust-pr-review/scripts/context.sh
+.agents/skills/rust-pr-review/scripts/gates.sh
+.agents/skills/rust-pr-review/scripts/clippy.sh
+VENDOR-CONTRACT.md:4:The deployment under review is this version of AcmeTransport and Server. The effect
+VENDOR-CONTRACT.md:18:returns the original receipt without repeating the effect. AcmeTransport starts no
+tests/delivery.rs:4:impl Transport for Ready {
+tests/delivery.rs:10:impl Transport for Pending {
+src/lib.rs:13:pub async fn deliver(transport: &impl Transport, request: u64, deadline: Duration) -> Outcome {

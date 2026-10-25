@@ -1,0 +1,25 @@
+BASE_REF=origin/main
+BASE_SHA=8f1034f207c0d4697d21786398f79f6d97f7c264
+HEAD_SHA=646d6eee82ec869164487e4991631b9bdf62877e
+
+### Working-tree status (includes untracked files)
+
+### Tracked changes: merge base -> working tree
+ .agents/skills/rust-pr-review/SKILL.md             |  4 +++
+ .../skills/rust-pr-review/references/REVIEWDOG.md  | 34 +++++++++++++++++++
+ .agents/skills/rust-pr-review/scripts/clippy.sh    | 38 ++++++++++++++++++++++
+ .agents/skills/rust-pr-review/scripts/gates.sh     |  2 +-
+ .gitignore                                         |  2 ++
+ REQUIREMENTS.md                                    |  1 +
+ REVIEW.md                                          | 38 ++++++++++++++++++++--
+ src/lib.rs                                         | 23 ++++++++++++-
+ tests/publication_model.rs                         | 27 +++++++++++++++
+ 9 files changed, 165 insertions(+), 4 deletions(-)
+
+### Commit claims (not an independent specification)
+- Install current workflow for regression review
+- Supply updated validation resources
+- Enforce model execution budget at each checkpoint
+- Implement adapter and tests
+
+Untracked files are NOT included in git diff; inspect them separately.

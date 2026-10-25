@@ -1,0 +1,9 @@
+$ bash .agents/skills/rust-pr-review/scripts/clippy.sh --offline --workspace --all-targets --all-features --locked -- -D warnings
+Clippy/reviewdog evidence: /tmp/rust-review-current-20261025/reviews/01/rust-review-clippy.pBzOePvv
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Checking ledger-preview v0.1.0 (/tmp/rust-review-current-20261025/cases/01)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.14s
+reviewdog: exit=0 (presentation only; Clippy exit=0)
+Empty reviewdog report is not evidence of Clippy PASS; inspect clippy.log.

@@ -1,0 +1,245 @@
+# Safety pre-check
+
+> From rewrite-rs/skills `skills/rust/unsafe-rust/SAFETY-REVIEW.md` (BSD-3-Clause, commit ae0fd62), unchanged
+> except this note. Use it as a quick pass on every changed `unsafe`/FFI/`Send`/`Sync` line.
+> Codex adaptation: also complete [MEMORY-VALIDATION.md](MEMORY-VALIDATION.md), including
+> targeted Miri tests and an aliasing argument. Any unresolved safety obligation means
+> verdict `ESCALATE`; do not assume a particular external audit plugin is installed.
+
+A checklist to apply to a diff line by line. Each entry names what to look for
+and the question that settles it.
+
+## UB is not a bad outcome at runtime
+
+`unsafe` means undefined behaviour, not "dangerous", and the distinction is
+load-bearing: it is the compiler being permitted to assume the situation
+cannot arise — which is why UB shows up as an unrelated function miscompiling
+six months later.
+
+## Per `unsafe` block
+
+- Is there a `// SAFETY:` comment?
+- Does it state an invariant the caller upholds — not restate what the code
+  does?
+- Is the invariant actually true for *every* caller, not just the current one?
+- Is the block as small as it can be? The check that makes the invariant true
+  belongs in the safe code just outside.
+
+## Assume the code you call misbehaves
+
+Inside an `unsafe` block, assume the code you call misbehaves. A closure can
+panic mid-operation and leave your structure half-updated — poison the state or
+restore the invariant before the unwind escapes. A `Deref` impl can return a
+different reference each call, a `Clone` can panic, a `Drop` can run at a
+moment you did not choose. Any invariant you derive from a user-supplied trait
+impl is an invariant you do not have.
+
+## Per `unsafe fn`
+
+- Is there a `# Safety` doc section stating what the caller must guarantee?
+- Could this be a safe function with the check inside instead? If the only
+  reason it is `unsafe` is that the caller "should know better," the invariant
+  is not enforceable at the boundary, and the design is wrong.
+
+## Per raw pointer
+
+- Where did it come from — and is that origin still true at the point of use?
+- Is the pointed-to memory still alive, correctly aligned, and non-null?
+- Is any `&mut` derived from it aliased by any other live reference in scope?
+- If it came from a `Vec`, is the `Vec` guaranteed not to reallocate between
+  origin and use?
+
+## Per `transmute`
+
+- Are both types `#[repr(C)]` or `#[repr(transparent)]`, or otherwise guaranteed
+  the same layout and size?
+- Would `bytemuck` or `zerocopy` do the conversion safely?
+- Is a plain pointer cast enough?
+
+## Per FFI call
+
+- Can the C side unwind into Rust? If a Rust callback can panic, wrap it so a
+  panic cannot cross the boundary — `catch_unwind` at the callback, or a
+  documented no-panic contract on the C side.
+- Who owns the allocation, and which allocator frees it? Memory allocated on one
+  side is freed on that side.
+- Are string encodings and NUL termination handled — `CStr` to read, `CString`
+  to write?
+- Are the `#[repr(C)]` layouts confirmed on both sides of the boundary,
+  including field order and padding assumptions?
+- Are the edition 2024 marks in place — `unsafe extern { }` around extern
+  declarations, `#[unsafe(no_mangle)]`, `#[unsafe(export_name = "...")]`?
+  Those attributes always were unsafe assertions, and the edition now says so.
+
+All three marks, on a minimal boundary:
+
+```rust
+unsafe extern "C" {
+    fn strlen(s: *const u8) -> usize;
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn rust_add(a: u32, b: u32) -> u32 {
+    a.wrapping_add(b)
+}
+
+#[unsafe(export_name = "add")]
+pub unsafe extern "C" fn rust_add_named(a: u32, b: u32) -> u32 {
+    a.wrapping_add(b)
+}
+```
+
+## Per hand-written `Send`/`Sync` impl
+
+- What makes it true, stated in a comment for a reviewer who did not write it?
+  "All the fields are `Send`" is not an answer when one of them is a raw
+  pointer.
+
+## Sound and unsound, side by side
+
+The same function in both forms — the difference is where the check lives.
+
+Unsound: the safe signature lets a caller pass an out-of-range index, and the
+pointer arithmetic trusts it:
+
+```rust
+/// Splits a slice at `mid`, returning two mutable references.
+pub fn split_at_mut<T>(slice: &mut [T], mid: usize) -> (&mut [T], &mut [T]) {
+    let ptr = slice.as_mut_ptr();
+    // No check: a caller passing `mid > slice.len()` computes a pointer past
+    // the end — and `slice.len() - mid` underflows. No current caller needs to
+    // do that for the bug to exist: the signature allows it.
+    unsafe {
+        (std::slice::from_raw_parts_mut(ptr, mid),
+         std::slice::from_raw_parts_mut(ptr.add(mid), slice.len() - mid))
+    }
+}
+```
+
+Sound: the check runs in the safe code before the pointer arithmetic, and the
+`// SAFETY:` comment states only what is true *after* it:
+
+```rust
+pub fn split_at_mut<T>(slice: &mut [T], mid: usize) -> (&mut [T], &mut [T]) {
+    assert!(mid <= slice.len(), "mid out of range: {mid} > {}", slice.len());
+    let len = slice.len();
+    let ptr = slice.as_mut_ptr();
+    // SAFETY: `mid <= len` was checked above, so both ranges
+    // `ptr..ptr+mid` and `ptr+mid..ptr+len` are in bounds, disjoint, and
+    // cover the allocation; `slice` is the only live reference here.
+    unsafe {
+        (std::slice::from_raw_parts_mut(ptr, mid),
+         std::slice::from_raw_parts_mut(ptr.add(mid), len - mid))
+    }
+}
+```
+
+The `// SAFETY:` comment in the second version is false in the first — that is
+the whole test. If the comment only becomes true after a check, the check
+belongs outside the block.
+# Smell baseline
+
+> Codex adaptation: every row is a hypothesis requiring source evidence. Iterators do
+> not generally prove bounds safety at compile time. Public pointer types, bool
+> parameters, clones and missing comments alone do not establish a correctness bug.
+> Do not infer absence of downstream callers from a local graph.
+
+> Adapted from rewrite-rs/skills `skills/workflow/rust-code-review/SMELLS.md` (BSD-3-Clause, commit ae0fd62).
+> Changes: removed the row about `target-cpu`/`panic = "abort"` in a library profile (Cargo ignores
+> `[profile.*]` of dependencies, so the stated consequence does not hold); added this note.
+> The "Owning skill" column names rewrite-rs skills that are **not installed** here. Use it as a topic
+> label and settle the rule with the relevant `rust-best-practices` chapters and `REVIEW.md`:
+> `/ownership-not-clone` → Apollo ch. 1, 3, 9 · `/rust-errors` → ch. 4 · `/rust-testing` → ch. 5 ·
+> `/rust-api-design`, `/type-driven-design` → ch. 6, 7 + REVIEW.md · `/rust-docs` → ch. 8 ·
+> `/async-rust`, `/rust-concurrency`, `/unsafe-rust` → REVIEW.md + SAFETY-PRECHECK.md, escalate when in doubt.
+
+The judgment calls no lint can make — what the review adds beyond clippy.
+Each row names the smell, how it shows up in a diff, why it is a defect rather
+than a preference, and the skill that owns the standard. A row is a trigger,
+not a verdict: the named skill owns the rule, and the cases where context
+flips the call are at the bottom of this file.
+
+| Smell | How it shows up in a diff | Why it is a defect, not a preference | Owning skill |
+|---|---|---|---|
+| `clone` with no explaining reason at the call site | A `.clone()` added to silence a borrow error, no comment, no local need for the copy | A clone that only silences an error is a deferred design decision; the ownership structure is wrong, and every reader inherits the allocation plus the unasked why | `/ownership-not-clone` |
+| `Rc<RefCell<_>>` or `Arc<Mutex<_>>` introduced to resolve a borrow error | A new indirection layer where a plain reference, or a shorter borrow, would do | Shared machinery bought to appease the checker adds refcount or lock cost, a deadlock surface, and `Send`/`Sync` friction to every use | `/ownership-not-clone` |
+| `unwrap`/`expect` on caller-controlled input, or anywhere in a library path | A new `.unwrap()` on a value a caller can influence, in library code | A library panic turns a caller-recoverable failure into a crash; the failure belongs in a `Result` the caller can match | `/rust-errors` |
+| An error enum with one variant carrying a `String` for everything | A new error type shaped like `Failed(String)`, or a match arm that parses the message | Callers cannot tell apart the failure classes the code already knows — retryable from fatal — so the type is a log line, not a contract | `/rust-errors` |
+| `bool` or `&str` parameters that encode a mode | `fn render(pretty: bool)`, or callers passing `"strict"` and `"lenient"` | The type admits every combination, most of them nonsense; the impossible combination is a latent bug the compiler cannot name | `/type-driven-design` |
+| A constructor that can build a state the domain forbids | A public literal or `new` accepting a field combination the invariants rule out | Every constructible invalid state forces a runtime check at every call site; one forgotten check ships the bug | `/type-driven-design` |
+| `pub` on an item with no caller outside the crate | A new `pub` fn or type whose only uses are in-crate | `pub` is a semver promise to every downstream; an item with no external caller is a commitment with no counterparty | `/rust-api-design` |
+| A public function taking `String`/`Vec<T>` where `&str`/`&[T]` would do | A new or changed signature that takes an owned collection it only reads | It forces a clone at every caller that holds a reference; the allocation lands at the call site, but the defect is in the signature | `/rust-api-design` |
+| A new public enum or struct field without `#[non_exhaustive]` consideration | A new variant or field on a released type, with no attribute and no note | Without it, the next additive change is a breaking one; the attribute is the cheap way to keep the type evolvable | `/rust-api-design` |
+| Blocking I/O, `std::thread::sleep`, or a `std::sync` guard held across `.await` | A sync call or a sleep inside an `async fn`; a live guard over an await point | It stalls the executor thread and starves every other task on it; the failure shows up as latency on unrelated code | `/async-rust` |
+| `unsafe` without `// SAFETY:`, a `// SAFETY:` that restates the code, or a `pub unsafe fn` without `# Safety` | A new unsafe block or fn whose invariant is not written down, or whose comment only repeats what the code does | The written invariant is what makes the block sound; unwritten, or restated instead of stated, it cannot be checked, and the next caller change can break it silently | `/unsafe-rust` |
+| An index loop that is a `map`/`filter`/`collect` in disguise | `for i in 0..v.len()` where the body only reads `v[i]` and accumulates | The iterator form fails to compile on a bounds mistake instead of panicking at runtime, and it reads like Rust to a Rust reader | `/idiomatic-rust` |
+| A behaviour change with no test that would fail without it | A diff that changes observable behaviour and adds no test, or only tests that pass against the old code | The regression is unfalsifiable: the next refactor breaks the behaviour and nothing says so | `/rust-testing` |
+| A test asserting on `Display` output where a variant match is the contract | `assert_eq!(err.to_string(), "...")` where the callers would match on the variant | The string is formatting, not a contract; the test breaks on a wording change and stays green on a variant change | `/rust-testing` |
+| A public error enum variant carrying a type from a dependency | A new variant shaped like `Parse(toml::de::Error)` on a published error type | The variant pins the dependency into the contract, and the next failure mode added to the enum breaks every caller match | `/rust-errors` |
+| An `Arc`, `Rc`, `Box` or `RefCell` in a public signature | A new or changed `pub fn` that takes or returns one of the four | The pointer is how the crate stores the thing, not what the caller has; exposed, the storage shape becomes semver and every caller imports the machinery | `/rust-api-design` |
+| A `pub` item with no doc comment, a `Result`-returning public function with no `# Errors`, a `pub unsafe fn` with no `# Safety` | A new public item, error function, or `unsafe` fn shipped without the section rustdoc would render for callers | The doc comment is the API contract: a caller matching the error has nowhere to read the variants, and an `unsafe` fn without `# Safety` asks for trust in what is not written | `/rust-docs` |
+| `println!` in library code, or a log call interpolating values into the message instead of passing fields | A `println!` in a library crate, or `warn!("failed for {id}")` where the value belongs in a named field | The library writes to a channel it does not own, and a value interpolated into a message is text, not data: it cannot be queried, filtered, or redacted, which is what the field is for | `/rust-observability` |
+| An `as` between integer types where `try_from` was available | A new `n as u32`, or a narrowing `as i8`, added to make a type mismatch compile | The cast discards the overflow without a trace; the value wraps silently where `try_from` would have made the failure a `Result` someone handles | `/type-driven-design` |
+| A guard held across a call that can lock again | A live `MutexGuard` across a call that acquires the same lock, or across a callback that reaches it | Re-acquiring a lock the thread already holds is a self-deadlock: the program stops on a line that reads like ordinary refactoring | `/rust-concurrency` |
+
+## Smells that come from generated code
+
+These are review lenses, not topics, which is why they live here rather than
+in a skill of their own:
+
+| Smell | What it looks like | Where it is settled |
+|---|---|---|
+| A test asserting ground truth it computed itself | the expected value derived from the logic under test | `/rust-testing` |
+| The same item public at two paths | a `pub use` added beside the original rather than replacing it, so both keep working | `/rust-api-design` |
+| Design journal or compliance table in user-facing docs | "\| Rule \| Applied \|" tables, iteration narration, or rationale in item docs | `/rust-docs` |
+| A port shaped like its source | `throw_if_null`-style helpers, a class hierarchy transliterated to traits, a striking structural similarity to the original | `/port-to-rust` |
+
+They pass review because they look like diligence, and they are what an agent
+produces when it optimises for resembling correct work.
+
+## Smells that are not defects in every repo
+
+The same line can be right in context: a `clone` in a startup path that runs
+once, where the allocation is noise; `unwrap` in a test, or in a `main` that
+documents its own preconditions; `pub` on a crate that is deliberately a
+facade for its internals. The rule: when the context is genuinely ambiguous,
+the reviewer asks rather than asserts, and the finding is filed as a note.
+
+One named exception the baseline must not flag: a service type that holds an
+`Arc<Inner>` and derives `Clone` clones one pointer, so every task gets its
+own handle to the same thing. `/ownership-not-clone` names that handle clone
+the rule passing, not a defect.
+# Optional local reviewdog
+
+Run from the reviewed Cargo workspace:
+
+```bash
+RUST_REVIEWDOG=1 bash .agents/skills/rust-pr-review/scripts/gates.sh
+```
+
+The helper runs Clippy once, preserves raw uncolored short diagnostics and its exit
+code in a printed temporary evidence directory, then feeds that file to reviewdog.
+It uses the local reporter only and installs nothing. Missing reviewdog falls back
+to the raw diagnostics. Its errors/status are separate from the Clippy gate.
+`RUST_REVIEWDOG_BIN` can select an existing executable by name or absolute path.
+Retain the evidence files until the review is complete.
+
+Default filtering is `nofilter`. For tracked branch plus working-tree changes, set
+`RUST_REVIEWDOG_BASE` to the already resolved review base SHA. For working-tree-only
+review, use HEAD. For a committed-only scope, use matching checkout/CI evidence;
+this helper's diff includes local edits. Invalid bases fall back to unfiltered output.
+Git diff excludes untracked files: omit the base when they are in scope.
+
+Always derive the `clippy` gate from Clippy's exit status, not reviewdog's report or
+exit status. Inspect raw output on compilation failure, parser failure or an empty
+report. A successful reviewdog process with zero displayed diagnostics is not a
+passing lint check. Record presentation failures/omissions separately in the report;
+reviewdog does not replace Miri, Loom, tests or semantic review.
+
+If the project already has `.reviewdog.yml` or `.reviewdog.yaml`, prefer its relevant
+lint runners with `-reporter=local -filter-mode=nofilter -fail-level=warning` for
+project presentation. Still run the Clippy gate independently: config runners may
+filter, mask failures or use different flags. Do not automatically execute every
+runner. Do not feed RTK-condensed output to a parser; use `rtk bypass` for a producer
+if it is intercepted. The helper calls Cargo directly without a condensing wrapper.
+Remote reporters require an explicit request to publish results.

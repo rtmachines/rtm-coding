@@ -1,0 +1,10 @@
+
+running 2 tests
+test drop_at_known_boundaries_releases_operation_without_later_effects ... ok
+test timeout_before_commit_reconnect_and_retry ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Compiling runtime-bridge v0.1.0 (/tmp/rust-review-current-20261025/probes/provider)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.15s
+     Running tests/review_acceptance.rs (target/debug/deps/review_acceptance-27e9b497855827ba)
