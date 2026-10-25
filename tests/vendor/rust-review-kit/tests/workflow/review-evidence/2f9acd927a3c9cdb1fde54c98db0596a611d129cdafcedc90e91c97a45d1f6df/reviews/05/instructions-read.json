@@ -1,0 +1,17 @@
+{
+  "AGENTS.md": "788cc3a2ae19f0dddfbd445a5b2ef1d6f4410728e7ee795048d2b3198e2c6d77",
+  "REVIEW.md": "69d255a0f264506213501078fcc6a8f9f64e949efbe1fb2521fc6aba65533e08",
+  "REQUIREMENTS.md": "ab445a7055fde7568afc0522f67febfa9470198de556f95e2ff19721f2e9a43d",
+  ".agents/skills/rust-pr-review/SKILL.md": "bcd70d54807338cefb9d1664954bd7d6c9d18e987c9c1d736be2f99072ec023d",
+  ".agents/skills/rust-skills/SKILL.md": "1ab5c3ad0a944bebbfee88d3c1b1bbc0a04bc8bd82944f65ac353599f4daa7e2",
+  ".agents/rust-review-kit/vendored.tsv": "81531709ed779e3396b67061f81be92519bdb6a446bc680c5c589fa255ce0976",
+  ".agents/skills/rust-pr-review/references/MEMORY-VALIDATION.md": "0d5d8d2ed0c1de23a947e7f1394614f9d20fa9fa20770d9fcd03c6dad0a4d7d1",
+  ".agents/skills/rust-pr-review/references/CONCURRENCY-VALIDATION.md": "deb189e5e7979298d458e51494a138ec5056e04f0adcd630dda563c29a6337be",
+  ".agents/skills/rust-pr-review/references/RUST-LSP.md": "34e42a9d5d5948ce042c816646937b8328b009d869ae5fea73800cb23b293c8f",
+  ".agents/skills/rust-pr-review/references/REVIEWDOG.md": "273b3c5eb1704e3b0eb1131d73ffb53ec5c13eba3d28ef5be0940df4e1965c6f",
+  ".agents/skills/rust-pr-review/references/SMELLS.md": "3a3e4cc2798b62ac027ec4713b8b7ee4a96ca491c1a828fa08b54f1c91e50b6c",
+  ".agents/skills/rust-pr-review/references/SAFETY-PRECHECK.md": "acaacdd36de1391e9f23652ff0b9f36e2eb1710e78941498c83867c86781da28",
+  ".agents/skills/rust-pr-review/references/SPEC-PASS.md": "12c6c6f1b11401891020d42bc8c9f29e3a7616ffcf62226d470768206331f942",
+  ".agents/skills/rust-skills/rules/unsafe-safety-comment.md": "4892500c59f446eb8031fcf2cc98bf64f3323276abee0355409f4af53cbdcaab",
+  ".agents/skills/rust-skills/rules/unsafe-miri-ci.md": "313206187feb6cf5e4fc3fc394e7c83f5fc75486729e2dee6f8edbefe1e4a8e8"
+}

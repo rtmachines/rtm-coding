@@ -1,0 +1,21 @@
+{
+  "AGENTS.md": "788cc3a2ae19f0dddfbd445a5b2ef1d6f4410728e7ee795048d2b3198e2c6d77",
+  "REVIEW.md": "69d255a0f264506213501078fcc6a8f9f64e949efbe1fb2521fc6aba65533e08",
+  "REQUIREMENTS.md": "4b1e872374de318975c100feb0ce84d3fa240e32021c142a1d4194fadbde67d9",
+  ".agents/skills/rust-pr-review/SKILL.md": "bcd70d54807338cefb9d1664954bd7d6c9d18e987c9c1d736be2f99072ec023d",
+  ".agents/skills/rust-skills/SKILL.md": "1ab5c3ad0a944bebbfee88d3c1b1bbc0a04bc8bd82944f65ac353599f4daa7e2",
+  ".agents/rust-review-kit/vendored.tsv": "81531709ed779e3396b67061f81be92519bdb6a446bc680c5c589fa255ce0976",
+  ".agents/skills/rust-pr-review/references/MEMORY-VALIDATION.md": "0d5d8d2ed0c1de23a947e7f1394614f9d20fa9fa20770d9fcd03c6dad0a4d7d1",
+  ".agents/skills/rust-pr-review/references/CONCURRENCY-VALIDATION.md": "deb189e5e7979298d458e51494a138ec5056e04f0adcd630dda563c29a6337be",
+  ".agents/skills/rust-pr-review/references/RUST-LSP.md": "34e42a9d5d5948ce042c816646937b8328b009d869ae5fea73800cb23b293c8f",
+  ".agents/skills/rust-pr-review/references/REVIEWDOG.md": "273b3c5eb1704e3b0eb1131d73ffb53ec5c13eba3d28ef5be0940df4e1965c6f",
+  ".agents/skills/rust-pr-review/references/SMELLS.md": "3a3e4cc2798b62ac027ec4713b8b7ee4a96ca491c1a828fa08b54f1c91e50b6c",
+  ".agents/skills/rust-pr-review/references/SAFETY-PRECHECK.md": "acaacdd36de1391e9f23652ff0b9f36e2eb1710e78941498c83867c86781da28",
+  ".agents/skills/rust-pr-review/references/SPEC-PASS.md": "12c6c6f1b11401891020d42bc8c9f29e3a7616ffcf62226d470768206331f942",
+  ".agents/skills/rust-skills/rules/conc-atomic-ordering.md": "4d643d8525c1ae9e69792bc283e654e7f8cafa382bca8712156fdfca1b076336",
+  ".agents/skills/rust-skills/rules/test-loom-concurrency.md": "5d5ad62cadb869369e1b4b5d5d0589a73f6e147f4063607470a1ce0003f68cbc",
+  ".agents/skills/rust-skills/rules/unsafe-safety-comment.md": "4892500c59f446eb8031fcf2cc98bf64f3323276abee0355409f4af53cbdcaab",
+  ".agents/skills/rust-skills/rules/unsafe-miri-ci.md": "313206187feb6cf5e4fc3fc394e7c83f5fc75486729e2dee6f8edbefe1e4a8e8",
+  ".agents/skills/rust-skills/rules/async-cancel-safety.md": "d778f5486e67a485a154d7b2b3c166d7f0901405196cd11f1ffff65d88baa347",
+  ".agents/skills/rust-skills/rules/async-no-lock-await.md": "7f0dcb328aacc17acee0d8a50b386f1fa2613fa683371fdd99730602d9f562fb"
+}

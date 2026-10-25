@@ -1,0 +1,62 @@
+   Compiling ledger-preview v0.1.0 (/tmp/rust-skills-review-20261025/reviews/01/probe)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
+     Running tests/contracts.rs (/tmp/rust-review-target-a-01/debug/deps/contracts-1c8484d8bbb245a6)
+
+running 6 tests
+test expiry_exclusive ... FAILED
+test fractional_fee ... FAILED
+test malformed_limit ... FAILED
+test tenant_isolation ... FAILED
+test overdraw_rejected ... FAILED
+test unicode_preview ... FAILED
+
+failures:
+
+---- expiry_exclusive stdout ----
+
+thread 'expiry_exclusive' (326313) panicked at tests/contracts.rs:5:30:
+assertion failed: !token_usable(100, 100)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- fractional_fee stdout ----
+
+thread 'fractional_fee' (326314) panicked at tests/contracts.rs:6:28:
+assertion `left == right` failed
+  left: 0
+ right: 49
+
+---- malformed_limit stdout ----
+
+thread 'malformed_limit' (326315) panicked at src/limits.rs:2:29:
+called `Result::unwrap()` on an `Err` value: ParseIntError { kind: InvalidDigit }
+
+---- tenant_isolation stdout ----
+
+thread 'tenant_isolation' (326317) panicked at tests/contracts.rs:2:30:
+assertion failed: !can_read(Identity { tenant_id: 1, user_id: 7 },
+        Identity { tenant_id: 2, user_id: 7 })
+
+---- overdraw_rejected stdout ----
+
+thread 'overdraw_rejected' (326316) panicked at tests/contracts.rs:3:31:
+assertion `left == right` failed
+  left: Some(0)
+ right: None
+
+---- unicode_preview stdout ----
+
+thread 'unicode_preview' (326318) panicked at src/lib.rs:18:9:
+end byte index 1 is not a char boundary; it is inside 'é' (bytes 0..2 of string)
+
+
+failures:
+    expiry_exclusive
+    fractional_fee
+    malformed_limit
+    overdraw_rejected
+    tenant_isolation
+    unicode_preview
+
+test result: FAILED. 0 passed; 6 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--test contracts`

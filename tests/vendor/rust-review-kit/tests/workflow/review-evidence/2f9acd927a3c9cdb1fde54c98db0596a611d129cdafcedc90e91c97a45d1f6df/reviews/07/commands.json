@@ -1,0 +1,30 @@
+{
+  "versions": {
+    "command": "rustc --version --verbose && cargo --version && cargo deny --version",
+    "exit": 0
+  },
+  "fmt": {
+    "command": "cargo fmt --all -- --check",
+    "exit": 0
+  },
+  "clippy": {
+    "command": "cargo clippy --workspace --all-targets --locked --offline --message-format=short --color=never -- -D warnings",
+    "exit": 0
+  },
+  "tests": {
+    "command": "cargo test --workspace --locked --offline --no-fail-fast",
+    "exit": 0
+  },
+  "doctests": {
+    "command": "cargo test --workspace --doc --locked --offline",
+    "exit": 0
+  },
+  "deny": {
+    "command": "cargo deny --locked --offline check",
+    "exit": 0
+  },
+  "reviewdog": {
+    "command": "/home/rtm/.local/bin/reviewdog -f=clippy -reporter=local -filter-mode=nofilter -fail-level=warning < /tmp/rust-skills-review-20261025/reviews/07/clippy.log",
+    "exit": 0
+  }
+}

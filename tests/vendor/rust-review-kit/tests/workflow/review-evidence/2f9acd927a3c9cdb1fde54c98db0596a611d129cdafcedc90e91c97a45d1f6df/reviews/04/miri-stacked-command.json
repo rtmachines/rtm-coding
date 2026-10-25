@@ -1,0 +1,6 @@
+{
+  "command": "MIRI_SYSROOT=/home/rtm/.cache/miri cargo +nightly miri test --offline --test memory",
+  "cwd": "/tmp/rust-skills-review-20261025/reviews/04/memory-probe",
+  "exit": 1,
+  "timeout_seconds": 120
+}

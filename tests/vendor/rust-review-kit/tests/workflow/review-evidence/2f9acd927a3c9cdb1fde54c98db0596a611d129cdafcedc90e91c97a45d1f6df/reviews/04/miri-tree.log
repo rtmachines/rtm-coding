@@ -1,0 +1,12 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling memory-probe v0.0.0 (/tmp/rust-skills-review-20261025/reviews/04/memory-probe)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s
+     Running tests/memory.rs (/tmp/rust-review-probe-target-a-04-miri-tree/miri/x86_64-unknown-linux-gnu/debug/build/memory-probe/f415b39b0467d70e/out/memory-f415b39b0467d70e)
+
+running 2 tests
+test retained_after_move_and_during_unregister ... ok
+test unaligned_and_short ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.32s
+

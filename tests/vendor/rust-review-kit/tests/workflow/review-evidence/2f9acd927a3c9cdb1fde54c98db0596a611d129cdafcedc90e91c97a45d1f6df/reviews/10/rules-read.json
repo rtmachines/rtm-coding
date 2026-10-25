@@ -1,0 +1,9 @@
+{
+  "pinned_revision": "a1e290d53d43a85421ff16dde23b5f8ec0b48539",
+  "rules": {
+    ".agents/skills/rust-skills/rules/async-cancel-safety.md": "d778f5486e67a485a154d7b2b3c166d7f0901405196cd11f1ffff65d88baa347",
+    ".agents/skills/rust-skills/rules/own-mutex-interior.md": "d071f58d4e763740eeaba48f5f7821522170b5791698abfba22c3c6b8cc5da21",
+    ".agents/skills/rust-skills/rules/test-loom-concurrency.md": "5d5ad62cadb869369e1b4b5d5d0589a73f6e147f4063607470a1ce0003f68cbc"
+  },
+  "notes": "Bundled rtmachines fork, recorded by vendored.tsv. No review edits. Index and rust-pr-review skill identical across assigned repositories by SHA256; read once and equality checked. Relevant references read: SMELLS, SPEC-PASS, RUST-LSP, REVIEWDOG; MEMORY-VALIDATION and SAFETY-PRECHECK for 04; CONCURRENCY-VALIDATION for 04/07/10."
+}

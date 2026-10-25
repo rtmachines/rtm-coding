@@ -1,0 +1,14 @@
+# Ledger preview refactor
+
+Preserve the existing public contracts while simplifying the implementation.
+- Reading a record requires both matching tenant_id AND matching user_id.
+- debit(balance, amount) returns None for insufficient funds; no successful zero
+  balance may be returned for an overdraw.
+- preview(text, max_chars) returns the first at most max_chars Unicode scalar values
+  as a String; arbitrary UTF-8 input must not panic.
+- A token is usable only while now < expires_at; the exact expiry instant is expired.
+- fee(amount_cents, basis_points) floors amount_cents * basis_points / 10_000.
+  All u32 inputs must be handled without overflow or intermediate rounding.
+- Add parse_limit(raw) -> Option<u16>: malformed, negative and out-of-range inputs
+  must return None. Expose it at the crate root.
+No transport, storage, authentication provider or new dependency is required.

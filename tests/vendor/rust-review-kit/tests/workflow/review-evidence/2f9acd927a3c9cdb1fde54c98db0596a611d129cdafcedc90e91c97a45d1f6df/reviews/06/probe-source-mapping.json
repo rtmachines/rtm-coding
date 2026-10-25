@@ -1,0 +1,5 @@
+{
+  "src/registration.rs": "src/registration.rs",
+  "src/bytes.rs": "src/bytes.rs",
+  "src/service.rs": "src/service.rs"
+}

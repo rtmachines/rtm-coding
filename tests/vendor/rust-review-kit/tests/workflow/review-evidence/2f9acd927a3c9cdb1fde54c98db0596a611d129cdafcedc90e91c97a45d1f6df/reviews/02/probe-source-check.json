@@ -1,0 +1,12 @@
+[
+  {
+    "copy": "/tmp/rust-skills-review-20261025/reviews/02/probe/src/limits.rs",
+    "original": "/tmp/rust-skills-review-20261025/cases/02/src/limits.rs",
+    "matches": true
+  },
+  {
+    "copy": "/tmp/rust-skills-review-20261025/reviews/02/probe/src/lib.rs",
+    "original": "/tmp/rust-skills-review-20261025/cases/02/src/lib.rs",
+    "matches": true
+  }
+]

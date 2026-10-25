@@ -50,8 +50,20 @@ proc macros and tests; instructions alone do not enforce read-only execution.
   runs. An empty filtered report never overrides Clippy failure.
 - For public library compatibility, use available semver checks against an explicit
   release/base selected from project policy. Report omissions; this does not prove soundness.
-- Read relevant chapters of `../rust-best-practices/SKILL.md` and
-  [SMELLS.md](references/SMELLS.md). These are heuristics: clone, bool, public pointer
+- Use [rtmachines/rust-skills](https://github.com/rtmachines/rust-skills) as the
+  primary source of general Rust knowledge. Read the bundled local
+  [rust-skills index](../rust-skills/SKILL.md) and only the relevant files in its
+  `rules/` directory for the changed code. The installer includes this fork at the
+  commit recorded in `.agents/rust-review-kit/vendored.tsv`; no network access is
+  needed to read this knowledge base. Record that revision and the local rules
+  consulted in the report, noting any local modifications. Do not fetch a newer
+  version or substitute `leonardomso/rust-skills` during review. If the local copy
+  is missing or incomplete, disclose the limitation and continue source-based
+  review without claiming the missing rules were checked.
+  Apply guidance against the project's actual edition, MSRV, dependency versions
+  and contracts; rule priorities alone do not establish severity or a defect.
+  The bundled `../rust-best-practices/SKILL.md` is supplementary background.
+- Read [SMELLS.md](references/SMELLS.md). These are heuristics: clone, bool, public pointer
   types and loops are not defects by themselves. Inspect callers, error paths and tests,
   not just changed lines. Review unsafe/FFI, destructive operations, public contracts,
   concurrency and cancellation before stylistic matters.

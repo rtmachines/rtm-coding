@@ -1,0 +1,9 @@
+   Compiling ledger-preview v0.1.0 (/tmp/rust-skills-review-20261025/reviews/02/probe)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.33s
+     Running tests/contracts.rs (/tmp/rust-review-build-b/probes/debug/deps/contracts-1c8484d8bbb245a6)
+
+running 1 test
+test contracts ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

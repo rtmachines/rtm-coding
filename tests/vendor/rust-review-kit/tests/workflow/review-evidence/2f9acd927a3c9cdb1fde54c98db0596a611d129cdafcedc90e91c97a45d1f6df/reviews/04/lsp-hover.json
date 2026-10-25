@@ -1,0 +1,30 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"data\":{\"contents\":{\"kind\":\"plain_text\",\"value\":\"runtime_bridge::registration::Registration\\n\\npub unsafe fn new(bytes: Box<[u8]>, register: unsafe extern \\\"C\\\" fn(*const u8, usize), unregister: unsafe extern \\\"C\\\" fn()) -> Self\\n\\n\\nRegister a stable buffer with a foreign consumer.\\n\\nSafetyCallbacks must form one valid registration pair. register may retain and read the provided range but cannot write or free it. unregister must synchronously stop all reads before returning and must not unwind. Calls must be serialized by the owner; no other registration may replace the active one.\"},\"range\":{\"end\":{\"character\":21,\"line\":13},\"start\":{\"character\":18,\"line\":13}}},\"execution\":{\"progress_phase\":\"completed\"}}"
+    }
+  ],
+  "structuredContent": {
+    "data": {
+      "contents": {
+        "kind": "plain_text",
+        "value": "runtime_bridge::registration::Registration\n\npub unsafe fn new(bytes: Box<[u8]>, register: unsafe extern \"C\" fn(*const u8, usize), unregister: unsafe extern \"C\" fn()) -> Self\n\n\nRegister a stable buffer with a foreign consumer.\n\nSafetyCallbacks must form one valid registration pair. register may retain and read the provided range but cannot write or free it. unregister must synchronously stop all reads before returning and must not unwind. Calls must be serialized by the owner; no other registration may replace the active one."
+      },
+      "range": {
+        "end": {
+          "character": 21,
+          "line": 13
+        },
+        "start": {
+          "character": 18,
+          "line": 13
+        }
+      }
+    },
+    "execution": {
+      "progress_phase": "completed"
+    }
+  },
+  "isError": false
+}

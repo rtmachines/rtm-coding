@@ -1,0 +1,120 @@
+{
+  "01": {
+    "pass": true,
+    "reason": "Six distinct mechanisms match exact source and six failing contract probes: tenant isolation, insufficient funds, UTF-8 scalar boundaries, exclusive expiry, premature fee flooring and untracked parse panic. Doctest failure corroborates fee, not a separate defect. Dirty/untracked scope preserved. Read full report, relevant runtime source and listed raw evidence; actual graph/LSP results and bundled-rule usage are disclosed. Independent parent assessment after three fresh reviewer batches; no historical verdicts reused.",
+    "evidence": [
+      "reviews/01/report.md",
+      "reviews/01/contracts.log",
+      "reviews/01/doctests.log",
+      "reviews/01/probe/tests/contracts.rs"
+    ]
+  },
+  "02": {
+    "pass": true,
+    "reason": "Safe control preserves all six requirements; isolated test covers tenant/user, overdraw, Unicode, expiry, maximal fee multiplication and invalid/u16 parser limits. Source and gates support APPROVE. Read full report, relevant runtime source and listed raw evidence; actual graph/LSP results and bundled-rule usage are disclosed. Independent parent assessment after three fresh reviewer batches; no historical verdicts reused.",
+    "evidence": [
+      "reviews/02/report.md",
+      "reviews/02/contracts.log",
+      "reviews/02/probe/tests/contracts.rs"
+    ]
+  },
+  "03": {
+    "pass": true,
+    "reason": "Six root mechanisms verified: short/unaligned raw read, dropped registration allocation, nested same-mutex wait, preapproval queue loss, detached worker and Relaxed publication. Four real Miri UB diagnostics, controlled 3 async failures and tracked Loom payload counterexample support REQUEST_CHANGES. Clippy failure preserved independently from reviewdog. Read full report, relevant runtime source and listed raw evidence; actual graph/LSP results and bundled-rule usage are disclosed. Independent parent assessment after three fresh reviewer batches; no historical verdicts reused.",
+    "evidence": [
+      "reviews/03/report.md",
+      "reviews/03/miri-short_word.log",
+      "reviews/03/miri-unaligned_word.log",
+      "reviews/03/miri-retained_buffer.log",
+      "reviews/03/miri-unregister.log",
+      "reviews/03/async-controlled.log",
+      "reviews/03/loom.log",
+      "reviews/03/clippy.log",
+      "reviews/03/probe/tests/async.rs",
+      "reviews/03/probe/tests/model.rs"
+    ]
+  },
+  "04": {
+    "pass": true,
+    "reason": "Reviewer examines retained pointer provenance across Box ownership moves, not only address stability. Exact-source shim fails Stacked and passes Tree; unresolved aliasing leads to ESCALATE despite green ordinary/async/model checks. Independent oracle finds broader failing edges; reviewer does not overclaim passing Tree as soundness. Read full report, relevant runtime source and listed raw evidence; actual graph/LSP results and bundled-rule usage are disclosed. Independent parent assessment after three fresh reviewer batches; no historical verdicts reused.",
+    "evidence": [
+      "reviews/04/report.md",
+      "reviews/04/miri-stacked.log",
+      "reviews/04/miri-tree.log",
+      "reviews/04/memory-probe/tests/memory.rs",
+      "reviews/04/transitions.log",
+      "reviews/04/loom.log"
+    ]
+  },
+  "05": {
+    "pass": true,
+    "reason": "ABI header does not supply quiescence or callback contract. Conditional Rust shim exposes alias-model disagreement but does not impersonate the supported vendor; no fabricated supplier defect. ESCALATE and concrete closure obligations are warranted. Read full report, relevant runtime source and listed raw evidence; actual graph/LSP results and bundled-rule usage are disclosed. Independent parent assessment after three fresh reviewer batches; no historical verdicts reused.",
+    "evidence": [
+      "reviews/05/report.md",
+      "reviews/05/probe-stacked.log",
+      "reviews/05/probe-tree.log",
+      "reviews/05/probe-source-mapping.json"
+    ]
+  },
+  "06": {
+    "pass": true,
+    "reason": "Raw Box ownership retained until synchronous unregister, then exactly one reconstruction/free; no buffer reborrow while foreign accesses persist. Targeted Miri passes both models; 3 existing plus 6 supplementary async tests cover lock progress, cancellation at both waits/closed channel, async destructor, finished and started blocking worker shutdown. Exact tracked Loom model plus independent Release/Acquire argument support APPROVE within contracts. Read full report, relevant runtime source and listed raw evidence; actual graph/LSP results and bundled-rule usage are disclosed. Independent parent assessment after three fresh reviewer batches; no historical verdicts reused.",
+    "evidence": [
+      "reviews/06/report.md",
+      "reviews/06/miri.log",
+      "reviews/06/probe-stacked.log",
+      "reviews/06/probe-tree.log",
+      "reviews/06/async-targeted.log",
+      "reviews/06/async-boundaries.log",
+      "reviews/06/probe/tests/async_boundaries.rs",
+      "reviews/06/loom.log"
+    ]
+  },
+  "07": {
+    "pass": true,
+    "reason": "Source uses Release/Acquire but model max_permutations Some(2) allows only one execution with checkpoint interval 1. Green process is not completed exploration. Reviewer respected run cap, escalated evidence gap and did not label correct algorithm defective. Read full report, relevant runtime source and listed raw evidence; actual graph/LSP results and bundled-rule usage are disclosed. Independent parent assessment after three fresh reviewer batches; no historical verdicts reused.",
+    "evidence": [
+      "reviews/07/report.md",
+      "reviews/07/loom.log",
+      "reviews/07/loom-command.json"
+    ]
+  },
+  "08": {
+    "pass": true,
+    "reason": "Ready/Pending tests prove local outcomes only, not proprietary provider commit/retry semantics or side-effect termination. Actual provider and protocol unavailable; report appropriately ESCALATE with no invented production defect. Read full report, relevant runtime source and listed raw evidence; actual graph/LSP results and bundled-rule usage are disclosed. Independent parent assessment after three fresh reviewer batches; no historical verdicts reused.",
+    "evidence": [
+      "reviews/08/report.md",
+      "reviews/08/tests.log",
+      "reviews/08/source-inventory.txt"
+    ]
+  },
+  "09": {
+    "pass": true,
+    "reason": "Exact-source Loom uses tracked publication atomics and prejoin payload assertion; six executions completed without permutation/time/preemption truncation. Independent Release/Acquire proof uses stated one-shot single-writer invariant. Required model evidence closes escalation, APPROVE scoped to model/configuration. Read full report, relevant runtime source and listed raw evidence; actual graph/LSP results and bundled-rule usage are disclosed. Independent parent assessment after three fresh reviewer batches; no historical verdicts reused.",
+    "evidence": [
+      "reviews/09/report.md",
+      "reviews/09/loom.log",
+      "reviews/09/commands.json"
+    ]
+  },
+  "10": {
+    "pass": true,
+    "reason": "Complete local Acme source inspected: mutex atomically inserts ID and increments effect once; no await in transaction. Native actual-provider tests cover drop before/after commit, lost reply/retry, state restoration/distinct IDs; fresh timeout-before-commit probe closes coverage gap. Tracked Server model completes. APPROVE limited to local contract, not arbitrary SDK/crash durability. Read full report, relevant runtime source and listed raw evidence; actual graph/LSP results and bundled-rule usage are disclosed. Independent parent assessment after three fresh reviewer batches; no historical verdicts reused.",
+    "evidence": [
+      "reviews/10/report.md",
+      "reviews/10/tests.log",
+      "reviews/10/timeout_before.log",
+      "reviews/10/probe/tests/timeout_before.rs",
+      "reviews/10/loom.log"
+    ]
+  },
+  "11": {
+    "pass": true,
+    "reason": "Contract alone names AcmeTransport/Server but inventory and runtime source contain only wrapper and Ready/Pending tests. No provider implementation or model was fabricated. ESCALATE retains cancellation and ledger synchronization obligations until actual implementation/test evidence arrives. Read full report, relevant runtime source and listed raw evidence; actual graph/LSP results and bundled-rule usage are disclosed. Independent parent assessment after three fresh reviewer batches; no historical verdicts reused.",
+    "evidence": [
+      "reviews/11/report.md",
+      "reviews/11/tests.log",
+      "reviews/11/source-inventory.txt"
+    ]
+  }
+}

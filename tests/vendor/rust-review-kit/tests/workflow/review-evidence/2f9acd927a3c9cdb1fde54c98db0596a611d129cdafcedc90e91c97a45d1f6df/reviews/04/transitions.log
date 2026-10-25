@@ -1,0 +1,20 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling pin-project-lite v0.2.17
+   Compiling syn v3.0.9
+   Compiling tokio-macros v2.7.2
+   Compiling tokio v1.54.1
+   Compiling runtime-bridge v0.1.0 (/tmp/rust-skills-review-20261025/reviews/04/probe)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.93s
+     Running tests/transitions.rs (/tmp/rust-review-probe-target-a-04-transitions/debug/deps/transitions-a2267f7677f1df99)
+
+running 3 tests
+test cancel_before_approval_and_at_lock ... ok
+test stop_observes_destructor_and_prevents_effect ... ok
+test progress ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

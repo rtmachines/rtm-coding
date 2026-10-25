@@ -1,0 +1,17 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling pin-project-lite v0.2.17
+   Compiling syn v3.0.9
+   Compiling tokio-macros v2.7.2
+   Compiling tokio v1.54.1
+   Compiling memory-probe v0.0.0 (/tmp/rust-skills-review-20261025/reviews/06/probe)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.70s
+     Running tests/retained.rs (/tmp/rust-review-target-c-probe-06/miri/x86_64-unknown-linux-gnu/debug/build/memory-probe/6fd038f2d94b23a5/out/retained-6fd038f2d94b23a5)
+
+running 2 tests
+test arbitrary_alignment_and_short_inputs ... ok
+test retained_read_during_unregister_after_move ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.29s
+

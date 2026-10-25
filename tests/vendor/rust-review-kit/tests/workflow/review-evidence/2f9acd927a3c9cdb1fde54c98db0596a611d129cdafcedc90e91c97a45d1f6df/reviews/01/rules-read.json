@@ -1,0 +1,10 @@
+{
+  "pinned_revision": "a1e290d53d43a85421ff16dde23b5f8ec0b48539",
+  "rules": {
+    ".agents/skills/rust-skills/rules/num-overflow-explicit.md": "e472eefad4531bbacd02622af4904f3f903ed9f21761563b218cb6d41ba00cde",
+    ".agents/skills/rust-skills/rules/num-saturating-clamp.md": "9d7fbfa6cbc125f06975dccf1c3af3c38d96e125580f4a3712d0f9c0586d87ad",
+    ".agents/skills/rust-skills/rules/err-result-over-panic.md": "7a0988c06de9b9c608af8f1e73905170275e49dad57e46c356c85bfde0b92ec4",
+    ".agents/skills/rust-skills/rules/conv-fromstr-parsing.md": "3760a9495cb1d5ca3c1c68ec005ac335a29bf00ea6e9785cd02008c445f8aa24"
+  },
+  "notes": "Bundled rtmachines fork, recorded by vendored.tsv. No review edits. Index and rust-pr-review skill identical across assigned repositories by SHA256; read once and equality checked. Relevant references read: SMELLS, SPEC-PASS, RUST-LSP, REVIEWDOG; MEMORY-VALIDATION and SAFETY-PRECHECK for 04; CONCURRENCY-VALIDATION for 04/07/10."
+}

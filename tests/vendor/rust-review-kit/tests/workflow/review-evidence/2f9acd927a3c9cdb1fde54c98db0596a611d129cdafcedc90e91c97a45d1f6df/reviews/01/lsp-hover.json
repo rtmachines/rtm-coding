@@ -1,0 +1,30 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"data\":{\"contents\":{\"kind\":\"plain_text\",\"value\":\"ledger_preview::limits\\n\\npub fn parse_limit(raw: &str) -> Option<u16>\"},\"range\":{\"end\":{\"character\":18,\"line\":0},\"start\":{\"character\":7,\"line\":0}}},\"execution\":{\"progress_phase\":\"completed\"}}"
+    }
+  ],
+  "structuredContent": {
+    "data": {
+      "contents": {
+        "kind": "plain_text",
+        "value": "ledger_preview::limits\n\npub fn parse_limit(raw: &str) -> Option<u16>"
+      },
+      "range": {
+        "end": {
+          "character": 18,
+          "line": 0
+        },
+        "start": {
+          "character": 7,
+          "line": 0
+        }
+      }
+    },
+    "execution": {
+      "progress_phase": "completed"
+    }
+  },
+  "isError": false
+}

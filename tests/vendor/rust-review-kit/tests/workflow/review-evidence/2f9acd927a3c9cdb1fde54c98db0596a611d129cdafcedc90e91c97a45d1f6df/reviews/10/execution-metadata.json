@@ -1,0 +1,15 @@
+{
+  "context_command": "bash .agents/skills/rust-pr-review/scripts/context.sh origin/main",
+  "context_exit": 0,
+  "diff_command": "git diff --no-ext-diff --no-textconv origin/main --",
+  "diff_exit": 0,
+  "checks_environment": {
+    "RUSTUP_TOOLCHAIN": "stable",
+    "CARGO_NET_OFFLINE": "true",
+    "CARGO_TERM_COLOR": "never",
+    "CARGO_TARGET_DIR": "/tmp/rust-review-target-a-10"
+  },
+  "timeout_seconds": 120,
+  "source_hash_method": "SHA256 every pre-existing git ls-files -co --exclude-standard file; before and after equal",
+  "no_network_or_install": true
+}

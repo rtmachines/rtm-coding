@@ -1,0 +1,51 @@
+
+running 4 tests
+test closed_approval_preserves_queue ... FAILED
+test cancel_before_approval_preserves_queue ... FAILED
+test stop_prevents_later_effect ... FAILED
+test increment_progress ... FAILED
+
+failures:
+
+---- closed_approval_preserves_queue stdout ----
+
+thread 'closed_approval_preserves_queue' (271322) panicked at tests/async_faults.rs:31:45:
+assertion `left == right` failed
+  left: []
+ right: [7]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- cancel_before_approval_preserves_queue stdout ----
+
+thread 'cancel_before_approval_preserves_queue' (271321) panicked at tests/async_faults.rs:26:2:
+assertion `left == right` failed
+  left: [8]
+ right: [7, 8]
+
+---- stop_prevents_later_effect stdout ----
+
+thread 'stop_prevents_later_effect' (271324) panicked at tests/async_faults.rs:40:2:
+assertion `left == right` failed: effect after stop returned
+  left: 1
+ right: 0
+
+---- increment_progress stdout ----
+increment polled: first lock acquired and increment performed; nested snapshot waits for same guard
+later snapshot blocked while increment alive; after dropping increment snapshot returns 1
+
+thread 'increment_progress' (271323) panicked at tests/async_faults.rs:20:2:
+increment cannot finish while retaining its own lock
+
+
+failures:
+    cancel_before_approval_preserves_queue
+    closed_approval_preserves_queue
+    increment_progress
+    stop_prevents_later_effect
+
+test result: FAILED. 0 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+
+   Compiling runtime-bridge v0.1.0 (/tmp/rust-skills-review-20261025/probes/runtime-03)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.27s
+     Running tests/async_faults.rs (target/debug/deps/async_faults-45de41e772549cbd)
+error: test failed, to rerun pass `--test async_faults`

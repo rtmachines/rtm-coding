@@ -1,0 +1,13 @@
+{
+  "command": [
+    "cargo",
+    "+stable",
+    "test",
+    "--locked",
+    "--offline",
+    "--test",
+    "timeout_before"
+  ],
+  "exit": 0,
+  "cwd": "/tmp/rust-skills-review-20261025/reviews/10/probe"
+}

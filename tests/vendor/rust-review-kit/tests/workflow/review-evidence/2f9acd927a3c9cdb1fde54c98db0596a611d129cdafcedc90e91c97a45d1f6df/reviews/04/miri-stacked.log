@@ -1,0 +1,44 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling memory-probe v0.0.0 (/tmp/rust-skills-review-20261025/reviews/04/memory-probe)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.15s
+     Running tests/memory.rs (/tmp/rust-review-probe-target-a-04-miri-stacked/miri/x86_64-unknown-linux-gnu/debug/build/memory-probe/f415b39b0467d70e/out/memory-f415b39b0467d70e)
+
+running 2 tests
+test retained_after_move_and_during_unregister ... error: Undefined Behavior: trying to retag from <126728> for SharedReadOnly permission at alloc39984[0x0], but that tag does not exist in the borrow stack for this location
+  --> tests/memory.rs:5:63
+   |
+ 5 | fn read_retained(){let(p,n)=RETAINED.get();assert_eq!(unsafe {std::slice::from_raw_parts(p,n)}, &[1,2,3,4]);}
+   |                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this error occurs as part of retag at alloc39984[0x0..0x4]
+   |
+   = help: this indicates a potential bug in the program: it performed an invalid operation, but the Stacked Borrows rules it violated are still experimental
+   = help: see https://github.com/rust-lang/unsafe-code-guidelines/blob/master/wip/stacked-borrows.md for further information
+help: <126728> was created by a SharedReadOnly retag at offsets [0x0..0x4]
+  --> src/registration.rs:20:27
+   |
+20 |         unsafe { register(bytes.as_ptr(), bytes.len()) };
+   |                           ^^^^^^^^^^^^^^
+help: <126728> was later invalidated at offsets [0x0..0x4] by a Unique retag
+  --> src/registration.rs:21:16
+   |
+21 |         Self { bytes, unregister }
+   |                ^^^^^
+   = note: this is on thread `retained_after_`
+   = note: stack backtrace:
+           0: read_retained
+               at tests/memory.rs:5:63: 5:94
+           1: retained_after_move_and_during_unregister
+               at tests/memory.rs:9:50: 9:65
+           2: retained_after_move_and_during_unregister::{closure#0}
+               at tests/memory.rs:7:55: 7:55
+
+note: some details are omitted, run with `MIRIFLAGS=-Zmiri-backtrace=full` for a verbose backtrace
+
+error: aborting due to 1 previous error
+
+error: test failed, to rerun pass `--test memory`
+
+Caused by:
+  process didn't exit successfully: `/home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/cargo-miri runner /tmp/rust-review-probe-target-a-04-miri-stacked/miri/x86_64-unknown-linux-gnu/debug/build/memory-probe/f415b39b0467d70e/out/memory-f415b39b0467d70e` (exit status: 1)
+note: test exited abnormally; to see the full output pass --no-capture to the harness.

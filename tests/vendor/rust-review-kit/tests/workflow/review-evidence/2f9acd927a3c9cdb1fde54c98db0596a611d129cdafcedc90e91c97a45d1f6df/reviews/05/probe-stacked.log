@@ -1,0 +1,50 @@
+   Compiling memory-probe v0.0.0 (/tmp/rust-skills-review-20261025/reviews/05/probe)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.12s
+     Running unittests src/lib.rs (/tmp/rust-review-target-c-probe-05/miri/x86_64-unknown-linux-gnu/debug/build/memory-probe/c9a2948701832045/out/memory_probe-c9a2948701832045)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/retained.rs (/tmp/rust-review-target-c-probe-05/miri/x86_64-unknown-linux-gnu/debug/build/memory-probe/ff1fb61b9ad2e2ef/out/retained-ff1fb61b9ad2e2ef)
+
+running 1 test
+test retained_read_after_move ... error: Undefined Behavior: attempting a read access using <127140> at alloc39899[0x0], but that tag does not exist in the borrow stack for this location
+  --> tests/retained.rs:11:32
+   |
+11 | assert_eq!(PTR.with(|x| unsafe{x.get().read()}),17);
+   |                                ^^^^^^^^^^^^^^ this error occurs as part of an access at alloc39899[0x0..0x8]
+   |
+   = help: this indicates a potential bug in the program: it performed an invalid operation, but the Stacked Borrows rules it violated are still experimental
+   = help: see https://github.com/rust-lang/unsafe-code-guidelines/blob/master/wip/stacked-borrows.md for further information
+help: <127140> was created by a SharedReadWrite retag at offsets [0x0..0x8]
+  --> src/lib.rs:25:34
+   |
+25 |         unsafe { (api.register)((&mut *token as *mut u64).cast()) };
+   |                                  ^^^^^^^^^^^
+help: <127140> was later invalidated at offsets [0x0..0x8] by a Unique retag
+  --> src/lib.rs:26:16
+   |
+26 |         Self { token, api }
+   |                ^^^^^
+   = note: this is on thread `retained_read_a`
+   = note: stack backtrace:
+           0: retained_read_after_move::{closure#0}
+               at tests/retained.rs:11:32: 11:46
+           1: std::thread::LocalKey::<std::cell::Cell<*const u64>>::try_with::<{closure@tests/retained.rs:11:21: 11:24}, u64>
+               at /home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/thread/local.rs:470:12: 470:27
+           2: std::thread::LocalKey::<std::cell::Cell<*const u64>>::with::<{closure@tests/retained.rs:11:21: 11:24}, u64>
+               at /home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/thread/local.rs:434:15: 434:31
+           3: retained_read_after_move
+               at tests/retained.rs:11:12: 11:48
+           4: retained_read_after_move::{closure#0}
+               at tests/retained.rs:6:38: 6:38
+
+note: some details are omitted, run with `MIRIFLAGS=-Zmiri-backtrace=full` for a verbose backtrace
+
+error: aborting due to 1 previous error
+
+error: test failed, to rerun pass `--test retained`
+
+Caused by:
+  process didn't exit successfully: `/home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/cargo-miri runner /tmp/rust-review-target-c-probe-05/miri/x86_64-unknown-linux-gnu/debug/build/memory-probe/ff1fb61b9ad2e2ef/out/retained-ff1fb61b9ad2e2ef --nocapture` (exit status: 1)

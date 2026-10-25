@@ -1,0 +1,52 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.00s
+     Running unittests src/lib.rs (/tmp/rust-review-build-b/probes/miri/x86_64-unknown-linux-gnu/debug/build/memory-probe/60e9a77f15144ae3/out/memory_probe-60e9a77f15144ae3)
+warning: field `len` is never read
+ --> src/registration.rs:3:5
+  |
+2 | pub struct Registration {
+  |            ------------ field in this struct
+3 |     len: usize,
+  |     ^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: methods `len` and `is_empty` are never used
+  --> src/registration.rs:26:12
+   |
+ 6 | impl Registration {
+   | ----------------- methods in this implementation
+...
+26 |     pub fn len(&self) -> usize {
+   |            ^^^
+...
+29 |     pub fn is_empty(&self) -> bool {
+   |            ^^^^^^^^
+
+
+running 1 test
+test probes::unaligned_word ... error: Undefined Behavior: accessing memory based on pointer with alignment 1, but alignment 4 is required
+ --> src/bytes.rs:7:19
+  |
+7 |     Some(unsafe { bytes.as_ptr().cast::<u32>().read() })
+  |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Undefined Behavior occurred here
+  |
+  = help: this indicates a bug in the program: it performed an invalid operation, and caused Undefined Behavior
+  = help: see https://doc.rust-lang.org/nightly/reference/behavior-considered-undefined.html for further information
+  = note: this is on thread `probes::unalign`
+  = note: stack backtrace:
+          0: bytes::read_word
+              at src/bytes.rs:7:19: 7:54
+          1: probes::unaligned_word
+              at src/lib.rs:5:90: 5:118
+          2: probes::unaligned_word::{closure#0}
+              at src/lib.rs:5:29: 5:29
+
+note: some details are omitted, run with `MIRIFLAGS=-Zmiri-backtrace=full` for a verbose backtrace
+
+error: aborting due to 1 previous error; 2 warnings emitted
+
+error: test failed, to rerun pass `--lib`
+
+Caused by:
+  process didn't exit successfully: `/home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/cargo-miri runner /tmp/rust-review-build-b/probes/miri/x86_64-unknown-linux-gnu/debug/build/memory-probe/60e9a77f15144ae3/out/memory_probe-60e9a77f15144ae3 unaligned_word` (exit status: 1)
+note: test exited abnormally; to see the full output pass --no-capture to the harness.

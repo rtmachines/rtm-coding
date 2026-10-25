@@ -1,0 +1,80 @@
+# Rust review rules
+
+Read by the Codex `rust-pr-review` skill. Adapt the project policy below before
+using this template as a merge gate. Existing repository contracts take precedence.
+
+## Severity
+
+| Level | Meaning |
+|---|---|
+| P0 | Proven critical defect with broad impact: memory unsoundness, data destruction or secret disclosure |
+| P1 | Reachable regression, broken contract, deadlock or other defect that must be fixed before merge |
+| P2 | Concrete non-blocking correctness, maintainability or measured performance issue |
+| P3 | Optional actionable improvement; omit taste-only comments |
+
+Determine priority from reachability, impact and preconditions. A panic, unsafe block,
+clone, lint violation or failing command does not automatically establish P0/P1.
+Distinguish environment failures and pre-existing failures from defects in the diff.
+Each finding needs an exact location, trigger, impact and practical fix. For a deletion,
+identify its base-side location explicitly; never invent a current line for missing code.
+
+## Project policy (configure)
+
+- Use the actual edition, MSRV, toolchain, lint levels and error conventions in this repo.
+- Review public API compatibility against the project's supported release baseline.
+- Check unsafe invariants, aliasing/lifetimes, ownership across FFI and Send/Sync claims.
+- Check async blocking, lock order, cancellation, bounded resource use and error paths.
+- Require tests for meaningful behavior changes where they protect against regressions.
+- Default checks: fmt, clippy, tests (including doctests), cargo-deny with deny.toml.
+- Default feature configuration: --all-features. Replace with the supported feature
+  matrix for mutually exclusive features; align local checks and CI.
+- Configure deny.toml using the project's license, advisory and source policy.
+- Only mark deny N/A if project policy explicitly makes it inapplicable; missing
+  cargo-deny or deny.toml means NOT RUN. If required evidence is absent, INCOMPLETE.
+- Spec PASS requires user requirements or PR acceptance criteria; commit claims alone
+  yield PARTIAL. No findings does not mean all requirements were verified.
+- For affected unsafe/FFI boundaries, targeted Miri tests and a separate aliasing/
+  provenance argument are required before approval. Use isolated exact-source probes
+  when existing tests do not cover the path and execution is authorized. Unknown FFI
+  guarantees, unavailable targeted execution or conflicting alias models require ESCALATE.
+  General tests passing under Miri are not a substitute. Follow the skill’s
+  references/MEMORY-VALIDATION.md and report the Memory safety section.
+- For affected async behavior, require targeted progress/deadlock, cancellation and
+  task-termination tests as applicable. For changed custom synchronization protocols,
+  require Loom models and an independent invariant/ordering argument. Missing relevant
+  evidence or incomplete models require ESCALATE. Follow references/CONCURRENCY-VALIDATION.md
+  and report the Concurrency section; green ordinary tests are not a substitute.
+- Semver-checks remain conditional; document applicability and skipped checks.
+
+The skill provides smell, safety and spec references under
+`.agents/skills/rust-pr-review/references/`. They inform judgment and do not override
+verified source, repository policy or explicit user instructions.
+
+## Project policy (configure)
+
+- Use the actual edition, MSRV, toolchain, lint levels and error conventions in this repo.
+- Review public API compatibility against the project's supported release baseline.
+- Check unsafe invariants, aliasing/lifetimes, ownership across FFI and Send/Sync claims.
+- Check async blocking, lock order, cancellation, bounded resource use and error paths.
+- Require tests for meaningful behavior changes where they protect against regressions.
+- Default checks: fmt, clippy, tests (including doctests), cargo-deny with deny.toml.
+- Default feature configuration: --all-features. Replace with the supported feature
+  matrix for mutually exclusive features; align local checks and CI.
+- Configure deny.toml using the project's license, advisory and source policy.
+- Only mark deny N/A if project policy explicitly makes it inapplicable; missing
+  cargo-deny or deny.toml means NOT RUN. If required evidence is absent, INCOMPLETE.
+- Spec PASS requires user requirements or PR acceptance criteria; commit claims alone
+  yield PARTIAL. No findings does not mean all requirements were verified.
+- Miri and semver-checks are conditional; document applicability and skipped checks.
+
+The skill provides smell, safety and spec references under
+`.agents/skills/rust-pr-review/references/`. They inform judgment and do not override
+verified source, repository policy or explicit user instructions.
+
+## Fixture project policy
+
+This is an unpublished crate with no dependencies. Required checks: fmt, clippy,
+unit tests, doctests and cargo-deny. Requirements are in REQUIREMENTS.md.
+No Miri or semver-checks gate applies (no unsafe code; publish=false).
+
+Run diagnostics offline using the existing toolchains and advisory database. Record this freshness limitation. Use equivalent offline gate commands if necessary. Do not install dependencies or access external services.

@@ -1,0 +1,9 @@
+# Runtime bridge
+Add the public adapters with these contracts:
+- read_word accepts arbitrary alignment and returns None for fewer than four bytes.
+- Registration retains read-only buffer ownership until synchronous unregister completes.
+- Service increments must complete and allow later snapshots without deadlock.
+- approved_pop consumes nothing if cancelled before approval is received.
+- stop_worker must return only after its owned worker cannot cause further side effects.
+- Published is single-writer, one-shot: any observed Some must equal the published value.
+Keep ordinary checks runnable without executing undefined behavior or unbounded waits.
