@@ -1,0 +1,52 @@
+
+running 1 test
+test ffi_storage_lives_until_unregister ...    Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling pin-project-lite v0.2.17
+   Compiling syn v3.0.9
+   Compiling tokio-macros v2.7.2
+   Compiling tokio v1.54.1
+   Compiling runtime-bridge v0.1.0 (/tmp/rust-review-lsp-20261025/probes/narrow-alias)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.86s
+     Running tests/memory.rs (target/miri/x86_64-unknown-linux-gnu/debug/build/runtime-bridge/9e5cfe160a495fa0/out/memory-9e5cfe160a495fa0)
+error: Undefined Behavior: attempting a read access using <128327> at alloc40691[0x0], but that tag does not exist in the borrow stack for this location
+  --> tests/memory.rs:17:44
+   |
+17 |     let value = RETAINED.with(|p| unsafe { p.get().read() });
+   |                                            ^^^^^^^^^^^^^^ this error occurs as part of an access at alloc40691[0x0..0x1]
+   |
+   = help: this indicates a potential bug in the program: it performed an invalid operation, but the Stacked Borrows rules it violated are still experimental
+   = help: see https://github.com/rust-lang/unsafe-code-guidelines/blob/master/wip/stacked-borrows.md for further information
+help: <128327> was created by a SharedReadOnly retag at offsets [0x0..0x1]
+  --> src/registration.rs:20:27
+   |
+20 |         unsafe { register(bytes.as_ptr(), bytes.len()) };
+   |                           ^^^^^^^^^^^^^^
+help: <128327> was later invalidated at offsets [0x0..0x1] by a Unique retag
+  --> src/registration.rs:21:16
+   |
+21 |         Self { bytes, unregister }
+   |                ^^^^^
+   = note: this is on thread `ffi_storage_liv`
+   = note: stack backtrace:
+           0: ffi_storage_lives_until_unregister::{closure#0}
+               at tests/memory.rs:17:44: 17:58
+           1: std::thread::LocalKey::<std::cell::Cell<*const u8>>::try_with::<{closure@tests/memory.rs:17:31: 17:34}, u8>
+               at /home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/thread/local.rs:470:12: 470:27
+           2: std::thread::LocalKey::<std::cell::Cell<*const u8>>::with::<{closure@tests/memory.rs:17:31: 17:34}, u8>
+               at /home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/thread/local.rs:434:15: 434:31
+           3: ffi_storage_lives_until_unregister
+               at tests/memory.rs:17:17: 17:61
+           4: ffi_storage_lives_until_unregister::{closure#0}
+               at tests/memory.rs:12:40: 12:40
+
+note: some details are omitted, run with `MIRIFLAGS=-Zmiri-backtrace=full` for a verbose backtrace
+
+error: aborting due to 1 previous error
+
+error: test failed, to rerun pass `--test memory`
+
+Caused by:
+  process didn't exit successfully: `/home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/cargo-miri runner /tmp/rust-review-lsp-20261025/probes/narrow-alias/target/miri/x86_64-unknown-linux-gnu/debug/build/runtime-bridge/9e5cfe160a495fa0/out/memory-9e5cfe160a495fa0 ffi_storage_lives_until_unregister` (exit status: 1)
+note: test exited abnormally; to see the full output pass --no-capture to the harness.

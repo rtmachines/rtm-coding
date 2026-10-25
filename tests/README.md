@@ -13,8 +13,13 @@ Workflow uruchamia się dla każdego PR, push do main oraz ręcznie. Brak filtr�
 Paczka dowodów z 25 października 2026 dla fingerprintu
 `be8a1dc3533135a809fa926673ae8aa96771482325e7cff4340e69d5ea42b940`
 pozostaje historyczna: dodanie kontroli rust-lsp zmieniło workflow i schemat raportu.
-Bramka wymaga teraz nowych review; dawnych raportów nie uzupełniono wstecznie
-o deklaracje użycia LSP. Testy kontraktu raportu symulują niedostępność API, błędy
+Bieżąca paczka `07f73acb0514b733a6562cf129c4fec7e7c6b2a4422d3a9d8f91cc32d645f20e`
+zawiera 11 nowych review po zmianie LSP oraz 396 plików dowodowych. Lokalny przebieg:
+49/49 kontroli i 11/11 akceptacji; bramka CLI przyjęła paczkę na osobno przygotowanych
+identycznych wejściach. Trzej świezi reviewerzy wykonali review w partiach; wszystkie
+raporty zapisują faktyczne użycie LSP. Nie jest to wynik zdalnego GitHub Actions.
+Dawnych raportów nie uzupełniono wstecznie o deklaracje użycia LSP.
+Testy kontraktu raportu symulują niedostępność API, błędy
 ładowania i timeout; nie są wykonaniem review przez model ani awarią żywego serwera.
 CI ponownie wykonuje automatykę; dowodów z paczki nie wykonuje jako kodu.
 Opcjonalne skille wewnątrz zestawu są danymi dla testów instalatora.

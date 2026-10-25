@@ -1,0 +1,3 @@
+$ /home/rtm/.local/bin/reviewdog -f=clippy -reporter=local -filter-mode=nofilter -fail-level=warning < /tmp/rust-review-lsp-20261025/reviews/01/clippy.log
+
+EXIT=0

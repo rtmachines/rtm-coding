@@ -1,0 +1,28 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.01s
+     Running tests/memory.rs (/tmp/rust-review-lsp-20261025/reviews/03/target/miri/x86_64-unknown-linux-gnu/debug/build/runtime-bridge/9e5cfe160a495fa0/out/memory-9e5cfe160a495fa0)
+
+running 1 test
+test registration_retained ... error: Undefined Behavior: constructing invalid value of type &u8: encountered a dangling reference (use-after-free)
+ --> tests/memory.rs:7:145
+  |
+7 | ...egister)};let moved=Box::new(r);unsafe{assert_eq!(*PTR,7);}drop(moved);}
+  |                                           ^^^^^^^^^^^^^^^^^^ Undefined Behavior occurred here
+  |
+  = help: this indicates a bug in the program: it performed an invalid operation, and caused Undefined Behavior
+  = help: see https://doc.rust-lang.org/nightly/reference/behavior-considered-undefined.html for further information
+  = note: this is on thread `registration_re`
+  = note: stack backtrace:
+          0: registration_retained
+              at /home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/macros/mod.rs:45:16: 45:22
+          1: registration_retained::{closure#0}
+              at tests/memory.rs:7:35: 7:35
+
+note: some details are omitted, run with `MIRIFLAGS=-Zmiri-backtrace=full` for a verbose backtrace
+
+error: aborting due to 1 previous error
+
+error: test failed, to rerun pass `--test memory`
+
+Caused by:
+  process didn't exit successfully: `/home/rtm/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/cargo-miri runner /tmp/rust-review-lsp-20261025/reviews/03/target/miri/x86_64-unknown-linux-gnu/debug/build/runtime-bridge/9e5cfe160a495fa0/out/memory-9e5cfe160a495fa0 registration_retained --test-threads=1` (exit status: 1)
+note: test exited abnormally; to see the full output pass --no-capture to the harness.

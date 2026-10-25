@@ -1,0 +1,31 @@
+{
+  "miri-memory": [
+    "cargo",
+    "+nightly",
+    "miri",
+    "test",
+    "--locked",
+    "--test",
+    "memory",
+    "--test",
+    "extended_memory"
+  ],
+  "async-targeted": [
+    "cargo",
+    "test",
+    "--locked",
+    "--test",
+    "async_regressions",
+    "--test",
+    "extended_async"
+  ],
+  "loom": [
+    "cargo",
+    "test",
+    "--locked",
+    "--features",
+    "model",
+    "--test",
+    "publication"
+  ]
+}
