@@ -1,0 +1,26 @@
+
+<!-- rust-review-kit:begin -->
+## Rust review workflow
+
+@REVIEW.md
+
+- Use `/rust-pr-review [base-ref] [request text]` for Rust review and pass the
+  requested scope and acceptance criteria to the `rust-reviewer` subagent.
+- The local `.claude/skills/rust-skills/` is the pinned general knowledge source.
+  The review workflow decides the verdict; general guidance does not waive proof.
+- `APPROVE` requires complete evidence. Missing ordinary checks mean `INCOMPLETE`;
+  unresolved unsafe/FFI, cancellation or synchronization risks mean `ESCALATE`.
+  Return findings and missing evidence without entering an automatic repair loop.
+- Before running Cargo, Miri, Loom or other probes, establish the authorized scope.
+  These tools execute repository code (including build scripts/procedural macros).
+  Hooks guide the workflow; they are not an execution sandbox. Use an isolated copy
+  for any explicitly authorized source-modifying probe.
+- The subagent Stop hook validates its report. The project hook runs gates before
+  `git commit`; there is no global Stop gate that forces repairs during review.
+  Never hide failed gates through lint suppressions, deleted tests or skipped checks.
+- Check actual rust-analyzer/LSP availability and report whether semantic operations
+  were used. The installer does not enable plugins or install tools by default.
+- Specialist reviews/plugins are optional. `ESCALATE` records the required evidence
+  or owner decision; it does not authorize installing tools, running third-party
+  agents, publishing PR comments or sending code to external services.
+<!-- rust-review-kit:end -->

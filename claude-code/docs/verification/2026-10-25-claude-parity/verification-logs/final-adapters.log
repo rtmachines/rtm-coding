@@ -1,0 +1,20 @@
+...................................
+----------------------------------------------------------------------
+Ran 35 tests in 2.662s
+
+OK
+test_default_permissions_and_native_hooks (__main__.InstallerTests.test_default_permissions_and_native_hooks) ... ok
+test_force_preserves_custom_files_and_settings (__main__.InstallerTests.test_force_preserves_custom_files_and_settings) ... ok
+test_force_updates_only_marked_claude_block (__main__.InstallerTests.test_force_updates_only_marked_claude_block) ... ok
+test_idempotent_and_no_force_keeps_owned_file (__main__.InstallerTests.test_idempotent_and_no_force_keeps_owned_file) ... ok
+test_invalid_settings_preserved (__main__.InstallerTests.test_invalid_settings_preserved) ... ok
+test_legacy_global_hook_migration_preserves_custom_stop (__main__.InstallerTests.test_legacy_global_hook_migration_preserves_custom_stop) ... ok
+test_malformed_claude_markers_preserve_user_prose (__main__.InstallerTests.test_malformed_claude_markers_preserve_user_prose) ... ok
+test_offline_pinned_knowledge_and_licenses (__main__.InstallerTests.test_offline_pinned_knowledge_and_licenses) ... ok
+test_plugins_only_when_explicit (__main__.InstallerTests.test_plugins_only_when_explicit) ... ok
+test_symlink_destinations_rejected_without_outside_writes (__main__.InstallerTests.test_symlink_destinations_rejected_without_outside_writes) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 14.759s
+
+OK

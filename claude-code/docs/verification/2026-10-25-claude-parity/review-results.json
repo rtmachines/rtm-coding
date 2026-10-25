@@ -1,0 +1,128 @@
+[
+  {
+    "id": "01",
+    "name": "Sześć błędów logiki, także dirty i untracked",
+    "status": "PASS",
+    "verdict": "REQUEST_CHANGES",
+    "validator_exit": 0,
+    "unchanged": true,
+    "provenance_errors": [],
+    "manual_detection_check": [
+      "can_read",
+      "debit",
+      "preview",
+      "token_usable",
+      "fee",
+      "parse_limit"
+    ]
+  },
+  {
+    "id": "02",
+    "name": "Poprawna kontrola logiki",
+    "status": "PASS",
+    "verdict": "APPROVE",
+    "validator_exit": 0,
+    "unchanged": true,
+    "provenance_errors": [],
+    "manual_detection_check": []
+  },
+  {
+    "id": "03",
+    "name": "Unsafe/FFI, deadlock, anulowanie, shutdown, atomiki",
+    "status": "PASS",
+    "verdict": "REQUEST_CHANGES",
+    "validator_exit": 0,
+    "unchanged": true,
+    "provenance_errors": [],
+    "manual_detection_check": [
+      "read_word",
+      "Registration",
+      "increment_and_snapshot",
+      "approved_pop",
+      "stop_worker",
+      "Published"
+    ]
+  },
+  {
+    "id": "04",
+    "name": "Przeoczony wcześniej problem aliasowania Box",
+    "status": "PASS",
+    "verdict": "REQUEST_CHANGES",
+    "validator_exit": 0,
+    "unchanged": true,
+    "provenance_errors": [],
+    "manual_detection_check": [
+      "Registration"
+    ]
+  },
+  {
+    "id": "05",
+    "name": "Brak kontraktu quiescence dostawcy FFI",
+    "status": "PASS",
+    "verdict": "ESCALATE",
+    "validator_exit": 0,
+    "unchanged": true,
+    "provenance_errors": [],
+    "manual_detection_check": []
+  },
+  {
+    "id": "06",
+    "name": "Poprawna kontrola pamięci i współbieżności",
+    "status": "PASS",
+    "verdict": "APPROVE",
+    "validator_exit": 0,
+    "unchanged": true,
+    "provenance_errors": [],
+    "manual_detection_check": []
+  },
+  {
+    "id": "07",
+    "name": "Nieukończona eksploracja Loom",
+    "status": "PASS",
+    "verdict": "ESCALATE",
+    "validator_exit": 0,
+    "unchanged": true,
+    "provenance_errors": [],
+    "manual_detection_check": []
+  },
+  {
+    "id": "08",
+    "name": "Nierozstrzygnięte anulowanie u dostawcy",
+    "status": "PASS",
+    "verdict": "ESCALATE",
+    "validator_exit": 0,
+    "unchanged": true,
+    "provenance_errors": [],
+    "manual_detection_check": []
+  },
+  {
+    "id": "09",
+    "name": "Zamknięcie po ukończeniu modelu",
+    "status": "PASS",
+    "verdict": "APPROVE",
+    "validator_exit": 0,
+    "unchanged": true,
+    "provenance_errors": [],
+    "manual_detection_check": []
+  },
+  {
+    "id": "10",
+    "name": "Zamknięcie po testach pełnego dostawcy",
+    "status": "PASS",
+    "verdict": "APPROVE",
+    "validator_exit": 0,
+    "unchanged": true,
+    "provenance_errors": [],
+    "manual_detection_check": []
+  },
+  {
+    "id": "11",
+    "name": "Sam kontrakt nie zamyka eskalacji",
+    "status": "PASS",
+    "verdict": "ESCALATE",
+    "validator_exit": 0,
+    "unchanged": true,
+    "provenance_errors": [],
+    "manual_detection_check": []
+  }
+]

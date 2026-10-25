@@ -23,7 +23,7 @@ jobs:
   automatic:
     name: workflow-regressions / automatic
     runs-on: ubuntu-24.04
-    timeout-minutes: 35
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
         with:
@@ -41,6 +41,24 @@ jobs:
         run: python tests/workflow/ci/test_ci.py
       - name: Install pinned tools and warm offline dependencies
         run: bash tests/workflow/ci/bootstrap.sh
+      - name: Claude Code adapters and evidence guards
+        working-directory: claude-code
+        run: |
+          bash tests/test-claude.sh
+          python tests/test-claude-hooks.py
+          bash tests/test-claude-install.sh
+          python tests/claude/test_runner.py
+      - name: Prepare exact Claude review inputs
+        working-directory: claude-code
+        run: python tests/run-claude-regressions.py "$RUNNER_TEMP/claude-workflow-run" --phase prepare
+      - name: Claude automatic regression controls only
+        working-directory: claude-code
+        run: python tests/run-claude-regressions.py "$RUNNER_TEMP/claude-workflow-run" --phase diagnostics
+      - name: Claude evidence acceptance and rejection regressions
+        working-directory: .
+        env:
+          CLAUDE_EVIDENCE_RUN: ${{ runner.temp }}/claude-workflow-run
+        run: python tests/test_claude_evidence.py
       - name: Prepare exact review inputs
         run: python tests/run-workflow-regressions.py "$RUNNER_TEMP/workflow-run" --phase prepare
       - name: Automatic regression controls only
@@ -56,6 +74,20 @@ jobs:
         with:
           name: workflow-regression-inputs
           path: ${{ runner.temp }}/artifacts/run.tar.gz
+          if-no-files-found: error
+          retention-days: 14
+      - name: Preserve current Claude inputs and diagnostics
+        if: always()
+        working-directory: claude-code
+        run: |
+          if [[ -d "$RUNNER_TEMP/claude-workflow-run" ]]; then
+            python tests/workflow/ci/manage.py pack "$RUNNER_TEMP/claude-workflow-run" --destination "$RUNNER_TEMP/claude-artifacts/run.tar.gz"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: claude-workflow-regression-inputs
+          path: ${{ runner.temp }}/claude-artifacts/run.tar.gz
           if-no-files-found: error
           retention-days: 14
       - name: Explain automatic result
@@ -98,6 +130,22 @@ jobs:
           PY
       - name: Require fresh reports and semantic evidence for this workflow
         run: python tests/workflow/ci/manage.py gate "$RUNNER_TEMP/review-gate/run"
+      - uses: actions/download-artifact@v4
+        with:
+          name: claude-workflow-regression-inputs
+          path: ${{ runner.temp }}/claude-input-artifact
+      - name: Restore current Claude inputs without executing evidence
+        working-directory: .
+        run: |
+          python - <<'PY'
+          import os, pathlib, tarfile
+          temp=pathlib.Path(os.environ['RUNNER_TEMP'])
+          with tarfile.open(temp/'claude-input-artifact/run.tar.gz') as archive:
+              archive.extractall(temp/'claude-review-gate', filter='data')
+          PY
+      - name: Require native Claude reports for the exact current inputs
+        working-directory: .
+        run: python tests/check_claude_evidence.py "$RUNNER_TEMP/claude-review-gate/run"
       - name: Publish review verdict, including missing evidence
         if: always()
         run: |

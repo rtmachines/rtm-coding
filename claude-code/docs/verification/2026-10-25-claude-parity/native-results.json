@@ -1,0 +1,79 @@
+[
+  {
+    "case": "02",
+    "exit": 0,
+    "record_exit": 0,
+    "seconds": 59.94,
+    "verdict": "## Verdict: APPROVE"
+  },
+  {
+    "case": "03",
+    "exit": 0,
+    "record_exit": 0,
+    "seconds": 125.97,
+    "verdict": "## Verdict: REQUEST_CHANGES"
+  },
+  {
+    "case": "04",
+    "exit": 0,
+    "record_exit": 0,
+    "seconds": 147.33,
+    "verdict": "## Verdict: REQUEST_CHANGES"
+  },
+  {
+    "case": "10",
+    "exit": 0,
+    "record_exit": 0,
+    "seconds": 92.59,
+    "verdict": "## Verdict: APPROVE"
+  },
+  {
+    "case": "07",
+    "exit": 0,
+    "record_exit": 0,
+    "seconds": 57.44,
+    "verdict": "## Verdict: ESCALATE"
+  },
+  {
+    "case": "08",
+    "exit": 0,
+    "record_exit": 0,
+    "seconds": 69.89,
+    "verdict": "## Verdict: ESCALATE"
+  },
+  {
+    "case": "01",
+    "exit": 0,
+    "record_exit": 0,
+    "seconds": 71.16,
+    "verdict": "## Verdict: REQUEST_CHANGES"
+  },
+  {
+    "case": "05",
+    "exit": 0,
+    "record_exit": 0,
+    "seconds": 91.35,
+    "verdict": "## Verdict: ESCALATE"
+  },
+  {
+    "case": "09",
+    "exit": 0,
+    "record_exit": 0,
+    "seconds": 77.36,
+    "verdict": "## Verdict: APPROVE"
+  },
+  {
+    "case": "06",
+    "exit": 0,
+    "record_exit": 0,
+    "seconds": 102.53,
+    "verdict": "## Verdict: APPROVE"
+  },
+  {
+    "case": "11",
+    "exit": 0,
+    "record_exit": 0,
+    "seconds": 83.5,
+    "verdict": "## Verdict: ESCALATE"
+  }
+]

@@ -1,0 +1,13 @@
+[
+ {"id":"01","name":"Sześć błędów logiki, także dirty i untracked","verdicts":["REQUEST_CHANGES"],"archive":"2026-10-24/example-repo.tar.gz","member":"repo","symbols":["can_read","debit","preview","token_usable","fee","parse_limit"]},
+ {"id":"02","name":"Poprawna kontrola logiki","verdicts":["APPROVE"],"archive":"2026-10-24/example-repo.tar.gz","member":"repo"},
+ {"id":"03","name":"Unsafe/FFI, deadlock, anulowanie, shutdown, atomiki","verdicts":["REQUEST_CHANGES"],"archive":"2026-10-24-advanced/example-repositories.tar.gz","member":"case-a","symbols":["read_word","Registration","increment_and_snapshot","approved_pop","stop_worker","Published"]},
+ {"id":"04","name":"Przeoczony wcześniej problem aliasowania Box","verdicts":["REQUEST_CHANGES","ESCALATE"],"archive":"2026-10-24-advanced/example-repositories.tar.gz","member":"case-b","symbols":["Registration"]},
+ {"id":"05","name":"Brak kontraktu quiescence dostawcy FFI","verdicts":["ESCALATE"],"archive":"2026-10-24-advanced/example-repositories.tar.gz","member":"case-c"},
+ {"id":"06","name":"Poprawna kontrola pamięci i współbieżności","verdicts":["APPROVE"],"archive":"2026-10-24-advanced/example-repositories.tar.gz","member":"case-d"},
+ {"id":"07","name":"Nieukończona eksploracja Loom","verdicts":["ESCALATE"],"archive":"2026-10-24-escalation/reviewed-repositories.tar.gz","member":"r1"},
+ {"id":"08","name":"Nierozstrzygnięte anulowanie u dostawcy","verdicts":["ESCALATE"],"archive":"2026-10-24-escalation/reviewed-repositories.tar.gz","member":"r2"},
+ {"id":"09","name":"Zamknięcie po ukończeniu modelu","verdicts":["APPROVE"],"archive":"2026-10-24-closure/reviewed-repositories.tar.gz","member":"r1"},
+ {"id":"10","name":"Zamknięcie po testach pełnego dostawcy","verdicts":["APPROVE"],"archive":"2026-10-24-closure/reviewed-repositories.tar.gz","member":"r2"},
+ {"id":"11","name":"Sam kontrakt nie zamyka eskalacji","verdicts":["ESCALATE"],"archive":"2026-10-24-closure/reviewed-repositories.tar.gz","member":"r3"}
+]

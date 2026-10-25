@@ -1,0 +1,26 @@
+name: rust-gates
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Respect rust-toolchain.toml / rust-toolchain when present.
+      - name: Prepare toolchain
+        shell: bash
+        run: |
+          if [[ ! -f rust-toolchain.toml && ! -f rust-toolchain ]]; then
+            rustup default stable
+          fi
+          rustup component add rustfmt clippy
+      - uses: Swatinem/rust-cache@v2
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-nextest,cargo-deny
+      - name: Rust checks (same entry point as local review)
+        run: bash .agents/skills/rust-pr-review/scripts/gates.sh

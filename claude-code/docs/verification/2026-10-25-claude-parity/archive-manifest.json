@@ -1,0 +1,8 @@
+{
+  "archive": "claude-review-evidence.tar.gz",
+  "sha256": "b2dea1c5353b76134e7291b91047814ac72a0935482e60c13f15ad8e2a24a9cb",
+  "bytes": 15677157,
+  "suite": "accbf87cfed35bfbb1c90b2d2855bf65c8bd9748506b490e67b3d164081c2a3c",
+  "skipped_absolute_links": [],
+  "note": "Cargo target directories and graph/Python caches excluded; sources, Git metadata, native reports and logs retained."
+}

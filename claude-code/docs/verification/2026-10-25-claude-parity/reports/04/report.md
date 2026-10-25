@@ -1,0 +1,54 @@
+## Verdict: REQUEST_CHANGES
+`Registration` is unsound under Miri. Both Stacked Borrows and Tree Borrows flag a foreign read through the pointer passed to `register` while the `Registration` owns the `Box<[u8]>`. This breaks the "retains read-only buffer ownership until unregister" contract (P1). The ordinary gates pass, but they never run the unsafe boundary. The repository also has no tests for most required scenarios (P2). The other adapters passed my isolated probes.
+
+## Tooling
+- rust-lsp: UNAVAILABLE (no native LSP tool or rust-lsp/MCP integration is exposed in this session; the environment intentionally exposes none)
+- lsp-used: NO (no semantic calls executed)
+- lsp-evidence: Tool discovery found only Read, Grep, Glob and Bash. There are no code-review-graph tools, so graph-first narrowing was impossible. I did not install or set up anything.
+- lsp-limitations: I read all 5 changed source files (125 lines) in full and used compiler, Clippy and Miri output instead. Type inference and macro expansion were not verified by LSP. The graph limitation was compensated by the small scope: `git diff origin/main` of `src/`, `Cargo.toml` and `Cargo.lock` (untracked files: none).
+- knowledge: local rust-skills (`1.5.1+local.1`, based on upstream `fd2a861a`, per its SKILL.md). Rules read: `unsafe-miri-ci`, `test-loom-concurrency`, `async-cancel-safety`. I also read the references MEMORY-VALIDATION, CONCURRENCY-VALIDATION and RUST-LSP, plus SKILL.md and REVIEW.md. I did not read SAFETY-PRECHECK, SMELLS or SPEC-PASS; the Spec section is mapped directly against REQUIREMENTS.md.
+
+## Gates
+Gates were run on an exact-source copy at `reviews/04/src-copy` with `CARGO_TARGET_DIR` outside the reviewed tree. `RUST_GATE_FEATURES=''` (default features) and `CARGO_NET_OFFLINE=true` were set. `gates.sh` exited 0; see `gates.status`, `gates.out` and `gates.log`.
+- fmt: PASS (`cargo fmt --all -- --check`, exit 0)
+- clippy: PASS (`--workspace --all-targets --locked -D warnings`, exit 0, no diagnostics)
+- tests: PASS (nextest, 2 run, 2 passed: `service::tests::snapshot_initial`, `service::tests::approved_delivery`)
+- doctests: PASS (0 tests run; nothing was covered)
+- deny: PASS (`cargo deny --locked --offline check` exit 0: advisories ok, bans ok, licenses ok, sources ok; one warning for the unused BSD-3-Clause allowance). Freshness limitation: the offline advisory database was not refreshed, so advisories are only as new as the local copy. The first `gates.sh` run did not use `--offline`; I re-ran it with `--offline`.
+- model feature: `cargo build --locked --offline --features model` PASS (loom 0.7.2 resolved from the local registry cache).
+
+## Memory safety
+- memory-scope: REQUIRED (`src/registration.rs` unsafe FFI `Registration::new` and `Drop`; `src/bytes.rs` `read_word` is safe code with no unsafe)
+- miri: FAIL (probe `reg_drop_reads_buffer` hits UB under both models; `word_unaligned` passes)
+- aliasing: FAIL (see aliasing-evidence)
+- memory-evidence: Probes are in `reviews/04/src-copy/tests/mem.rs` (hash in `probe.sha256`). Source hashes are in `source.sha256`. The probe was run only under Miri, never natively: `cargo +nightly miri test --locked --offline --test mem` (nightly miri 0.1.0 2026-10-23). Stacked Borrows (`miri.log`): `reg_drop_reads_buffer` errors with "Undefined Behavior: attempting a read access using <126204> ... tag does not exist in the borrow stack". The tag was created by a SharedReadOnly retag at `registration.rs:20` (`bytes.as_ptr()`) and invalidated by a Unique retag at `registration.rs:21` (`Self { bytes, .. }`). Tree Borrows (`MIRIFLAGS=-Zmiri-tree-borrows`, `miri-tb.log`): the foreign read in `unregister` makes the Box tag Reserved (conflicted), and the later `Box` drop gives "deallocation through <tag> is forbidden". `word_unaligned` passes under Miri (`miri-word.log`), covering an unaligned slice, a 3-byte slice and an empty slice. Fix viability: an isolated variant (`fixprobe`, `miri-fix.log`) stores `NonNull<[u8]>` from `Box::leak`, passes that pointer to `register`, and rebuilds the Box in `Drop` after `unregister`. It passes under both Stacked and Tree Borrows.
+- aliasing-evidence: `Registration::new` creates the raw pointer with `bytes.as_ptr()`, a shared reborrow of the Box. It then moves the `Box<[u8]>` into `Self`, and the field is later dropped as a `Box` that asserts unique ownership. The foreign consumer's reads through the earlier raw pointer, whether during the registration or inside `unregister`, therefore conflict with the Box's uniqueness in both models. The documented contract allows exactly those reads, so the unsafe contract does not make the code sound. Closure criteria: derive the pointer from `Box::into_raw`/`leak` and keep a raw `NonNull`, or use `ManuallyDrop`. Free the allocation only after `unregister` returns. Add Miri tests with a foreign reader in both models. Other open questions are owned by the foreign contract: `register` must not unwind, and `new` is not exception-safe if `register` panics (the box is simply dropped; the contract already forbids it).
+
+## Concurrency
+- async-scope: REQUIRED (`src/service.rs`: `increment_and_snapshot` lock reuse, `approved_pop` cancellation, `stop_worker` task termination)
+- deadlocks: PASS (isolated probes `inc_no_deadlock` with 8 concurrent increments and a 5 s timeout, and `inc_while_snapshot_waiting`. The guard is dropped in an inner block before `snapshot` re-locks, so there is no self-deadlock.)
+- cancellation: PASS (probes `cancel_before_approval_keeps_queue`, `dropped_sender_keeps_queue` and `cancel_while_waiting_for_lock_after_approval` all keep the queue length at 1. The approval is awaited before the lock, and `pop_front` is synchronous after the lock, so dropping at any await point consumes nothing.)
+- task-lifecycle: PASS (probe `stop_worker_halts_side_effects` asserts the counter is frozen after return and would fail if the loop kept running. `stop_worker_blocking_task` shows that for `spawn_blocking`, the call waits for completion, so the side effect lands before return.)
+- async-evidence: `cargo test --locked --offline --test conc -- --test-threads=1` (`conc.log`) ran 7 tests, 7 passed, tokio 1.54.1 current-thread, with real-time bounded waits. These are my probes, not part of the reviewed repository.
+- sync-scope: REQUIRED (`src/publication.rs` `Published`, a one-shot Relaxed value store followed by a Release flag store, read by an Acquire flag load followed by a Relaxed value load)
+- loom: PASS (probe `published_one_shot`, 1 test passed with `LOOM_MAX_PREEMPTIONS=3`, `--features model`, loom 0.7.2, `loom.log`; the model completed). The repository contains no Loom model.
+- synchronization: PASS (independent argument: the flag Release-store happens-after the value store in the single writer. A reader whose Acquire load sees `true` synchronizes with that store, so the later Relaxed value load must see 42 or a later write; there is none, because publish is one-shot. If a reader sees `false` it returns None. Misuse by calling `publish` twice is excluded by the documented single-writer contract.)
+- model-evidence: model in `tests/model.rs` (hash in `probe.sha256`). It uses `loom::sync::Arc`, `loom::thread`, and loom atomics via the `model` feature. It has one reader thread and one writer, asserts every observed `Some` equals 42, and asserts `Some(42)` after join. Bound: `LOOM_MAX_PREEMPTIONS=3`. Command: `cargo test --locked --offline --features model --test model`.
+
+## Spec
+- spec: PARTIAL (the source is REQUIREMENTS.md, and no PR text was available)
+- missing: no committed test covers unaligned or short `read_word`, `Registration` retain and unregister ordering, concurrent increments, cancellation before approval, `stop_worker` termination, or `Published` under Loom. The `Registration` retention requirement fails under Miri (see Findings).
+- unrequested: none.
+- contradictions: the "retains read-only buffer ownership until synchronous unregister completes" requirement is contradicted at the aliasing level. The allocation is retained, but it is not sound to read through it. `read_word`, the Service increments, `approved_pop`, `stop_worker` and `Published` meet their stated contracts in my probes.
+
+## Findings
+- [P1] src/registration.rs:20 - `Registration::new` derives the raw pointer for `register` from `bytes.as_ptr()` and then moves `bytes` as a `Box<[u8]>` into `Self`. Trigger: a consumer that follows the documented contract, reading the registered range via the pointer while registered or inside `unregister`, with the Box then dropped. Impact: undefined behaviour under both Stacked Borrows (tag invalidated by the Unique retag at line 21) and Tree Borrows (deallocation through a conflicted tag), shown by the Miri probe. The `// SAFETY:` comment is not backed by the pointer provenance. Fix: store a `NonNull<[u8]>` from `Box::leak`/`into_raw`, pass its pointer to `register`, and rebuild the `Box` with `Box::from_raw` in `Drop` after `unregister` returns. A variant of this passes Miri in both models.
+- [P2] src/service.rs:40 - The repository ships only two tests, `snapshot_initial` and `approved_delivery`. None covers the required scenarios: `read_word` alignment and short input, `Registration` ordering and Miri, increments with snapshots, `approved_pop` cancellation, `stop_worker` termination, or the `Published` Loom model (the `model` feature is unused). Trigger: a future regression in any of these goes undetected, and the P1 defect above passed all gates for that reason. Fix: add the probes' scenarios (see `src-copy/tests/`) as repository tests and a Miri CI job.
+
+## Residual risks
+- Scope: base `origin/main` = 007e8d5210660d3bdc54d78b49d6100f8ff2b399; head 3a74ba4e0e9c3355ebd72580e594fc7701223f27. The working tree was clean (no dirty or untracked files). The diff also adds kit files under `.claude/`, reviewed only as tooling and not as product code.
+- Reviewed hashes are in `source.sha256`, for example `src/registration.rs` 28ff670e…, `src/publication.rs` a9812c1a…, `src/service.rs` cadbd58c…. The reviewed tree was not edited. Gates and probes ran on a copy in `reviews/04`.
+- Miri covers only the executed probe paths. Memory-model validity is limited to Stacked Borrows and Tree Borrows. The foreign-callback guarantees (no unwinding, synchronous quiescence) are unverifiable from Rust.
+- `Service` uses a Tokio mutex across increment and snapshot, which are not atomic as a pair; this is acceptable under the stated contract and is not a defect.
+- The `stop_worker` guarantee holds only for the task passed in. Detached subtasks or `spawn_blocking` work started by the worker are outside its ownership. The Loom model bounds are `LOOM_MAX_PREEMPTIONS=3`.
+- No LSP or graph tools were available; deny advisory data is the local offline copy.
