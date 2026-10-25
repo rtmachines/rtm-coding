@@ -1,9 +1,0 @@
-{
-  "fmt": "cargo fmt --all -- --check",
-  "clippy": "cargo clippy --workspace --all-targets --locked --message-format=short --color=never -- -D warnings",
-  "tests": "cargo test --workspace --locked --no-fail-fast",
-  "doctests": "cargo test --workspace --locked --doc",
-  "deny": "cargo deny --locked --offline check",
-  "versions": "rustc -Vv; cargo +nightly miri --version; rustup component list --installed --toolchain nightly",
-  "diff": "git diff --no-ext-diff --no-textconv origin/main --"
-}

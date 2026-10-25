@@ -1,5 +1,0 @@
-$ cargo clippy --workspace --all-targets --all-features --locked --message-format=short --color=never -- -D warnings
-    Checking ledger-preview v0.1.0 (/tmp/rust-review-lsp-20261025/cases/01)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.09s
-
-EXIT=0

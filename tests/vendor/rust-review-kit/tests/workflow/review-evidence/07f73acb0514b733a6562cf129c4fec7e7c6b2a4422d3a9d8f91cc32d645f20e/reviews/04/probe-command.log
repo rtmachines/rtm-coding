@@ -1,5 +1,0 @@
-All invocations ran with CARGO_NET_OFFLINE=true in reviews/04/probe.
-Default Miri: timeout 90 cargo +nightly miri test --locked --test memory
-Tree Borrows actual shell command: MIRIFLAGS=-Zmiri-tree-borrows timeout 90 cargo +nightly miri test --locked --test memory
-The miri-tree.log header initially displayed the environment assignment after timeout; this file records the actual executed shell ordering.
-Probe build directory moved from probe-target to target/probes after execution for packaging; logs preserve original paths.

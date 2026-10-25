@@ -1,8 +1,0 @@
-rustc 1.101.0-nightly (48f4b0553 2026-10-23)
-binary: rustc
-commit-hash: 48f4b05538b8eca412137042d9647a61e692c6b3
-commit-date: 2026-10-23
-host: x86_64-unknown-linux-gnu
-release: 1.101.0-nightly
-LLVM version: 23.1.4
-miri 0.1.0 (48f4b05538 2026-10-23)
